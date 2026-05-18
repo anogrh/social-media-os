@@ -169,8 +169,8 @@ export default function ConfiguracoesPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Configurações" subtitle="Gerencie sua agência, equipe e integrações" />
 
-      <div style={{ padding: '24px 28px', fontFamily: font }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '220px 1fr', gap: 24, alignItems: 'start' }}>
+      <div className="page-pad" style={{ fontFamily: font }}>
+        <div className="rg-settings" style={{ gap: 24, alignItems: 'start' }}>
 
           {/* Sidebar nav */}
           <div style={{ background: '#F5F4F2', borderRadius: 16, padding: 8, position: 'sticky', top: 24 }}>
@@ -201,7 +201,7 @@ export default function ConfiguracoesPage() {
             {activeTab === 'Agência' && (
               <div>
                 {sectionTitle('Dados da agência')}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 20 }}>
+                <div className="rg-2" style={{ gap: 16, marginBottom: 20 }}>
                   <div>
                     <label style={labelStyle}>Nome da agência</label>
                     <input value={agency.name} onChange={e => setAgency(a => ({ ...a, name: e.target.value }))} style={inputStyle} />

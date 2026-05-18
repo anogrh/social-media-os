@@ -54,10 +54,10 @@ export default function DashboardPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Dashboard" subtitle="Visão geral da operação" />
 
-      <div style={{ padding: '24px 28px', fontFamily: font }}>
+      <div className="page-pad" style={{ fontFamily: font }}>
 
         {/* ── 1. KPI CARDS ────────────────────────────────────────────── */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 14, marginBottom: 24 }}>
+        <div className="rg-kpi" style={{ marginBottom: 24 }}>
           <MetricCard icon={Users}       label="Clientes ativos"   value={String(activeClients.length)} change={20}  changeLabel="vs. mês anterior"     iconBg="#FBD0DA" accent="#F25BA5" />
           <MetricCard icon={DollarSign}  label="Receita prevista"  value={formatCurrency(totalPrevisto)} change={13}  changeLabel="jun/2025"              iconBg="#d1fae5" accent="#10B981" />
           <MetricCard icon={DollarSign}  label="Recebido"          value={formatCurrency(totalRecebido)} change={-8}  changeLabel="jun/2025 (parcial)"    iconBg="#dbeafe" accent="#3B82F6" />
@@ -66,7 +66,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── 2. HOJE + RESUMO ─────────────────────────────────────────── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, marginBottom: 24 }}>
+        <div className="rg-2" style={{ gap: 20, marginBottom: 24 }}>
 
           {/* O que fazer hoje */}
           <div style={{ ...card, padding: 20 }}>
@@ -100,7 +100,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── 3. RECEITA + ALERTAS ────────────────────────────────────── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 20, marginBottom: 24 }}>
+        <div className="rg-chart" style={{ gap: 20, marginBottom: 24 }}>
 
           {/* Revenue BarChart */}
           <div style={{ ...card, padding: '20px 20px 10px' }}>
@@ -139,7 +139,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── 4. CLIENTES + INSTAGRAM SNAPSHOT ───────────────────────── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 20, marginBottom: 24 }}>
+        <div className="rg-3" style={{ gap: 20, marginBottom: 24 }}>
 
           {/* Top clients by payment status */}
           <div style={{ ...card, padding: 20 }}>
@@ -236,7 +236,7 @@ export default function DashboardPage() {
         </div>
 
         {/* ── 5. POSTS DA SEMANA + PAGAMENTOS RECENTES ──────────────── */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
+        <div className="rg-2" style={{ gap: 20 }}>
 
           {/* Posts this week */}
           <div style={{ ...card, padding: 20 }}>

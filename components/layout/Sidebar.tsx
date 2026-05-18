@@ -6,10 +6,11 @@ import { useState } from 'react'
 import {
   LayoutDashboard, Users, CalendarDays, CheckSquare,
   DollarSign, FileText, Lightbulb, BarChart, Library, MessageSquare,
-  ChevronLeft, ChevronRight, Camera, Sparkles, Settings, LogOut
+  ChevronLeft, ChevronRight, Camera, Sparkles, Settings, LogOut, X
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { supabase } from '@/lib/supabase'
+import { useSidebar } from '@/context/SidebarContext'
 
 const navGroups = [
   {
@@ -70,6 +71,7 @@ export default function Sidebar() {
   const pathname = usePathname()
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
+  const { mobileOpen, setMobileOpen } = useSidebar()
 
   async function handleLogout() {
     await supabase.auth.signOut()
@@ -82,117 +84,161 @@ export default function Sidebar() {
     return pathname.startsWith(href)
   }
 
+  function handleNavClick() {
+    // Close mobile sidebar when navigating
+    setMobileOpen(false)
+  }
+
   return (
-    <aside
-      style={{ background: '#F5F4F2', borderRight: '1px solid rgba(31,27,26,0.10)' }}
-      className={cn(
-        'relative flex flex-col h-screen transition-all duration-300 flex-shrink-0',
-        collapsed ? 'w-16' : 'w-60'
+    <>
+      {/* Mobile backdrop */}
+      {mobileOpen && (
+        <div
+          className="sidebar-overlay"
+          onClick={() => setMobileOpen(false)}
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(31,27,26,0.45)',
+            zIndex: 40,
+            backdropFilter: 'blur(2px)',
+          }}
+        />
       )}
-    >
-      {/* Logo */}
-      <div
-        style={{ borderBottom: '1px solid rgba(31,27,26,0.10)' }}
-        className="flex items-center gap-2 px-4 py-5 flex-shrink-0"
-      >
-        <div
-          style={{ background: '#F25BA5', color: '#FFFFFF' }}
-          className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-        >
-          <Sparkles size={14} />
-        </div>
-        {!collapsed && (
-          <div className="overflow-hidden">
-            <span
-              style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#1F1B1A', fontWeight: 600, fontSize: 18, lineHeight: 1 }}
-            >
-              rhania.
-            </span>
-            <span
-              style={{ fontFamily: "'Inter', system-ui, sans-serif", color: '#1F1B1A', fontSize: 11, display: 'block', opacity: 0.5, letterSpacing: '0.08em', marginTop: 1 }}
-            >
-              araújo
-            </span>
-          </div>
+
+      <aside
+        style={{ background: '#F5F4F2', borderRight: '1px solid rgba(31,27,26,0.10)' }}
+        className={cn(
+          'sidebar-mobile relative flex flex-col h-screen transition-all duration-300 flex-shrink-0',
+          mobileOpen && 'open',
+          collapsed ? 'w-16' : 'w-60'
         )}
-      </div>
+      >
+        {/* Mobile close button */}
+        <button
+          onClick={() => setMobileOpen(false)}
+          className="lg:hidden absolute right-3 top-4 z-10"
+          style={{
+            background: 'rgba(31,27,26,0.08)',
+            border: 'none',
+            borderRadius: 8,
+            width: 32,
+            height: 32,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            color: '#1F1B1A',
+          }}
+        >
+          <X size={16} />
+        </button>
 
-      {/* Nav */}
-      <nav className="flex-1 overflow-y-auto py-4 px-2">
-        {navGroups.map((group) => (
-          <div key={group.label} className="mb-4">
-            {!collapsed && (
-              <p
-                style={{ fontFamily: "'Inter', system-ui, sans-serif", color: 'rgba(31,27,26,0.4)', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}
-                className="px-3 mb-1"
-              >
-                {group.label}
-              </p>
-            )}
-            {group.items.map((item) => {
-              const active = isActive(item.href)
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  title={collapsed ? item.label : undefined}
-                  style={{
-                    borderLeft: active ? '2px solid #F25BA5' : '2px solid transparent',
-                    color: active ? '#F25BA5' : '#1F1B1A',
-                    background: active ? 'rgba(242,91,165,0.07)' : 'transparent',
-                    fontFamily: "'Inter', system-ui, sans-serif",
-                    fontSize: 14,
-                    fontWeight: active ? 600 : 400,
-                  }}
-                  className={cn(
-                    'flex items-center gap-3 px-3 py-2 rounded-r-lg transition-all mb-0.5',
-                    !active && 'hover:bg-black/5'
-                  )}
-                >
-                  <item.icon size={16} className="flex-shrink-0" />
-                  {!collapsed && <span className="truncate">{item.label}</span>}
-                </Link>
-              )
-            })}
-          </div>
-        ))}
-      </nav>
-
-      {/* User */}
-      {!collapsed && (
+        {/* Logo */}
         <div
-          style={{ borderTop: '1px solid rgba(31,27,26,0.10)', fontFamily: "'Inter', system-ui, sans-serif" }}
-          className="px-4 py-3 flex items-center gap-3"
+          style={{ borderBottom: '1px solid rgba(31,27,26,0.10)' }}
+          className="flex items-center gap-2 px-4 py-5 flex-shrink-0"
         >
           <div
-            style={{ background: '#F25BA5', color: '#FFFFFF', fontSize: 12, fontWeight: 700 }}
+            style={{ background: '#F25BA5', color: '#FFFFFF' }}
             className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
           >
-            RN
+            <Sparkles size={14} />
           </div>
-          <div className="overflow-hidden flex-1">
-            <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }} className="truncate">Rhania Nogueira</p>
-            <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)' }} className="truncate">Admin</p>
-          </div>
-          <button
-            onClick={handleLogout}
-            title="Sair"
-            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', padding: 4, borderRadius: 6, flexShrink: 0 }}
-            className="hover:text-[#F25BA5] transition-colors"
-          >
-            <LogOut size={15} />
-          </button>
+          {!collapsed && (
+            <div className="overflow-hidden">
+              <span
+                style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#1F1B1A', fontWeight: 600, fontSize: 18, lineHeight: 1 }}
+              >
+                rhania.
+              </span>
+              <span
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", color: '#1F1B1A', fontSize: 11, display: 'block', opacity: 0.5, letterSpacing: '0.08em', marginTop: 1 }}
+              >
+                araújo
+              </span>
+            </div>
+          )}
         </div>
-      )}
 
-      {/* Collapse button */}
-      <button
-        onClick={() => setCollapsed(!collapsed)}
-        style={{ background: '#F5F4F2', border: '1px solid rgba(31,27,26,0.12)', color: '#1F1B1A' }}
-        className="absolute -right-3 top-6 w-6 h-6 rounded-full flex items-center justify-center hover:bg-[#F25BA5] hover:text-white hover:border-[#F25BA5] transition-colors z-10"
-      >
-        {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
-      </button>
-    </aside>
+        {/* Nav */}
+        <nav className="flex-1 overflow-y-auto py-4 px-2">
+          {navGroups.map((group) => (
+            <div key={group.label} className="mb-4">
+              {!collapsed && (
+                <p
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif", color: 'rgba(31,27,26,0.4)', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}
+                  className="px-3 mb-1"
+                >
+                  {group.label}
+                </p>
+              )}
+              {group.items.map((item) => {
+                const active = isActive(item.href)
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={handleNavClick}
+                    title={collapsed ? item.label : undefined}
+                    style={{
+                      borderLeft: active ? '2px solid #F25BA5' : '2px solid transparent',
+                      color: active ? '#F25BA5' : '#1F1B1A',
+                      background: active ? 'rgba(242,91,165,0.07)' : 'transparent',
+                      fontFamily: "'Inter', system-ui, sans-serif",
+                      fontSize: 14,
+                      fontWeight: active ? 600 : 400,
+                    }}
+                    className={cn(
+                      'flex items-center gap-3 px-3 py-2 rounded-r-lg transition-all mb-0.5',
+                      !active && 'hover:bg-black/5'
+                    )}
+                  >
+                    <item.icon size={16} className="flex-shrink-0" />
+                    {!collapsed && <span className="truncate">{item.label}</span>}
+                  </Link>
+                )
+              })}
+            </div>
+          ))}
+        </nav>
+
+        {/* User */}
+        {!collapsed && (
+          <div
+            style={{ borderTop: '1px solid rgba(31,27,26,0.10)', fontFamily: "'Inter', system-ui, sans-serif" }}
+            className="px-4 py-3 flex items-center gap-3"
+          >
+            <div
+              style={{ background: '#F25BA5', color: '#FFFFFF', fontSize: 12, fontWeight: 700 }}
+              className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+            >
+              RN
+            </div>
+            <div className="overflow-hidden flex-1">
+              <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }} className="truncate">Rhania Nogueira</p>
+              <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)' }} className="truncate">Admin</p>
+            </div>
+            <button
+              onClick={handleLogout}
+              title="Sair"
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', padding: 4, borderRadius: 6, flexShrink: 0 }}
+              className="hover:text-[#F25BA5] transition-colors"
+            >
+              <LogOut size={15} />
+            </button>
+          </div>
+        )}
+
+        {/* Collapse button — desktop only */}
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          style={{ background: '#F5F4F2', border: '1px solid rgba(31,27,26,0.12)', color: '#1F1B1A' }}
+          className="lg:flex hidden absolute -right-3 top-6 w-6 h-6 rounded-full items-center justify-center hover:bg-[#F25BA5] hover:text-white hover:border-[#F25BA5] transition-colors z-10"
+        >
+          {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
+        </button>
+      </aside>
+    </>
   )
 }

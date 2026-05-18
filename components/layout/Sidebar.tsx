@@ -6,7 +6,7 @@ import { useState } from 'react'
 import {
   LayoutDashboard, Users, CalendarDays, CheckSquare,
   DollarSign, FileText, Lightbulb, BarChart, Library, MessageSquare,
-  ChevronLeft, ChevronRight, Camera, Sparkles, Settings, LogOut, X, Sun, Moon
+  ChevronLeft, ChevronRight, Camera, Settings, LogOut, X, Sun, Moon
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { supabase } from '@/lib/supabase'
@@ -141,12 +141,11 @@ export default function Sidebar() {
           style={{ borderBottom: '1px solid var(--border)' }}
           className="flex items-center gap-2 px-4 py-5 flex-shrink-0"
         >
-          <div
-            style={{ background: '#F25BA5', color: '#FFFFFF' }}
-            className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
-          >
-            <Sparkles size={14} />
-          </div>
+          <img
+            src="/logo.svg"
+            alt="Rhania Araújo"
+            style={{ width: 36, height: 36, borderRadius: '50%', flexShrink: 0 }}
+          />
           {!collapsed && (
             <div className="overflow-hidden">
               <span

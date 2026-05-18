@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Eye, EyeOff, Sparkles } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
 import { supabase } from '@/lib/supabase'
 
 export default function LoginPage() {
@@ -42,9 +42,7 @@ export default function LoginPage() {
           {/* Logo */}
           <div style={{ position: 'relative', zIndex: 1 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div style={{ background: '#F25BA5', width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                <Sparkles size={16} color="#FFFFFF" />
-              </div>
+              <img src="/logo.svg" alt="Rhania Araújo" style={{ width: 40, height: 40, borderRadius: '50%', flexShrink: 0 }} />
               <div>
                 <span style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#FFFFFF', fontWeight: 600, fontSize: 20 }}>rhania.</span>
                 <span style={{ display: 'block', color: 'rgba(255,252,236,0.4)', fontSize: 11, letterSpacing: '0.08em' }}>araújo</span>

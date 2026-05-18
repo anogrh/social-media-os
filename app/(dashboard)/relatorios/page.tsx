@@ -109,7 +109,7 @@ export default function RelatoriosPage() {
                       <p style={{ color: 'rgba(255,252,236,0.5)', fontSize: 14, marginTop: 4 }}>{MONTHS[parseInt(selectedMonth)]} 2025 · {client?.instagramHandle}</p>
                     </div>
                     <div style={{ background: '#F25BA5', width: 48, height: 48, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <span style={{ fontFamily: "'Playfair Display'", color: '#FFFFFF', fontStyle: 'italic', fontWeight: 700, fontSize: 18 }}>i.</span>
+                      <span style={{ fontFamily: "'Playfair Display'", color: '#FFFFFF', fontWeight: 600, fontSize: 18 }}>i.</span>
                     </div>
                   </div>
                 </div>

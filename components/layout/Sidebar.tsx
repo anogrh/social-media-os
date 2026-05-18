@@ -104,7 +104,7 @@ export default function Sidebar() {
         {!collapsed && (
           <div className="overflow-hidden">
             <span
-              style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#1F1B1A', fontStyle: 'italic', fontWeight: 700, fontSize: 18, lineHeight: 1 }}
+              style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#1F1B1A', fontWeight: 600, fontSize: 18, lineHeight: 1 }}
             >
               rhania.
             </span>

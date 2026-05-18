@@ -350,7 +350,7 @@ export default function EstrategiaPage() {
               </div>
               <h2 style={{ fontFamily: serif, fontSize: 42, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.15, marginBottom: 12 }}>
                 Briefing de{' '}
-                <em style={{ color: '#F25BA5', fontStyle: 'italic' }}>{client.name.split(' ')[0]}</em>
+                <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>
                 {' '}para {mes}.
               </h2>
               <p style={{ fontSize: 15, color: 'rgba(31,27,26,0.55)', maxWidth: 540, lineHeight: 1.7 }}>
@@ -386,7 +386,7 @@ export default function EstrategiaPage() {
                           </span>
                           {done && <Check size={12} color="#F25BA5" />}
                         </div>
-                        <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 600, color: '#1F1B1A', lineHeight: 1.35, fontStyle: 'italic' }}>
+                        <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 600, color: '#1F1B1A', lineHeight: 1.35 }}>
                           {q.q(client.name, mes)}
                         </p>
                         <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.45)', marginTop: 6, lineHeight: 1.6 }}>
@@ -436,7 +436,7 @@ export default function EstrategiaPage() {
                 )}
               </button>
               {filledCount < 3 && (
-                <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.4)', fontStyle: 'italic' }}>
+                <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.4)' }}>
                   Responda pelo menos 3 perguntas para gerar
                 </p>
               )}
@@ -460,7 +460,7 @@ export default function EstrategiaPage() {
                     </div>
                     <h3 style={{ fontFamily: serif, fontSize: 32, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2 }}>
                       Estratégia de {client.name} —{' '}
-                      <em style={{ color: '#F25BA5' }}>{mes}</em>
+                      <span style={{ color: '#F25BA5' }}>{mes}</span>
                     </h3>
                   </div>
                   <button onClick={handleGenStrategy}
@@ -542,7 +542,7 @@ export default function EstrategiaPage() {
                   {/* 5. CTA */}
                   <StratSection label="05 — CTA do mês" accent="#F25BA5">
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 14 }}>
-                      <div style={{ fontFamily: serif, fontSize: 24, fontWeight: 700, color: '#F25BA5', fontStyle: 'italic' }}>
+                      <div style={{ fontFamily: serif, fontSize: 24, fontWeight: 700, color: '#F25BA5' }}>
                         {strategy.cta.chamada}
                       </div>
                     </div>
@@ -606,7 +606,7 @@ export default function EstrategiaPage() {
             <div style={{ marginBottom: 28 }}>
               <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2, marginBottom: 8 }}>
                 Quem compra de{' '}
-                <em style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</em>?
+                <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>?
               </h2>
               <p style={{ fontSize: 14, color: 'rgba(31,27,26,0.5)', lineHeight: 1.7 }}>
                 Crie a persona ideal baseada no segmento e perfil do cliente. Personalize os campos ou deixe em branco para gerar automaticamente.
@@ -685,7 +685,7 @@ export default function EstrategiaPage() {
             <div style={{ marginBottom: 28 }}>
               <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2, marginBottom: 8 }}>
                 Referências para{' '}
-                <em style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</em>.
+                <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>.
               </h2>
               <p style={{ fontSize: 14, color: 'rgba(31,27,26,0.5)', lineHeight: 1.7 }}>
                 Sugestões de conteúdo baseadas no segmento <strong>{client.segment}</strong>. Filtre por formato ou busque por tema.

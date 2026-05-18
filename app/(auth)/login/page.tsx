@@ -47,7 +47,7 @@ export default function LoginPage() {
               <Sparkles size={16} color="#FFFFFF" />
             </div>
             <div>
-              <span style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#FFFFFF', fontStyle: 'italic', fontWeight: 700, fontSize: 20 }}>rhania.</span>
+              <span style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#FFFFFF', fontWeight: 600, fontSize: 20 }}>rhania.</span>
               <span style={{ display: 'block', fontFamily: "'Inter', system-ui, sans-serif", color: 'rgba(255,252,236,0.4)', fontSize: 11, letterSpacing: '0.08em' }}>araújo</span>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function LoginPage() {
             }}
           >
             Sua operação.{' '}
-            <em style={{ color: '#F25BA5' }}>Centralizada.</em>
+            <span style={{ color: '#F25BA5', fontStyle: 'normal', fontWeight: 700 }}>Centralizada.</span>
           </h1>
           <p style={{ color: 'rgba(255,252,236,0.6)', fontSize: 16, lineHeight: 1.7, maxWidth: 380 }}>
             Gerencie todos os seus clientes, conteúdos, métricas e pagamentos em um único lugar.
@@ -87,13 +87,13 @@ export default function LoginPage() {
           <div style={{ background: '#F25BA5', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Sparkles size={14} color="#FFFFFF" />
           </div>
-          <span style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#1F1B1A', fontStyle: 'italic', fontWeight: 700, fontSize: 18 }}>rhania.</span>
+          <span style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#1F1B1A', fontWeight: 600, fontSize: 18 }}>rhania.</span>
         </div>
 
         <div style={{ marginBottom: 40 }}>
           <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 32, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2 }}>
             Bem-vinda de{' '}
-            <em style={{ color: '#F25BA5' }}>volta</em>
+            <span style={{ color: '#F25BA5', fontStyle: 'normal', fontWeight: 700 }}>volta</span>
           </h2>
           <p style={{ color: 'rgba(31,27,26,0.5)', fontSize: 14, marginTop: 8 }}>Entre na sua conta para continuar</p>
         </div>

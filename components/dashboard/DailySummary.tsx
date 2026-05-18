@@ -27,7 +27,7 @@ export default function DailySummary() {
         style={{
           fontFamily: "'Playfair Display', Georgia, serif",
           fontSize: 15,
-          fontStyle: 'italic',
+          fontWeight: 600,
           color: '#1F1B1A',
           lineHeight: 1.7,
           borderLeft: 'none',

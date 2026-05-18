@@ -72,19 +72,6 @@ export default function LoginPage() {
             Gerencie todos os seus clientes, conteúdos, métricas e pagamentos em um único lugar.
           </p>
 
-          {/* Stats */}
-          <div style={{ display: 'flex', gap: 32, marginTop: 40 }}>
-            {[
-              { value: '6', label: 'clientes ativos' },
-              { value: 'R$ 14k', label: 'receita mensal' },
-              { value: '60+', label: 'posts/mês' },
-            ].map(s => (
-              <div key={s.label}>
-                <p style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#F25BA5', fontSize: 28, fontWeight: 700 }}>{s.value}</p>
-                <p style={{ color: 'rgba(255,252,236,0.5)', fontSize: 12, marginTop: 2 }}>{s.label}</p>
-              </div>
-            ))}
-          </div>
         </div>
 
         {/* Footer quote */}

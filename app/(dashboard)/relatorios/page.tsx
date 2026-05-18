@@ -27,8 +27,8 @@ export default function RelatoriosPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Relatórios" subtitle="Gere relatórios de performance para seus clientes" />
 
-      <div style={{ padding: '24px 28px', fontFamily: "'Inter', system-ui, sans-serif" }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '300px 1fr', gap: 24 }}>
+      <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
+        <div className="rg-relatorios" style={{ gap: 24 }}>
           {/* Config panel */}
           <div>
             <div style={{ background: '#F5F4F2', borderRadius: 14, padding: 20, marginBottom: 16 }}>
@@ -121,7 +121,7 @@ export default function RelatoriosPage() {
                       <h3 style={{ fontSize: 14, fontWeight: 700, color: 'rgba(31,27,26,0.5)', marginBottom: 14, textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                         Métricas do período
                       </h3>
-                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 24 }}>
+                      <div className="rg-3" style={{ gap: 14, marginBottom: 24 }}>
                         {[
                           { label: 'Seguidores', value: formatNumber(ig.followers), change: `+${ig.newFollowers30d}` },
                           { label: 'Alcance', value: formatNumber(ig.reach30d), change: '+12%' },

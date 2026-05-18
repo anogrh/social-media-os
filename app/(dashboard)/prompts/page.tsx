@@ -39,7 +39,7 @@ export default function PromptsPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Prompts IA" subtitle="Biblioteca de prompts para agilizar sua operação" />
 
-      <div style={{ padding: '24px 28px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         {/* Toolbar */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 20, alignItems: 'center' }}>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>

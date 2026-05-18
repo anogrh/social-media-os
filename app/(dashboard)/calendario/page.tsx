@@ -96,7 +96,7 @@ export default function CalendarioPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Calendário editorial" subtitle="Planejamento de conteúdo" />
 
-      <div style={{ padding: '24px 28px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         {/* Toolbar */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
           {/* Client filter */}
@@ -138,9 +138,9 @@ export default function CalendarioPage() {
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 20 }}>
+        <div className="rg-calendario" style={{ gap: 20 }}>
           {/* Calendar grid */}
-          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 16, overflow: 'hidden' }}>
+          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 16, overflow: 'hidden', overflowX: 'auto' }}>
             {/* Month nav */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: '1px solid rgba(31,27,26,0.08)' }}>
               <button onClick={prevMonth} style={{ background: 'none', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 8, width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>

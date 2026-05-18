@@ -27,9 +27,9 @@ export default function FinanceiroPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Financeiro" subtitle="Controle de receitas e pagamentos" />
 
-      <div style={{ padding: '24px 28px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         {/* Top cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 24 }}>
+        <div className="rg-4" style={{ gap: 14, marginBottom: 24 }}>
           {[
             { label: 'Receita prevista (jun)', value: formatCurrency(totalPrevisto), color: '#1F1B1A', bg: '#F5F4F2' },
             { label: 'Receita recebida (total)', value: formatCurrency(totalRecebido), color: '#10B981', bg: '#d1fae5' },
@@ -44,7 +44,7 @@ export default function FinanceiroPage() {
         </div>
 
         {/* Charts */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 20, marginBottom: 24 }}>
+        <div className="rg-chart" style={{ gap: 20, marginBottom: 24 }}>
           {/* Bar chart */}
           <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: '20px 20px 10px' }}>
             <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: '#1F1B1A', marginBottom: 18 }}>Receita mensal — últimos 6 meses</h3>

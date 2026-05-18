@@ -99,7 +99,7 @@ export default function InstagramPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Instagram analytics" subtitle="Performance detalhada das contas conectadas" />
 
-      <div style={{ padding: '24px 28px', fontFamily: font }}>
+      <div className="page-pad" style={{ fontFamily: font }}>
 
         {/* Selector row */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 24, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -172,7 +172,7 @@ export default function InstagramPage() {
             {activeTab === 'Perfil' && (
               <div>
                 {/* KPI row */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginBottom: 20 }}>
+                <div className="rg-4" style={{ gap: 14, marginBottom: 20 }}>
                   {[
                     { icon: Users, label: 'Seguidores', value: formatNumber(ig.followers), sub: `${ig.newFollowers30d >= 0 ? '+' : ''}${ig.newFollowers30d} este mês`, color: '#F25BA5', bg: '#FBD0DA', up: ig.newFollowers30d >= 0 },
                     { icon: Eye, label: 'Alcance 30d', value: formatNumber(ig.reach30d), sub: 'contas únicas', color: '#3B82F6', bg: '#dbeafe', up: true },
@@ -197,7 +197,7 @@ export default function InstagramPage() {
                 </div>
 
                 {/* Charts */}
-                <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: 20, marginBottom: 20 }}>
+                <div className="rg-chart" style={{ gap: 20, marginBottom: 20 }}>
                   <div style={{ ...S.card, padding: '20px 20px 10px' }}>
                     <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Crescimento de seguidores — 30 dias</h4>
                     <ResponsiveContainer width="100%" height={220}>
@@ -252,7 +252,7 @@ export default function InstagramPage() {
             {/* ── STORIES ───────────────────────────────── */}
             {activeTab === 'Stories' && (
               <div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 12, marginBottom: 20 }}>
+                <div className="rg-kpi" style={{ marginBottom: 20 }}>
                   {[
                     { label: 'Alcance total 14d', value: formatNumber(storyData.reduce((a, s) => a + s.alcance, 0)), icon: Eye, color: '#F25BA5', bg: '#FBD0DA' },
                     { label: 'Impressões 14d', value: formatNumber(storyData.reduce((a, s) => a + s.impressoes, 0)), icon: BarChart2, color: '#3B82F6', bg: '#dbeafe' },
@@ -287,7 +287,7 @@ export default function InstagramPage() {
                 </div>
 
                 {/* Insights boxes */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+                <div className="rg-3" style={{ gap: 16 }}>
                   {[
                     { title: 'Melhor dia de Stories', desc: 'Stories de 12/jun tiveram 2.340 de alcance — acima 40% da média. Tema: rotina de sono.', color: '#d1fae5', border: '#10B981' },
                     { title: 'Pior sequência', desc: 'Stories de 09/jun registraram 38% de taxa de saída — avaliar se a sequência ficou longa demais.', color: '#fee2e2', border: '#EE3528' },
@@ -306,7 +306,7 @@ export default function InstagramPage() {
             {activeTab === 'Reels' && (
               <div>
                 {/* KPIs */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 20 }}>
+                <div className="rg-4" style={{ gap: 12, marginBottom: 20 }}>
                   {[
                     { label: 'Reproduções totais', value: formatNumber(reelsData.reduce((a, r) => a + r.reproducoes, 0)), icon: Play, color: '#F25BA5', bg: '#FBD0DA' },
                     { label: 'Compartilhamentos', value: formatNumber(reelsData.reduce((a, r) => a + r.compartilhamentos, 0)), icon: Share2, color: '#3B82F6', bg: '#dbeafe' },
@@ -379,7 +379,7 @@ export default function InstagramPage() {
             {activeTab === 'Feed' && (
               <div>
                 {/* KPIs */}
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12, marginBottom: 20 }}>
+                <div className="rg-4" style={{ gap: 12, marginBottom: 20 }}>
                   {[
                     { label: 'Alcance total', value: formatNumber(feedData.reduce((a, f) => a + f.alcance, 0)), icon: Eye, color: '#F25BA5', bg: '#FBD0DA' },
                     { label: 'Salvamentos', value: formatNumber(feedData.reduce((a, f) => a + f.salvamentos, 0)), icon: BookMarked, color: '#10B981', bg: '#d1fae5' },

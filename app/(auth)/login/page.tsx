@@ -81,9 +81,9 @@ export default function LoginPage() {
       </div>
 
       {/* Right — form */}
-      <div style={{ width: '100%', maxWidth: 480, padding: '48px 40px', display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto' }}>
+      <div className="login-form-pad" style={{ width: '100%', maxWidth: 480, display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0 auto' }}>
         {/* Mobile logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 48 }} className="lg:hidden">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 32 }} className="lg:hidden">
           <div style={{ background: '#F25BA5', width: 32, height: 32, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <Sparkles size={14} color="#FFFFFF" />
           </div>

@@ -40,7 +40,7 @@ export default function ClientesPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Clientes" subtitle="Gerencie sua carteira de clientes" />
 
-      <div style={{ padding: '24px 28px' }}>
+      <div className="page-pad">
         {/* Stats bar */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
           {[
@@ -108,7 +108,7 @@ export default function ClientesPage() {
         </div>
 
         {/* Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+        <div className="rg-3" style={{ gap: 16 }}>
           {filtered.map(client => (
             <Link
               key={client.id}

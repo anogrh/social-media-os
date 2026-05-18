@@ -67,7 +67,7 @@ export default function TarefasPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Tarefas" subtitle="Kanban da operação" />
 
-      <div style={{ padding: '24px 28px', fontFamily: font }}>
+      <div className="page-pad" style={{ fontFamily: font }}>
 
         {/* Stats + action row */}
         <div style={{ display: 'flex', gap: 10, marginBottom: 24, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -91,7 +91,7 @@ export default function TarefasPage() {
         </div>
 
         {/* Kanban */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16, alignItems: 'start' }}>
+        <div className="rg-4" style={{ gap: 16, alignItems: 'start' }}>
           {COLUMNS.map(col => {
             const colTasks = byCol(col.id)
             return (

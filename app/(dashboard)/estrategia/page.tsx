@@ -297,7 +297,7 @@ export default function EstrategiaPage() {
     <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
       <Header title="Estratégia" subtitle="Briefing mensal, planejamento e geração de estratégia com IA" />
 
-      <div style={{ padding: '20px 28px 40px', fontFamily: font }}>
+      <div className="page-pad" style={{ paddingBottom: 40, fontFamily: font }}>
 
         {/* ─── Top bar ─────────────────────────────────────────────────── */}
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 24, flexWrap: 'wrap' }}>
@@ -478,7 +478,7 @@ export default function EstrategiaPage() {
 
                   {/* 2. Pilares */}
                   <StratSection label="02 — Pilares de conteúdo" accent="#F19877">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                    <div className="rg-2" style={{ gap: 12 }}>
                       {strategy.pilares.map((p, i) => (
                         <div key={i} style={{ background: '#FFFFFF', borderRadius: 10, padding: '14px 16px', borderLeft: '3px solid #F19877' }}>
                           <p style={{ fontWeight: 700, fontSize: 13, color: '#1F1B1A', marginBottom: 4 }}>{p.nome}</p>
@@ -514,7 +514,7 @@ export default function EstrategiaPage() {
 
                   {/* 4. Tom */}
                   <StratSection label="04 — Tom e diretrizes" accent="#FBD0DA">
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                    <div className="rg-2" style={{ gap: 16, marginBottom: 16 }}>
                       {[
                         { title: 'Reforçar', items: strategy.tom.reforcar, color: '#d1fae5', dot: '#22c55e' },
                         { title: 'Evitar', items: strategy.tom.evitar, color: '#fee2e2', dot: '#ef4444' },
@@ -560,7 +560,7 @@ export default function EstrategiaPage() {
         {/* ═══════════════════════════════════════════════════════════════ */}
         {tab === 1 && (
           <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+            <div className="rg-2" style={{ gap: 16 }}>
               {[
                 { key: 'positioning', label: 'Posicionamento', ph: 'Como a marca se posiciona no mercado...' },
                 { key: 'brandVoice', label: 'Tom de voz', ph: 'Como a marca se comunica...' },
@@ -614,7 +614,7 @@ export default function EstrategiaPage() {
             </div>
 
             <div style={{ background: '#F5F4F2', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 14, marginBottom: 20 }}>
+              <div className="rg-3" style={{ gap: 14, marginBottom: 20 }}>
                 {[
                   { key: 'name', label: 'Nome sugerido', ph: 'Ex: Sofia Mendes' },
                   { key: 'ageRange', label: 'Faixa etária', ph: 'Ex: 28–35 anos' },
@@ -638,7 +638,7 @@ export default function EstrategiaPage() {
             </div>
 
             {persona && (
-              <div style={{ background: 'linear-gradient(135deg, #F5F4F2 0%, rgba(251,208,218,0.15) 100%)', border: '1px solid rgba(242,91,165,0.2)', borderRadius: 16, padding: 28, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+              <div className="rg-2" style={{ background: 'linear-gradient(135deg, #F5F4F2 0%, rgba(251,208,218,0.15) 100%)', border: '1px solid rgba(242,91,165,0.2)', borderRadius: 16, padding: 28, gap: 24 }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
                     <div style={{ background: '#F25BA5', color: '#fff', width: 52, height: 52, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: serif, fontSize: 20, fontWeight: 700 }}>
@@ -725,7 +725,7 @@ export default function EstrategiaPage() {
               </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+            <div className="rg-2" style={{ gap: 14 }}>
               {filteredRefs.map((ref, i) => (
                 <div key={i} style={{ background: '#F5F4F2', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>

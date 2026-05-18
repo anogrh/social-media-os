@@ -152,6 +152,10 @@ export interface ContentCalendarItem {
   tags?: string[]
   instagramPostId?: string
   scheduledTime?: string
+  description?: string
+  content?: string
+  deliveryDate?: string
+  attachments?: string[]
 }
 
 export interface ContentIdea {

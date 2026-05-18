@@ -6,11 +6,12 @@ import { useState } from 'react'
 import {
   LayoutDashboard, Users, CalendarDays, CheckSquare,
   DollarSign, FileText, Lightbulb, BarChart, Library, MessageSquare,
-  ChevronLeft, ChevronRight, Camera, Sparkles, Settings, LogOut, X
+  ChevronLeft, ChevronRight, Camera, Sparkles, Settings, LogOut, X, Sun, Moon
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { supabase } from '@/lib/supabase'
 import { useSidebar } from '@/context/SidebarContext'
+import { useTheme } from '@/context/ThemeContext'
 
 const navGroups = [
   {
@@ -72,6 +73,7 @@ export default function Sidebar() {
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
   const { mobileOpen, setMobileOpen } = useSidebar()
+  const { theme, toggleTheme } = useTheme()
 
   async function handleLogout() {
     await supabase.auth.signOut()
@@ -202,6 +204,31 @@ export default function Sidebar() {
             </div>
           ))}
         </nav>
+
+        {/* Theme toggle */}
+        <div style={{ borderTop: '1px solid var(--border)', padding: collapsed ? '10px 8px' : '10px 12px' }}>
+          <button
+            onClick={toggleTheme}
+            title={theme === 'light' ? 'Modo escuro' : 'Modo claro'}
+            style={{
+              display: 'flex', alignItems: 'center', gap: 10,
+              width: '100%', background: 'none', border: '1px solid var(--border)',
+              borderRadius: 10, padding: collapsed ? '8px' : '9px 12px',
+              cursor: 'pointer', color: 'var(--text)',
+              fontFamily: "'Inter', system-ui, sans-serif",
+              justifyContent: collapsed ? 'center' : 'flex-start',
+              transition: 'background 0.15s',
+            }}
+            className="hover:bg-black/5"
+          >
+            {theme === 'light' ? <Moon size={15} /> : <Sun size={15} color="#F25BA5" />}
+            {!collapsed && (
+              <span style={{ fontSize: 13, fontWeight: 500 }}>
+                {theme === 'light' ? 'Modo escuro' : 'Modo claro'}
+              </span>
+            )}
+          </button>
+        </div>
 
         {/* User */}
         {!collapsed && (

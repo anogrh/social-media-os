@@ -1,12 +1,11 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Search, Bell, ChevronDown, Menu, Settings, LogOut, X, Check, Sun, Moon } from 'lucide-react'
+import { Search, Bell, ChevronDown, Menu, Settings, LogOut, X, Check } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { alerts } from '@/lib/mock-data'
 import { useSidebar } from '@/context/SidebarContext'
-import { useTheme } from '@/context/ThemeContext'
 import { supabase } from '@/lib/supabase'
 
 interface HeaderProps {
@@ -29,7 +28,6 @@ export default function Header({ title, subtitle }: HeaderProps) {
   const [readIds, setReadIds] = useState<Set<string>>(new Set())
 
   const { setMobileOpen } = useSidebar()
-  const { theme, toggleTheme } = useTheme()
   const router = useRouter()
 
   const profileRef = useRef<HTMLDivElement>(null)
@@ -108,15 +106,6 @@ export default function Header({ title, subtitle }: HeaderProps) {
             style={{ background: 'transparent', border: 'none', outline: 'none', paddingLeft: 32, paddingRight: 12, paddingTop: 7, paddingBottom: 7, fontSize: 13, color: 'var(--text)', width: 160 }}
           />
         </div>
-
-        {/* ── Theme toggle ───────────────────────────── */}
-        <button
-          onClick={toggleTheme}
-          style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 8, width: 34, height: 34, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text)' }}
-          title={theme === 'light' ? 'Modo escuro' : 'Modo claro'}
-        >
-          {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
-        </button>
 
         {/* ── Notifications ──────────────────────────── */}
         <div ref={notifRef} style={{ position: 'relative' }}>

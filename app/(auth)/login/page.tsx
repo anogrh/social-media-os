@@ -74,17 +74,17 @@ export default function LoginPage() {
 
             {/* Heading */}
             <div style={{ marginBottom: 32 }}>
-              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 30, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2, marginBottom: 8 }}>
+              <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 30, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2, marginBottom: 8 }}>
                 Bem-vinda de{' '}
                 <span style={{ color: '#F25BA5', fontWeight: 700 }}>volta</span>
               </h2>
-              <p style={{ color: 'rgba(31,27,26,0.5)', fontSize: 14 }}>Entre na sua conta para continuar</p>
+              <p style={{ color: 'var(--text-2)', fontSize: 14 }}>Entre na sua conta para continuar</p>
             </div>
 
             {/* Form */}
             <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1F1B1A', marginBottom: 8, fontFamily: "'Inter', system-ui, sans-serif" }}>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 8, fontFamily: "'Inter', system-ui, sans-serif" }}>
                   E-mail
                 </label>
                 <input
@@ -95,19 +95,19 @@ export default function LoginPage() {
                   autoComplete="email"
                   style={{
                     width: '100%', boxSizing: 'border-box',
-                    border: '1px solid rgba(31,27,26,0.15)', borderRadius: 16,
+                    border: '1px solid var(--border-2)', borderRadius: 16,
                     padding: '13px 16px', fontSize: 15,
-                    background: '#F5F4F2', color: '#1F1B1A',
+                    background: 'var(--bg-2)', color: 'var(--text)',
                     outline: 'none', transition: 'border-color 0.15s',
                     fontFamily: "'Inter', system-ui, sans-serif",
                   }}
                   onFocus={e => (e.target.style.borderColor = '#F25BA5')}
-                  onBlur={e => (e.target.style.borderColor = 'rgba(31,27,26,0.15)')}
+                  onBlur={e => (e.target.style.borderColor = 'var(--border-2)')}
                 />
               </div>
 
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1F1B1A', marginBottom: 8, fontFamily: "'Inter', system-ui, sans-serif" }}>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 8, fontFamily: "'Inter', system-ui, sans-serif" }}>
                   Senha
                 </label>
                 <div style={{ position: 'relative' }}>
@@ -119,19 +119,19 @@ export default function LoginPage() {
                     autoComplete="current-password"
                     style={{
                       width: '100%', boxSizing: 'border-box',
-                      border: '1px solid rgba(31,27,26,0.15)', borderRadius: 16,
+                      border: '1px solid var(--border-2)', borderRadius: 16,
                       padding: '13px 48px 13px 16px', fontSize: 15,
-                      background: '#F5F4F2', color: '#1F1B1A',
+                      background: 'var(--bg-2)', color: 'var(--text)',
                       outline: 'none', transition: 'border-color 0.15s',
                       fontFamily: "'Inter', system-ui, sans-serif",
                     }}
                     onFocus={e => (e.target.style.borderColor = '#F25BA5')}
-                    onBlur={e => (e.target.style.borderColor = 'rgba(31,27,26,0.15)')}
+                    onBlur={e => (e.target.style.borderColor = 'var(--border-2)')}
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: 'rgba(31,27,26,0.4)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex' }}
+                    style={{ position: 'absolute', right: 14, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-4)', background: 'none', border: 'none', cursor: 'pointer', display: 'flex' }}
                   >
                     {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                   </button>
@@ -178,7 +178,7 @@ export default function LoginPage() {
           min-height: 100vh;
           display: flex;
           flex-direction: row;
-          background: #FFFFFF;
+          background: var(--bg);
           font-family: 'Inter', system-ui, sans-serif;
         }
 
@@ -218,7 +218,7 @@ export default function LoginPage() {
           flex-direction: column;
           justify-content: center;
           min-height: 100vh;
-          background: #FFFFFF;
+          background: var(--bg);
         }
 
         .login-form-inner {

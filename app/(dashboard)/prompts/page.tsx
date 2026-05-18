@@ -36,7 +36,7 @@ export default function PromptsPage() {
   }
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Prompts IA" subtitle="Biblioteca de prompts para agilizar sua operação" />
 
       <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -50,7 +50,7 @@ export default function PromptsPage() {
                 style={{
                   background: filterCategory === cat ? '#F25BA5' : '#F5F4F2',
                   color: filterCategory === cat ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${filterCategory === cat ? '#F25BA5' : 'rgba(31,27,26,0.12)'}`,
+                  border: `1px solid ${filterCategory === cat ? '#F25BA5' : 'var(--border)'}`,
                   borderRadius: 999, padding: '7px 14px', fontSize: 12, fontWeight: 600,
                   cursor: 'pointer', transition: 'all 0.15s',
                 }}
@@ -73,23 +73,23 @@ export default function PromptsPage() {
             <div key={category} style={{ marginBottom: 28 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                 <span style={{ ...catStyle, fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999 }}>{category}</span>
-                <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.4)' }}>{categoryPrompts.length} prompts</span>
+                <span style={{ fontSize: 12, color: 'var(--text-4)' }}>{categoryPrompts.length} prompts</span>
               </div>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {categoryPrompts.map(prompt => (
                   <div
                     key={prompt.id}
-                    style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: '16px 20px' }}
+                    style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '16px 20px' }}
                   >
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
-                          <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A' }}>{prompt.name}</p>
+                          <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{prompt.name}</p>
                           {prompt.tags && (
                             <div style={{ display: 'flex', gap: 4 }}>
                               {prompt.tags.slice(0, 2).map(tag => (
-                                <span key={tag} style={{ background: '#F5F4F2', color: 'rgba(31,27,26,0.6)', fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 999 }}>
+                                <span key={tag} style={{ background: 'var(--bg-2)', color: 'var(--text-2)', fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 999 }}>
                                   #{tag}
                                 </span>
                               ))}
@@ -99,10 +99,10 @@ export default function PromptsPage() {
 
                         <p style={{
                           fontSize: 13,
-                          color: 'rgba(31,27,26,0.65)',
+                          color: 'var(--text-2)',
                           lineHeight: 1.6,
                           fontFamily: "'JetBrains Mono', 'Courier New', monospace",
-                          background: '#F5F4F2',
+                          background: 'var(--bg-2)',
                           borderRadius: 8,
                           padding: '10px 12px',
                           overflow: 'hidden',
@@ -119,7 +119,7 @@ export default function PromptsPage() {
                         style={{
                           background: copiedId === prompt.id ? '#d1fae5' : '#F5F4F2',
                           color: copiedId === prompt.id ? '#10B981' : '#1F1B1A',
-                          border: `1px solid ${copiedId === prompt.id ? '#10B981' : 'rgba(31,27,26,0.12)'}`,
+                          border: `1px solid ${copiedId === prompt.id ? '#10B981' : 'var(--border)'}`,
                           borderRadius: 999,
                           padding: '8px 16px',
                           fontSize: 12,

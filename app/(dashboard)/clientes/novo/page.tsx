@@ -8,15 +8,15 @@ import Header from '@/components/layout/Header'
 import { useClients } from '@/context/ClientsContext'
 import type { ClientStatus, PaymentStatus } from '@/lib/types'
 
-const SECTION_STYLE = { background: '#F5F4F2', borderRadius: 16, padding: 24, marginBottom: 20 }
-const LABEL_STYLE: React.CSSProperties = { fontSize: 13, fontWeight: 600, color: '#1F1B1A', display: 'block', marginBottom: 8 }
+const SECTION_STYLE = { background: 'var(--bg-2)', borderRadius: 16, padding: 24, marginBottom: 20 }
+const LABEL_STYLE: React.CSSProperties = { fontSize: 13, fontWeight: 600, color: 'var(--text)', display: 'block', marginBottom: 8 }
 const INPUT_STYLE: React.CSSProperties = {
-  width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12,
-  padding: '10px 14px', fontSize: 13, background: '#FFFFFF', color: '#1F1B1A', outline: 'none',
+  width: '100%', border: '1px solid var(--border-2)', borderRadius: 12,
+  padding: '10px 14px', fontSize: 13, background: 'var(--bg)', color: 'var(--text)', outline: 'none',
   fontFamily: "'Inter', system-ui, sans-serif",
 }
 const SECTION_TITLE = {
-  fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: '#1F1B1A', marginBottom: 16,
+  fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: 'var(--text)', marginBottom: 16,
 }
 
 export default function NovoClientePage() {
@@ -86,11 +86,11 @@ export default function NovoClientePage() {
   }
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Novo cliente" subtitle="Preencha os dados do novo cliente" />
 
       <div style={{ padding: '24px 28px', maxWidth: 860, fontFamily: "'Inter', system-ui, sans-serif" }}>
-        <Link href="/clientes" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'rgba(31,27,26,0.5)', marginBottom: 24, textDecoration: 'none' }}
+        <Link href="/clientes" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-2)', marginBottom: 24, textDecoration: 'none' }}
           className="hover:text-[#F25BA5]">
           <ArrowLeft size={14} /> Voltar para clientes
         </Link>
@@ -222,7 +222,7 @@ export default function NovoClientePage() {
           {/* Actions */}
           <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end' }}>
             <Link href="/clientes" style={{
-              background: 'transparent', color: '#1F1B1A', border: '1px solid rgba(31,27,26,0.15)',
+              background: 'transparent', color: 'var(--text)', border: '1px solid var(--border-2)',
               borderRadius: 999, padding: '11px 24px', fontSize: 13, fontWeight: 600, textDecoration: 'none',
               display: 'inline-flex', alignItems: 'center',
             }}>

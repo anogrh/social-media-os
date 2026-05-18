@@ -20,8 +20,8 @@ export default function AlertItem({ alert }: AlertItemProps) {
   return (
     <div
       style={{
-        background: '#FFFFFF',
-        border: '1px solid rgba(31,27,26,0.08)',
+        background: 'var(--bg)',
+        border: '1px solid var(--border-3)',
         borderLeft: `3px solid ${
           alert.severity === 'error' ? '#EE3528' :
           alert.severity === 'warning' ? '#F59E0B' :
@@ -45,14 +45,14 @@ export default function AlertItem({ alert }: AlertItemProps) {
         />
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between gap-2">
-            <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }}>{alert.title}</p>
+            <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{alert.title}</p>
             {alert.clientName && (
-              <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', whiteSpace: 'nowrap' }}>
+              <span style={{ fontSize: 11, color: 'var(--text-2)', whiteSpace: 'nowrap' }}>
                 {alert.clientName}
               </span>
             )}
           </div>
-          <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.7)', marginTop: 2, lineHeight: 1.5 }}>
+          <p style={{ fontSize: 13, color: 'var(--text-2)', marginTop: 2, lineHeight: 1.5 }}>
             {alert.message}
           </p>
           {alert.actionLabel && alert.actionHref && (

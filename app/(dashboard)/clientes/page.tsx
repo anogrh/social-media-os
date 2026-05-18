@@ -37,21 +37,21 @@ export default function ClientesPage() {
   }
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Clientes" subtitle="Gerencie sua carteira de clientes" />
 
       <div className="page-pad">
         {/* Stats bar */}
         <div style={{ display: 'flex', gap: 12, marginBottom: 24, flexWrap: 'wrap' }}>
           {[
-            { label: 'Total', value: stats.total, color: '#1F1B1A' },
+            { label: 'Total', value: stats.total, color: 'var(--text)' },
             { label: 'Ativos', value: stats.ativos, color: '#10B981' },
             { label: 'Onboarding', value: stats.onboarding, color: '#3B82F6' },
             { label: 'Pausados', value: stats.pausados, color: '#F59E0B' },
           ].map(s => (
-            <div key={s.label} style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: '12px 18px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <div key={s.label} style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '12px 18px', fontFamily: "'Inter', system-ui, sans-serif" }}>
               <p style={{ fontSize: 22, fontWeight: 700, color: s.color }}>{s.value}</p>
-              <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', marginTop: 2 }}>{s.label}</p>
+              <p style={{ fontSize: 12, color: 'var(--text-2)', marginTop: 2 }}>{s.label}</p>
             </div>
           ))}
           <div style={{ flex: 1 }} />
@@ -72,13 +72,13 @@ export default function ClientesPage() {
         <div style={{ display: 'flex', gap: 12, marginBottom: 20, alignItems: 'center', fontFamily: "'Inter', system-ui, sans-serif", flexWrap: 'wrap' }}>
           {/* Search */}
           <div style={{ position: 'relative', flex: 1, maxWidth: 320 }}>
-            <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'rgba(31,27,26,0.4)' }} />
+            <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-4)' }} />
             <input
               type="text"
               placeholder="Buscar por nome ou segmento..."
               value={search}
               onChange={e => setSearch(e.target.value)}
-              style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '9px 14px 9px 34px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none' }}
+              style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 999, padding: '9px 14px 9px 34px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none' }}
             />
           </div>
 
@@ -91,7 +91,7 @@ export default function ClientesPage() {
                 style={{
                   background: statusFilter === f.value ? '#F25BA5' : '#F5F4F2',
                   color: statusFilter === f.value ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${statusFilter === f.value ? '#F25BA5' : 'rgba(31,27,26,0.12)'}`,
+                  border: `1px solid ${statusFilter === f.value ? '#F25BA5' : 'var(--border)'}`,
                   borderRadius: 999,
                   padding: '7px 14px',
                   fontSize: 12,
@@ -117,8 +117,8 @@ export default function ClientesPage() {
             >
               <div
                 style={{
-                  background: '#FFFFFF',
-                  border: '1px solid rgba(31,27,26,0.10)',
+                  background: 'var(--bg)',
+                  border: '1px solid var(--border)',
                   borderRadius: 16,
                   padding: 20,
                   fontFamily: "'Inter', system-ui, sans-serif",
@@ -136,8 +136,8 @@ export default function ClientesPage() {
                       {client.initials}
                     </div>
                     <div>
-                      <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', lineHeight: 1.3 }}>{client.name}</p>
-                      <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', marginTop: 2 }}>{client.segment}</p>
+                      <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', lineHeight: 1.3 }}>{client.name}</p>
+                      <p style={{ fontSize: 12, color: 'var(--text-2)', marginTop: 2 }}>{client.segment}</p>
                     </div>
                   </div>
                   <StatusBadge status={client.status} size="sm" />
@@ -145,21 +145,21 @@ export default function ClientesPage() {
 
                 {/* Instagram */}
                 {client.instagramHandle && (
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 14, fontSize: 12, color: 'rgba(31,27,26,0.6)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 14, fontSize: 12, color: 'var(--text-2)' }}>
                     <Camera size={12} />
                     <span>{client.instagramHandle}</span>
                   </div>
                 )}
 
                 {/* Divider */}
-                <div style={{ borderTop: '1px solid rgba(31,27,26,0.08)', paddingTop: 14 }}>
+                <div style={{ borderTop: '1px solid var(--border-3)', paddingTop: 14 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <div>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Mensalidade</p>
-                      <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16, fontWeight: 600, color: '#1F1B1A', marginTop: 3 }}>{formatCurrency(client.monthlyValue)}</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Mensalidade</p>
+                      <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16, fontWeight: 600, color: 'var(--text)', marginTop: 3 }}>{formatCurrency(client.monthlyValue)}</p>
                     </div>
                     <div style={{ textAlign: 'right' }}>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Próx. pgto.</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Próx. pgto.</p>
                       <p style={{ fontSize: 13, fontWeight: 600, color: client.paymentStatus === 'atrasado' ? '#EE3528' : '#1F1B1A', marginTop: 3 }}>
                         {formatDate(client.nextPaymentDate)}
                       </p>
@@ -168,7 +168,7 @@ export default function ClientesPage() {
                 </div>
 
                 {/* Package */}
-                <div style={{ marginTop: 12, background: '#F5F4F2', borderRadius: 8, padding: '6px 10px', fontSize: 12, color: 'rgba(31,27,26,0.6)' }}>
+                <div style={{ marginTop: 12, background: 'var(--bg-2)', borderRadius: 8, padding: '6px 10px', fontSize: 12, color: 'var(--text-2)' }}>
                   {client.servicePackage}
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function ClientesPage() {
 
         {filtered.length === 0 && (
           <div style={{ textAlign: 'center', padding: '60px 0', fontFamily: "'Inter', system-ui, sans-serif" }}>
-            <p style={{ fontSize: 15, color: 'rgba(31,27,26,0.4)' }}>Nenhum cliente encontrado.</p>
+            <p style={{ fontSize: 15, color: 'var(--text-4)' }}>Nenhum cliente encontrado.</p>
           </div>
         )}
       </div>

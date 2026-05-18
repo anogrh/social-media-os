@@ -6,8 +6,8 @@ export default function DailySummary() {
   return (
     <div
       style={{
-        background: '#FFFFFF',
-        border: '1px solid rgba(31,27,26,0.10)',
+        background: 'var(--bg)',
+        border: '1px solid var(--border)',
         borderLeft: '4px solid #F25BA5',
         fontFamily: "'Inter', system-ui, sans-serif",
       }}
@@ -18,7 +18,7 @@ export default function DailySummary() {
         <span style={{ fontSize: 12, fontWeight: 700, color: '#F25BA5', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
           Resumo do dia
         </span>
-        <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.4)', marginLeft: 'auto' }}>
+        <span style={{ fontSize: 12, color: 'var(--text-4)', marginLeft: 'auto' }}>
           {today}
         </span>
       </div>
@@ -28,7 +28,7 @@ export default function DailySummary() {
           fontFamily: "'Playfair Display', Georgia, serif",
           fontSize: 15,
           fontWeight: 600,
-          color: '#1F1B1A',
+          color: 'var(--text)',
           lineHeight: 1.7,
           borderLeft: 'none',
           padding: 0,
@@ -42,18 +42,18 @@ export default function DailySummary() {
         A Sinta Gummies também está em alta, com 52k visualizações de Reels em 30 dias."
       </blockquote>
 
-      <div className="flex items-center gap-4 mt-4 pt-4" style={{ borderTop: '1px solid rgba(31,27,26,0.08)' }}>
+      <div className="flex items-center gap-4 mt-4 pt-4" style={{ borderTop: '1px solid var(--border-3)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#EE3528', display: 'inline-block' }}></span>
-          <span style={{ color: 'rgba(31,27,26,0.7)' }}>3 urgentes</span>
+          <span style={{ color: 'var(--text-2)' }}>3 urgentes</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }}></span>
-          <span style={{ color: 'rgba(31,27,26,0.7)' }}>2 alertas</span>
+          <span style={{ color: 'var(--text-2)' }}>2 alertas</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 12 }}>
           <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10B981', display: 'inline-block' }}></span>
-          <span style={{ color: 'rgba(31,27,26,0.7)' }}>Terra Viva em alta</span>
+          <span style={{ color: 'var(--text-2)' }}>Terra Viva em alta</span>
         </div>
       </div>
     </div>

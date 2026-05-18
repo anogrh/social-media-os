@@ -19,17 +19,17 @@ import type { Client, ClientStatus, PaymentStatus } from '@/lib/types'
 
 const TABS = ['Visão geral', 'Instagram', 'Calendário', 'Financeiro', 'Documentos', 'Estratégia', 'Anotações']
 
-const SECTION_STYLE = { background: '#F5F4F2', borderRadius: 16, padding: 24, marginBottom: 20 }
-const LABEL_STYLE: React.CSSProperties = { fontSize: 13, fontWeight: 600, color: '#1F1B1A', display: 'block', marginBottom: 8 }
-const INPUT_STYLE: React.CSSProperties = { width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#FFFFFF', color: '#1F1B1A', outline: 'none', fontFamily: "'Inter', system-ui, sans-serif" }
-const SECTION_TITLE = { fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }
+const SECTION_STYLE = { background: 'var(--bg-2)', borderRadius: 16, padding: 24, marginBottom: 20 }
+const LABEL_STYLE: React.CSSProperties = { fontSize: 13, fontWeight: 600, color: 'var(--text)', display: 'block', marginBottom: 8 }
+const INPUT_STYLE: React.CSSProperties = { width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg)', color: 'var(--text)', outline: 'none', fontFamily: "'Inter', system-ui, sans-serif" }
+const SECTION_TITLE = { fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }
 
 function getFormatStyle(format: string) {
   const map: Record<string, { background: string; color: string }> = {
     reels: { background: '#F25BA5', color: '#fff' },
     carrossel: { background: '#F19877', color: '#fff' },
-    story: { background: '#FBD0DA', color: '#1F1B1A' },
-    feed: { background: '#F2F4A4', color: '#1F1B1A' },
+    story: { background: '#FBD0DA', color: 'var(--text)' },
+    feed: { background: '#F2F4A4', color: 'var(--text)' },
   }
   return map[format] || { background: '#f3f4f6', color: '#374151' }
 }
@@ -42,7 +42,7 @@ export default function ClientDetailPage() {
   const client = getClientById(id)
 
   if (!isReady) return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '60vh', fontFamily: "'Inter', system-ui, sans-serif", color: 'rgba(31,27,26,0.4)', fontSize: 14 }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '60vh', fontFamily: "'Inter', system-ui, sans-serif", color: 'var(--text-4)', fontSize: 14 }}>
       Carregando...
     </div>
   )
@@ -96,41 +96,41 @@ function ClientDetailView({ client }: { client: Client }) {
   }
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title={client.name} subtitle={client.segment} />
 
       <div style={{ padding: '24px 28px' }}>
         {/* Back */}
-        <Link href="/clientes" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'rgba(31,27,26,0.5)', marginBottom: 20, textDecoration: 'none', fontFamily: "'Inter', system-ui, sans-serif" }}
+        <Link href="/clientes" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-2)', marginBottom: 20, textDecoration: 'none', fontFamily: "'Inter', system-ui, sans-serif" }}
           className="hover:text-[#F25BA5] transition-colors">
           <ArrowLeft size={14} /> Voltar para clientes
         </Link>
 
         {/* Client header card */}
-        <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 16, padding: 24, marginBottom: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
+        <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 16, padding: 24, marginBottom: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
             <div style={{ width: 64, height: 64, borderRadius: '50%', background: client.color, color: iconColor, fontSize: 20, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
               {client.initials}
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
-                <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: '#1F1B1A' }}>{client.name}</h2>
+                <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 24, fontWeight: 700, color: 'var(--text)' }}>{client.name}</h2>
                 <StatusBadge status={client.status} />
               </div>
-              <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.5)' }}>{client.segment} · {client.servicePackage}</p>
+              <p style={{ fontSize: 13, color: 'var(--text-2)' }}>{client.segment} · {client.servicePackage}</p>
               <div style={{ display: 'flex', gap: 16, marginTop: 8 }}>
-                {client.email && <a href={`mailto:${client.email}`} style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}><Mail size={12} />{client.email}</a>}
-                {client.phone && <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', display: 'flex', alignItems: 'center', gap: 4 }}><Phone size={12} />{client.phone}</span>}
-                {client.instagramHandle && <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', display: 'flex', alignItems: 'center', gap: 4 }}><Camera size={12} />{client.instagramHandle}</span>}
+                {client.email && <a href={`mailto:${client.email}`} style={{ fontSize: 12, color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: 4, textDecoration: 'none' }}><Mail size={12} />{client.email}</a>}
+                {client.phone && <span style={{ fontSize: 12, color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: 4 }}><Phone size={12} />{client.phone}</span>}
+                {client.instagramHandle && <span style={{ fontSize: 12, color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: 4 }}><Camera size={12} />{client.instagramHandle}</span>}
               </div>
             </div>
             <div style={{ display: 'flex', gap: 20, textAlign: 'right', alignItems: 'flex-start' }}>
               <div>
-                <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Mensalidade</p>
-                <p style={{ fontSize: 22, fontWeight: 700, color: '#1F1B1A', marginTop: 4 }}>{formatCurrency(client.monthlyValue)}</p>
+                <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Mensalidade</p>
+                <p style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)', marginTop: 4 }}>{formatCurrency(client.monthlyValue)}</p>
               </div>
               <div>
-                <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Próx. pgto.</p>
+                <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Próx. pgto.</p>
                 <p style={{ fontSize: 16, fontWeight: 700, color: client.paymentStatus === 'atrasado' ? '#EE3528' : '#1F1B1A', marginTop: 4 }}>
                   {formatDate(client.nextPaymentDate)}
                 </p>
@@ -138,7 +138,7 @@ function ClientDetailView({ client }: { client: Client }) {
               </div>
               <button
                 onClick={() => setEditMode(true)}
-                style={{ background: '#F5F4F2', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '8px 16px', fontSize: 12, fontWeight: 600, color: '#1F1B1A', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'Inter', system-ui, sans-serif", whiteSpace: 'nowrap' }}
+                style={{ background: 'var(--bg-2)', border: '1px solid var(--border)', borderRadius: 999, padding: '8px 16px', fontSize: 12, fontWeight: 600, color: 'var(--text)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: "'Inter', system-ui, sans-serif", whiteSpace: 'nowrap' }}
               >
                 <Edit2 size={13} /> Editar cliente
               </button>
@@ -148,8 +148,8 @@ function ClientDetailView({ client }: { client: Client }) {
 
         {/* Edit mode */}
         {editMode && (
-          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 16, padding: 28, marginBottom: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
-            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 700, color: '#1F1B1A', marginBottom: 20 }}>Editar cliente</h3>
+          <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 16, padding: 28, marginBottom: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
+            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 700, color: 'var(--text)', marginBottom: 20 }}>Editar cliente</h3>
 
             {/* Dados básicos */}
             <div style={SECTION_STYLE}>
@@ -289,7 +289,7 @@ function ClientDetailView({ client }: { client: Client }) {
               <div style={{ display: 'flex', gap: 12 }}>
                 <button
                   onClick={handleCancel}
-                  style={{ background: 'transparent', color: '#1F1B1A', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '10px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}
+                  style={{ background: 'transparent', color: 'var(--text)', border: '1px solid var(--border-2)', borderRadius: 999, padding: '10px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
                   Cancelar
                 </button>
@@ -305,7 +305,7 @@ function ClientDetailView({ client }: { client: Client }) {
         )}
 
         {/* Tabs */}
-        <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid rgba(31,27,26,0.10)', marginBottom: 24, fontFamily: "'Inter', system-ui, sans-serif" }}>
+        <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--border)', marginBottom: 24, fontFamily: "'Inter', system-ui, sans-serif" }}>
           {TABS.map(tab => (
             <button
               key={tab}
@@ -314,7 +314,7 @@ function ClientDetailView({ client }: { client: Client }) {
                 background: 'none',
                 border: 'none',
                 borderBottom: activeTab === tab ? '2px solid #F25BA5' : '2px solid transparent',
-                color: activeTab === tab ? '#F25BA5' : 'rgba(31,27,26,0.6)',
+                color: activeTab === tab ? '#F25BA5' : 'var(--text-2)',
                 padding: '10px 16px',
                 fontSize: 13,
                 fontWeight: activeTab === tab ? 700 : 500,
@@ -342,44 +342,44 @@ function ClientDetailView({ client }: { client: Client }) {
                 { label: 'Stories/semana', value: client.storiesPerWeek },
                 { label: 'Início contrato', value: formatDate(client.contractStart) },
               ].map(m => (
-                <div key={m.label} style={{ background: '#F5F4F2', borderRadius: 12, padding: '14px 16px', fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>{m.label}</p>
-                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 600, color: '#1F1B1A', marginTop: 6 }}>{m.value}</p>
+                <div key={m.label} style={{ background: 'var(--bg-2)', borderRadius: 12, padding: '14px 16px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>{m.label}</p>
+                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 600, color: 'var(--text)', marginTop: 6 }}>{m.value}</p>
                 </div>
               ))}
             </div>
 
             {/* Tasks */}
-            <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
-              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 14 }}>Tarefas</h4>
-              {clientTasks.length === 0 && <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.4)' }}>Nenhuma tarefa.</p>}
+            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
+              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>Tarefas</h4>
+              {clientTasks.length === 0 && <p style={{ fontSize: 13, color: 'var(--text-4)' }}>Nenhuma tarefa.</p>}
               {clientTasks.map(t => (
                 <div key={t.id} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                   <StatusBadge status={t.status} size="sm" />
-                  <span style={{ fontSize: 13, color: '#1F1B1A', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.title}</span>
-                  <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)', whiteSpace: 'nowrap' }}>{formatDate(t.dueDate)}</span>
+                  <span style={{ fontSize: 13, color: 'var(--text)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{t.title}</span>
+                  <span style={{ fontSize: 11, color: 'var(--text-4)', whiteSpace: 'nowrap' }}>{formatDate(t.dueDate)}</span>
                 </div>
               ))}
             </div>
 
             {/* Próximas postagens */}
-            <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
-              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 14 }}>Próximas postagens</h4>
+            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
+              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>Próximas postagens</h4>
               {clientCalendar.filter(c => c.status !== 'publicado').slice(0, 4).map(c => (
                 <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 10 }}>
                   <span style={{ ...getFormatStyle(c.format), fontSize: 10, padding: '2px 8px', borderRadius: 999, fontWeight: 600, flexShrink: 0 }}>{c.format}</span>
-                  <span style={{ fontSize: 13, color: '#1F1B1A', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.caption}</span>
-                  <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)', whiteSpace: 'nowrap' }}>{formatDate(c.date)}</span>
+                  <span style={{ fontSize: 13, color: 'var(--text)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.caption}</span>
+                  <span style={{ fontSize: 11, color: 'var(--text-4)', whiteSpace: 'nowrap' }}>{formatDate(c.date)}</span>
                 </div>
               ))}
               {clientCalendar.filter(c => c.status !== 'publicado').length === 0 && (
-                <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.4)' }}>Nenhum post agendado.</p>
+                <p style={{ fontSize: 13, color: 'var(--text-4)' }}>Nenhum post agendado.</p>
               )}
             </div>
 
             {/* Quick info */}
-            <div style={{ background: '#F5F4F2', borderRadius: 12, padding: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
-              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 14 }}>Informações rápidas</h4>
+            <div style={{ background: 'var(--bg-2)', borderRadius: 12, padding: 20, fontFamily: "'Inter', system-ui, sans-serif" }}>
+              <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>Informações rápidas</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {[
                   { label: 'Pacote', value: client.servicePackage },
@@ -388,8 +388,8 @@ function ClientDetailView({ client }: { client: Client }) {
                   { label: 'Website', value: client.website || '—' },
                 ].map(i => (
                   <div key={i.label} style={{ display: 'flex', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', fontWeight: 600 }}>{i.label}</span>
-                    <span style={{ fontSize: 12, color: '#1F1B1A', textAlign: 'right', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{i.value}</span>
+                    <span style={{ fontSize: 12, color: 'var(--text-2)', fontWeight: 600 }}>{i.label}</span>
+                    <span style={{ fontSize: 12, color: 'var(--text)', textAlign: 'right', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{i.value}</span>
                   </div>
                 ))}
               </div>
@@ -409,22 +409,22 @@ function ClientDetailView({ client }: { client: Client }) {
                     { label: 'Engajamento', value: `${ig.engagementRate}%`, sub: ig.engagementRate >= 4 ? '✓ Acima da média' : 'Abaixo da média' },
                     { label: 'Views de Reels', value: formatNumber(ig.reelsViews30d), sub: 'últimos 30 dias' },
                   ].map(m => (
-                    <div key={m.label} style={{ background: '#F5F4F2', borderRadius: 12, padding: '16px', fontFamily: "'Inter', system-ui, sans-serif" }}>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>{m.label}</p>
-                      <p style={{ fontSize: 26, fontWeight: 700, color: '#1F1B1A', margin: '8px 0 4px' }}>{m.value}</p>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)' }}>{m.sub}</p>
+                    <div key={m.label} style={{ background: 'var(--bg-2)', borderRadius: 12, padding: '16px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+                      <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>{m.label}</p>
+                      <p style={{ fontSize: 26, fontWeight: 700, color: 'var(--text)', margin: '8px 0 4px' }}>{m.value}</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-2)' }}>{m.sub}</p>
                     </div>
                   ))}
                 </div>
 
-                <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: '20px 20px 10px', fontFamily: "'Inter', system-ui, sans-serif" }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Crescimento de seguidores — 30 dias</h4>
+                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px 20px 10px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>Crescimento de seguidores — 30 dias</h4>
                   <ResponsiveContainer width="100%" height={220}>
                     <LineChart data={dailyMetrics}>
-                      <CartesianGrid strokeDasharray="0" stroke="rgba(31,27,26,0.06)" vertical={false} />
-                      <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} tickFormatter={d => d.slice(8)} axisLine={false} tickLine={false} interval={4} />
-                      <YAxis tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} axisLine={false} tickLine={false} tickFormatter={v => formatNumber(v)} domain={['auto', 'auto']} />
-                      <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 10, fontFamily: 'Inter', fontSize: 12 }} />
+                      <CartesianGrid strokeDasharray="0" stroke="var(--border-3)" vertical={false} />
+                      <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'var(--text-4)' }} tickFormatter={d => d.slice(8)} axisLine={false} tickLine={false} interval={4} />
+                      <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} axisLine={false} tickLine={false} tickFormatter={v => formatNumber(v)} domain={['auto', 'auto']} />
+                      <Tooltip contentStyle={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, fontFamily: 'Inter', fontSize: 12 }} />
                       <Line type="monotone" dataKey="followers" stroke="#F25BA5" strokeWidth={2} dot={false} name="Seguidores" />
                     </LineChart>
                   </ResponsiveContainer>
@@ -439,18 +439,18 @@ function ClientDetailView({ client }: { client: Client }) {
                     { label: 'Seguindo', value: formatNumber(ig.following) },
                     { label: 'Total de posts', value: ig.posts },
                   ].map(m => (
-                    <div key={m.label} style={{ background: '#F5F4F2', borderRadius: 10, padding: '12px 16px', fontFamily: "'Inter', system-ui, sans-serif" }}>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', fontWeight: 600 }}>{m.label}</p>
-                      <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 600, color: '#1F1B1A', marginTop: 4 }}>{m.value}</p>
+                    <div key={m.label} style={{ background: 'var(--bg-2)', borderRadius: 10, padding: '12px 16px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+                      <p style={{ fontSize: 11, color: 'var(--text-3)', fontWeight: 600 }}>{m.label}</p>
+                      <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 20, fontWeight: 600, color: 'var(--text)', marginTop: 4 }}>{m.value}</p>
                     </div>
                   ))}
                 </div>
               </>
             ) : (
               <div style={{ textAlign: 'center', padding: '60px 0', fontFamily: "'Inter', system-ui, sans-serif" }}>
-                <Camera size={40} style={{ color: 'rgba(31,27,26,0.2)', margin: '0 auto 16px' }} />
-                <p style={{ fontSize: 15, fontWeight: 600, color: '#1F1B1A', marginBottom: 8 }}>Instagram não conectado</p>
-                <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.5)', marginBottom: 20 }}>Conecte a conta do Instagram para ver as métricas em tempo real.</p>
+                <Camera size={40} style={{ color: 'var(--shadow)', margin: '0 auto 16px' }} />
+                <p style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>Instagram não conectado</p>
+                <p style={{ fontSize: 13, color: 'var(--text-2)', marginBottom: 20 }}>Conecte a conta do Instagram para ver as métricas em tempo real.</p>
                 <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '10px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
                   Conectar Instagram
                 </button>
@@ -462,18 +462,18 @@ function ClientDetailView({ client }: { client: Client }) {
         {/* Calendário */}
         {activeTab === 'Calendário' && (
           <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-            <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Posts de junho 2025</h4>
+            <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>Posts de junho 2025</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {clientCalendar.map(c => (
-                <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.08)', borderRadius: 10, padding: '12px 16px' }}>
+                <div key={c.id} style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'var(--bg)', border: '1px solid var(--border-3)', borderRadius: 10, padding: '12px 16px' }}>
                   <div style={{ width: 40, textAlign: 'center', flexShrink: 0 }}>
-                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: '#1F1B1A', lineHeight: 1 }}>{c.date.slice(-2)}</p>
-                    <p style={{ fontSize: 10, color: 'rgba(31,27,26,0.4)' }}>jun</p>
+                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: 'var(--text)', lineHeight: 1 }}>{c.date.slice(-2)}</p>
+                    <p style={{ fontSize: 10, color: 'var(--text-4)' }}>jun</p>
                   </div>
                   <span style={{ ...getFormatStyle(c.format), fontSize: 11, padding: '3px 10px', borderRadius: 999, fontWeight: 600 }}>{c.format}</span>
-                  <span style={{ flex: 1, fontSize: 13, color: '#1F1B1A' }}>{c.caption || 'Sem legenda'}</span>
+                  <span style={{ flex: 1, fontSize: 13, color: 'var(--text)' }}>{c.caption || 'Sem legenda'}</span>
                   <StatusBadge status={c.status} size="sm" />
-                  {c.scheduledTime && <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)', whiteSpace: 'nowrap' }}>{c.scheduledTime}</span>}
+                  {c.scheduledTime && <span style={{ fontSize: 11, color: 'var(--text-4)', whiteSpace: 'nowrap' }}>{c.scheduledTime}</span>}
                 </div>
               ))}
             </div>
@@ -489,30 +489,30 @@ function ClientDetailView({ client }: { client: Client }) {
                 { label: 'Pendente', value: formatCurrency(clientPayments.filter(p => p.status === 'pendente').reduce((a, p) => a + p.value, 0)), color: '#F59E0B' },
                 { label: 'Atrasado', value: formatCurrency(clientPayments.filter(p => p.status === 'atrasado').reduce((a, p) => a + p.value, 0)), color: '#EE3528' },
               ].map(s => (
-                <div key={s.label} style={{ background: '#F5F4F2', borderRadius: 12, padding: '14px 18px', flex: 1 }}>
-                  <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', fontWeight: 600 }}>{s.label}</p>
+                <div key={s.label} style={{ background: 'var(--bg-2)', borderRadius: 12, padding: '14px 18px', flex: 1 }}>
+                  <p style={{ fontSize: 11, color: 'var(--text-3)', fontWeight: 600 }}>{s.label}</p>
                   <p style={{ fontSize: 22, fontWeight: 700, color: s.color, marginTop: 4 }}>{s.value}</p>
                 </div>
               ))}
             </div>
 
-            <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, overflow: 'hidden' }}>
+            <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                <thead style={{ background: '#F5F4F2' }}>
+                <thead style={{ background: 'var(--bg-2)' }}>
                   <tr>
                     {['Referência', 'Vencimento', 'Pagamento', 'Valor', 'Método', 'Status'].map(h => (
-                      <th key={h} style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textAlign: 'left', padding: '12px 16px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
+                      <th key={h} style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textAlign: 'left', padding: '12px 16px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {clientPayments.map(p => (
-                    <tr key={p.id} style={{ borderTop: '1px solid rgba(31,27,26,0.06)' }}>
-                      <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 16px', fontWeight: 500 }}>{p.reference}</td>
-                      <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 16px' }}>{formatDate(p.dueDate)}</td>
-                      <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 16px' }}>{p.paidDate ? formatDate(p.paidDate) : '—'}</td>
-                      <td style={{ fontSize: 13, fontWeight: 700, color: '#1F1B1A', padding: '12px 16px' }}>{formatCurrency(p.value)}</td>
-                      <td style={{ fontSize: 13, color: 'rgba(31,27,26,0.6)', padding: '12px 16px' }}>{p.method || '—'}</td>
+                    <tr key={p.id} style={{ borderTop: '1px solid var(--border-3)' }}>
+                      <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px', fontWeight: 500 }}>{p.reference}</td>
+                      <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{formatDate(p.dueDate)}</td>
+                      <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{p.paidDate ? formatDate(p.paidDate) : '—'}</td>
+                      <td style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', padding: '12px 16px' }}>{formatCurrency(p.value)}</td>
+                      <td style={{ fontSize: 13, color: 'var(--text-2)', padding: '12px 16px' }}>{p.method || '—'}</td>
                       <td style={{ padding: '12px 16px' }}><StatusBadge status={p.status} size="sm" /></td>
                     </tr>
                   ))}
@@ -525,18 +525,18 @@ function ClientDetailView({ client }: { client: Client }) {
         {/* Documentos */}
         {activeTab === 'Documentos' && (
           <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-            <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.5)', marginBottom: 16 }}>Documentos e arquivos deste cliente.</p>
+            <p style={{ fontSize: 13, color: 'var(--text-2)', marginBottom: 16 }}>Documentos e arquivos deste cliente.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
               {['Contrato de gestão 2024', 'Briefing inicial', 'Manual de identidade visual', 'Relatório maio/2025'].map(doc => (
-                <div key={doc} style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.08)', borderRadius: 10, padding: '12px 16px' }}>
+                <div key={doc} style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'var(--bg)', border: '1px solid var(--border-3)', borderRadius: 10, padding: '12px 16px' }}>
                   <div style={{ width: 36, height: 36, background: '#FBD0DA', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                    <span style={{ fontSize: 10, fontWeight: 700, color: '#1F1B1A' }}>PDF</span>
+                    <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--text)' }}>PDF</span>
                   </div>
                   <div style={{ flex: 1 }}>
-                    <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }}>{doc}</p>
-                    <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.45)', marginTop: 2 }}>Enviado em 01/06/2025 · 1.2 MB</p>
+                    <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{doc}</p>
+                    <p style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 2 }}>Enviado em 01/06/2025 · 1.2 MB</p>
                   </div>
-                  <button style={{ background: 'none', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '5px 14px', fontSize: 12, fontWeight: 600, color: '#1F1B1A', cursor: 'pointer' }}>
+                  <button style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 999, padding: '5px 14px', fontSize: 12, fontWeight: 600, color: 'var(--text)', cursor: 'pointer' }}>
                     Baixar
                   </button>
                 </div>
@@ -554,18 +554,18 @@ function ClientDetailView({ client }: { client: Client }) {
               { label: 'Persona', value: client.persona || '—' },
               { label: 'Objetivos do mês', value: client.objectives?.join('\n') || '—' },
             ].map(s => (
-              <div key={s.label} style={{ background: '#F5F4F2', borderRadius: 12, padding: 20 }}>
-                <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>{s.label}</p>
-                <p style={{ fontSize: 13, color: '#1F1B1A', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>{s.value}</p>
+              <div key={s.label} style={{ background: 'var(--bg-2)', borderRadius: 12, padding: 20 }}>
+                <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>{s.label}</p>
+                <p style={{ fontSize: 13, color: 'var(--text)', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>{s.value}</p>
               </div>
             ))}
 
             {client.contentPillars && (
-              <div style={{ gridColumn: '1 / -1', background: '#F5F4F2', borderRadius: 12, padding: 20 }}>
-                <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Pilares de conteúdo</p>
+              <div style={{ gridColumn: '1 / -1', background: 'var(--bg-2)', borderRadius: 12, padding: 20 }}>
+                <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>Pilares de conteúdo</p>
                 <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
                   {client.contentPillars.map(p => (
-                    <span key={p} style={{ background: '#FBD0DA', color: '#1F1B1A', fontSize: 12, fontWeight: 600, padding: '5px 12px', borderRadius: 999 }}>{p}</span>
+                    <span key={p} style={{ background: '#FBD0DA', color: 'var(--text)', fontSize: 12, fontWeight: 600, padding: '5px 12px', borderRadius: 999 }}>{p}</span>
                   ))}
                 </div>
               </div>
@@ -576,7 +576,7 @@ function ClientDetailView({ client }: { client: Client }) {
         {/* Anotações */}
         {activeTab === 'Anotações' && (
           <div style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
-            <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.5)', marginBottom: 12 }}>Anotações internas — não visíveis ao cliente.</p>
+            <p style={{ fontSize: 13, color: 'var(--text-2)', marginBottom: 12 }}>Anotações internas — não visíveis ao cliente.</p>
             <textarea
               value={notes}
               onChange={e => setNotes(e.target.value)}
@@ -584,12 +584,12 @@ function ClientDetailView({ client }: { client: Client }) {
               style={{
                 width: '100%',
                 minHeight: 250,
-                background: '#F5F4F2',
-                border: '1px solid rgba(31,27,26,0.12)',
+                background: 'var(--bg-2)',
+                border: '1px solid var(--border)',
                 borderRadius: 16,
                 padding: '16px',
                 fontSize: 14,
-                color: '#1F1B1A',
+                color: 'var(--text)',
                 lineHeight: 1.7,
                 resize: 'vertical',
                 outline: 'none',

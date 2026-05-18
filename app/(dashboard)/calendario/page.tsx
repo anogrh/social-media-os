@@ -16,8 +16,8 @@ const emptyPost = {
 const FORMAT_STYLES: Record<string, { background: string; color: string }> = {
   reels:     { background: '#F25BA5', color: '#fff' },
   carrossel: { background: '#F19877', color: '#fff' },
-  story:     { background: '#FBD0DA', color: '#1F1B1A' },
-  feed:      { background: '#F2F4A4', color: '#1F1B1A' },
+  story:     { background: '#FBD0DA', color: 'var(--text)' },
+  feed:      { background: '#F2F4A4', color: 'var(--text)' },
   blog:      { background: '#dbeafe', color: '#1d4ed8' },
   tiktok:    { background: '#1F1B1A', color: '#fff' },
 }
@@ -57,11 +57,11 @@ function CardDetailModal({
 
   return (
     <div
-      style={{ position: 'fixed', inset: 0, background: 'rgba(31,27,26,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 60, backdropFilter: 'blur(2px)', padding: '16px' }}
+      style={{ position: 'fixed', inset: 0, background: 'var(--overlay)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 60, backdropFilter: 'blur(2px)', padding: '16px' }}
       onClick={onClose}
     >
       <div
-        style={{ background: '#FFFFFF', borderRadius: 20, width: '100%', maxWidth: 600, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px rgba(31,27,26,0.18)', fontFamily: "'Inter', system-ui, sans-serif" }}
+        style={{ background: 'var(--bg)', borderRadius: 20, width: '100%', maxWidth: 600, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px var(--shadow)', fontFamily: "'Inter', system-ui, sans-serif" }}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
@@ -71,13 +71,13 @@ function CardDetailModal({
               {post.clientName.split(' ').map((w: string) => w[0]).join('').slice(0, 2)}
             </div>
             <div>
-              <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)' }}>{post.clientName}</p>
-              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: '#1F1B1A', lineHeight: 1.2 }}>
+              <p style={{ fontSize: 12, color: 'var(--text-2)' }}>{post.clientName}</p>
+              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: 'var(--text)', lineHeight: 1.2 }}>
                 {draft.caption || 'Sem título'}
               </h3>
             </div>
           </div>
-          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', display: 'flex', flexShrink: 0 }}>
+          <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex', flexShrink: 0 }}>
             <X size={20} />
           </button>
         </div>
@@ -87,13 +87,13 @@ function CardDetailModal({
           <span style={{ ...FORMAT_STYLES[post.format], fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999 }}>{post.format}</span>
           <StatusBadge status={draft.status} size="sm" />
           {post.scheduledTime && (
-            <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', display: 'flex', alignItems: 'center', gap: 4 }}>
+            <span style={{ fontSize: 11, color: 'var(--text-2)', display: 'flex', alignItems: 'center', gap: 4 }}>
               <Clock size={11} /> {post.date} às {post.scheduledTime}
             </span>
           )}
         </div>
 
-        <div style={{ height: 1, background: 'rgba(31,27,26,0.08)', margin: '0 28px' }} />
+        <div style={{ height: 1, background: 'var(--border-3)', margin: '0 28px' }} />
 
         {/* Fields */}
         <div style={{ padding: '20px 28px 28px', display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -190,10 +190,10 @@ function CardDetailModal({
             {(draft.attachments || []).length > 0 && (
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
                 {(draft.attachments || []).map((name, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#F5F4F2', borderRadius: 8, padding: '8px 12px' }}>
+                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--bg-2)', borderRadius: 8, padding: '8px 12px' }}>
                     <Paperclip size={12} color="#F25BA5" />
-                    <span style={{ fontSize: 13, color: '#1F1B1A', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
-                    <button onClick={() => removeAttachment(name)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', display: 'flex', flexShrink: 0 }}>
+                    <span style={{ fontSize: 13, color: 'var(--text)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
+                    <button onClick={() => removeAttachment(name)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex', flexShrink: 0 }}>
                       <X size={14} />
                     </button>
                   </div>
@@ -205,7 +205,7 @@ function CardDetailModal({
             <button
               type="button"
               onClick={() => fileRef.current?.click()}
-              style={{ display: 'flex', alignItems: 'center', gap: 7, border: '1.5px dashed rgba(31,27,26,0.2)', borderRadius: 10, padding: '10px 16px', background: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.55)', fontSize: 13, width: '100%', fontFamily: "'Inter', system-ui, sans-serif" }}
+              style={{ display: 'flex', alignItems: 'center', gap: 7, border: '1.5px dashed var(--shadow)', borderRadius: 10, padding: '10px 16px', background: 'none', cursor: 'pointer', color: 'var(--text-2)', fontSize: 13, width: '100%', fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               <Paperclip size={14} />
               Clique para anexar arquivo
@@ -223,7 +223,7 @@ function CardDetailModal({
           <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
             <button
               onClick={onClose}
-              style={{ flex: 1, border: '1px solid rgba(31,27,26,0.15)', background: 'none', borderRadius: 999, padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: 'rgba(31,27,26,0.6)', fontFamily: "'Inter', system-ui, sans-serif" }}
+              style={{ flex: 1, border: '1px solid var(--border-2)', background: 'none', borderRadius: 999, padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: 'var(--text-2)', fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               Cancelar
             </button>
@@ -242,15 +242,15 @@ function CardDetailModal({
 
 /* shared micro-styles */
 const labelStyle: React.CSSProperties = {
-  fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)',
+  fontSize: 11, fontWeight: 700, color: 'var(--text-2)',
   textTransform: 'uppercase', letterSpacing: '0.07em',
   display: 'flex', alignItems: 'center', gap: 5,
   marginBottom: 6,
 }
 const inputStyle: React.CSSProperties = {
-  width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12,
-  padding: '10px 14px', fontSize: 13, background: '#F5F4F2',
-  color: '#1F1B1A', outline: 'none', fontFamily: "'Inter', system-ui, sans-serif",
+  width: '100%', border: '1px solid var(--border-2)', borderRadius: 12,
+  padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)',
+  color: 'var(--text)', outline: 'none', fontFamily: "'Inter', system-ui, sans-serif",
   boxSizing: 'border-box',
 }
 
@@ -326,7 +326,7 @@ export default function CalendarioPage() {
   }
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Calendário editorial" subtitle="Planejamento de conteúdo" />
 
       <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -335,7 +335,7 @@ export default function CalendarioPage() {
           <select
             value={filterClient}
             onChange={e => setFilterClient(e.target.value)}
-            style={{ border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '8px 14px', fontSize: 12, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', cursor: 'pointer' }}
+            style={{ border: '1px solid var(--border-2)', borderRadius: 999, padding: '8px 14px', fontSize: 12, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', cursor: 'pointer' }}
           >
             <option value="todos">Todos os clientes</option>
             {clients.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
@@ -349,7 +349,7 @@ export default function CalendarioPage() {
                 style={{
                   background: filterFormat === f ? '#F25BA5' : '#F5F4F2',
                   color: filterFormat === f ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${filterFormat === f ? '#F25BA5' : 'rgba(31,27,26,0.12)'}`,
+                  border: `1px solid ${filterFormat === f ? '#F25BA5' : 'var(--border)'}`,
                   borderRadius: 999, padding: '7px 14px', fontSize: 12, fontWeight: 600,
                   cursor: 'pointer', transition: 'all 0.15s',
                 }}
@@ -371,22 +371,22 @@ export default function CalendarioPage() {
 
         <div className="rg-calendario" style={{ gap: 20 }}>
           {/* Calendar grid */}
-          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 16, overflow: 'hidden', overflowX: 'auto' }}>
+          <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 16, overflow: 'hidden', overflowX: 'auto' }}>
             {/* Month nav */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: '1px solid rgba(31,27,26,0.08)' }}>
-              <button onClick={prevMonth} style={{ background: 'none', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 8, width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 20px', borderBottom: '1px solid var(--border-3)' }}>
+              <button onClick={prevMonth} style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 8, width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                 <ChevronLeft size={14} />
               </button>
-              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16, fontWeight: 600, color: '#1F1B1A' }}>{MONTHS[month]} {year}</h3>
-              <button onClick={nextMonth} style={{ background: 'none', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 8, width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 16, fontWeight: 600, color: 'var(--text)' }}>{MONTHS[month]} {year}</h3>
+              <button onClick={nextMonth} style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 8, width: 32, height: 32, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
                 <ChevronRight size={14} />
               </button>
             </div>
 
             {/* Weekday headers */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', borderBottom: '1px solid rgba(31,27,26,0.08)', minWidth: 560 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', borderBottom: '1px solid var(--border-3)', minWidth: 560 }}>
               {WEEKDAYS.map(d => (
-                <div key={d} style={{ padding: '10px 0', textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <div key={d} style={{ padding: '10px 0', textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {d}
                 </div>
               ))}
@@ -395,7 +395,7 @@ export default function CalendarioPage() {
             {/* Days grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', minWidth: 560 }}>
               {Array.from({ length: firstDay }).map((_, i) => (
-                <div key={`empty-${i}`} style={{ minHeight: 100, borderRight: '1px solid rgba(31,27,26,0.05)', borderBottom: '1px solid rgba(31,27,26,0.05)' }} />
+                <div key={`empty-${i}`} style={{ minHeight: 100, borderRight: '1px solid var(--border-3)', borderBottom: '1px solid var(--border-3)' }} />
               ))}
 
               {Array.from({ length: daysInMonth }).map((_, i) => {
@@ -411,8 +411,8 @@ export default function CalendarioPage() {
                     onClick={() => setSelectedDay(day)}
                     style={{
                       minHeight: 100, padding: 8,
-                      borderRight: '1px solid rgba(31,27,26,0.05)',
-                      borderBottom: '1px solid rgba(31,27,26,0.05)',
+                      borderRight: '1px solid var(--border-3)',
+                      borderBottom: '1px solid var(--border-3)',
                       background: isSelected ? 'rgba(242,91,165,0.06)' : 'transparent',
                       cursor: 'pointer', transition: 'background 0.1s',
                     }}
@@ -433,7 +433,7 @@ export default function CalendarioPage() {
                           {p.clientName.split(' ')[0]}
                         </div>
                       ))}
-                      {posts.length > 3 && <span style={{ fontSize: 10, color: 'rgba(31,27,26,0.4)' }}>+{posts.length - 3}</span>}
+                      {posts.length > 3 && <span style={{ fontSize: 10, color: 'var(--text-4)' }}>+{posts.length - 3}</span>}
                     </div>
                   </div>
                 )
@@ -442,16 +442,16 @@ export default function CalendarioPage() {
           </div>
 
           {/* Side panel */}
-          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 16, padding: 20 }}>
-            <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>
+          <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 16, padding: 20 }}>
+            <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>
               {selectedDay ? `Dia ${selectedDay} de ${MONTHS[month]}` : 'Selecione um dia'}
             </h4>
 
             {selectedPosts.length === 0 && selectedDay && (
-              <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.4)' }}>Nenhum post para este dia.</p>
+              <p style={{ fontSize: 13, color: 'var(--text-4)' }}>Nenhum post para este dia.</p>
             )}
             {!selectedDay && (
-              <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.4)' }}>Clique em um dia para ver os posts agendados.</p>
+              <p style={{ fontSize: 13, color: 'var(--text-4)' }}>Clique em um dia para ver os posts agendados.</p>
             )}
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -459,27 +459,27 @@ export default function CalendarioPage() {
                 <button
                   key={post.id}
                   onClick={() => setDetailPost(post)}
-                  style={{ background: '#F5F4F2', borderRadius: 10, padding: '12px 14px', border: 'none', cursor: 'pointer', textAlign: 'left', width: '100%', fontFamily: "'Inter', system-ui, sans-serif', transition: 'box-shadow 0.15s" }}
+                  style={{ background: 'var(--bg-2)', borderRadius: 10, padding: '12px 14px', border: 'none', cursor: 'pointer', textAlign: 'left', width: '100%', fontFamily: "'Inter', system-ui, sans-serif', transition: 'box-shadow 0.15s" }}
                   className="hover:shadow-md"
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
                     <div style={{ width: 24, height: 24, borderRadius: '50%', background: post.clientColor, flexShrink: 0, color: post.clientColor === '#F2F4A4' || post.clientColor === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {post.clientName.split(' ').map((w: string) => w[0]).join('').slice(0, 2)}
                     </div>
-                    <span style={{ fontSize: 12, fontWeight: 600, color: '#1F1B1A', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{post.clientName}</span>
+                    <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{post.clientName}</span>
                     <span style={{ ...FORMAT_STYLES[post.format], fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 999 }}>{post.format}</span>
                   </div>
-                  <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.7)', lineHeight: 1.5, marginBottom: 8, textAlign: 'left' }}>{post.caption}</p>
+                  <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.5, marginBottom: 8, textAlign: 'left' }}>{post.caption}</p>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                     <StatusBadge status={post.status} size="sm" />
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       {(post.attachments?.length ?? 0) > 0 && (
-                        <span style={{ fontSize: 10, color: 'rgba(31,27,26,0.45)', display: 'flex', alignItems: 'center', gap: 3 }}>
+                        <span style={{ fontSize: 10, color: 'var(--text-3)', display: 'flex', alignItems: 'center', gap: 3 }}>
                           <Paperclip size={10} /> {post.attachments!.length}
                         </span>
                       )}
                       {post.scheduledTime && (
-                        <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)' }}>{post.scheduledTime}</span>
+                        <span style={{ fontSize: 11, color: 'var(--text-4)' }}>{post.scheduledTime}</span>
                       )}
                     </div>
                   </div>
@@ -493,13 +493,13 @@ export default function CalendarioPage() {
             </div>
 
             {/* Format legend */}
-            <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid rgba(31,27,26,0.08)' }}>
-              <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Legenda de formatos</p>
+            <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--border-3)' }}>
+              <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 8 }}>Legenda de formatos</p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {Object.entries(FORMAT_STYLES).filter(([k]) => k !== 'blog' && k !== 'tiktok').map(([format, style]) => (
                   <div key={format} style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                     <div style={{ ...style, width: 24, height: 14, borderRadius: 4, fontSize: 8, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }} />
-                    <span style={{ fontSize: 12, color: '#1F1B1A', textTransform: 'capitalize' }}>{format}</span>
+                    <span style={{ fontSize: 12, color: 'var(--text)', textTransform: 'capitalize' }}>{format}</span>
                   </div>
                 ))}
               </div>
@@ -510,16 +510,16 @@ export default function CalendarioPage() {
 
       {/* ── MODAL NOVA PAUTA ── */}
       {showModal && (
-        <div style={{ position: 'fixed', inset: 0, background: 'rgba(31,27,26,0.45)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50, backdropFilter: 'blur(2px)', padding: 16 }}
+        <div style={{ position: 'fixed', inset: 0, background: 'var(--overlay)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50, backdropFilter: 'blur(2px)', padding: 16 }}
           onClick={() => setShowModal(false)}>
-          <div style={{ background: '#FFFFFF', borderRadius: 20, padding: 32, width: '100%', maxWidth: 540, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px rgba(31,27,26,0.18)', fontFamily: "'Inter', system-ui, sans-serif" }}
+          <div style={{ background: 'var(--bg)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 540, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px var(--shadow)', fontFamily: "'Inter', system-ui, sans-serif" }}
             onClick={e => e.stopPropagation()}>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 600, color: '#1F1B1A' }}>
+              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 600, color: 'var(--text)' }}>
                 Nova <span style={{ color: '#F25BA5' }}>pauta</span>
               </h3>
-              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', display: 'flex' }}>
+              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex' }}>
                 <X size={20} />
               </button>
             </div>
@@ -599,11 +599,11 @@ export default function CalendarioPage() {
               {/* Actions */}
               <div style={{ display: 'flex', gap: 10, marginTop: 4 }}>
                 <button onClick={() => { setShowModal(false); setNewPost(emptyPost) }}
-                  style={{ flex: 1, border: '1px solid rgba(31,27,26,0.15)', background: 'none', borderRadius: 999, padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: 'rgba(31,27,26,0.6)', fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  style={{ flex: 1, border: '1px solid var(--border-2)', background: 'none', borderRadius: 999, padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: 'var(--text-2)', fontFamily: "'Inter', system-ui, sans-serif" }}>
                   Cancelar
                 </button>
                 <button onClick={handleAddPost} disabled={!newPost.clientId || !newPost.date}
-                  style={{ flex: 2, background: newPost.clientId && newPost.date ? '#F25BA5' : 'rgba(31,27,26,0.1)', color: newPost.clientId && newPost.date ? '#FFFFFF' : 'rgba(31,27,26,0.3)', borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700, cursor: newPost.clientId && newPost.date ? 'pointer' : 'not-allowed', fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  style={{ flex: 2, background: newPost.clientId && newPost.date ? '#F25BA5' : 'var(--border)', color: newPost.clientId && newPost.date ? '#FFFFFF' : 'var(--text-4)', borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700, cursor: newPost.clientId && newPost.date ? 'pointer' : 'not-allowed', fontFamily: "'Inter', system-ui, sans-serif" }}>
                   Adicionar pauta
                 </button>
               </div>

@@ -29,7 +29,7 @@ export default function BibliotecaPage() {
   })
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Referências" subtitle="Biblioteca de inspirações e referências" />
 
       <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
@@ -41,7 +41,7 @@ export default function BibliotecaPage() {
             value={search}
             onChange={e => setSearch(e.target.value)}
             placeholder="Buscar referências..."
-            style={{ border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '9px 16px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', width: 220 }}
+            style={{ border: '1px solid var(--border-2)', borderRadius: 999, padding: '9px 16px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', width: 220 }}
           />
 
           {/* Type filters */}
@@ -53,7 +53,7 @@ export default function BibliotecaPage() {
                 style={{
                   background: filterType === f ? '#F25BA5' : '#F5F4F2',
                   color: filterType === f ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${filterType === f ? '#F25BA5' : 'rgba(31,27,26,0.12)'}`,
+                  border: `1px solid ${filterType === f ? '#F25BA5' : 'var(--border)'}`,
                   borderRadius: 999, padding: '7px 14px', fontSize: 12, fontWeight: 600,
                   cursor: 'pointer', textTransform: 'capitalize', transition: 'all 0.15s',
                 }}
@@ -76,11 +76,11 @@ export default function BibliotecaPage() {
             return (
               <div
                 key={ref.id}
-                style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 14, overflow: 'hidden' }}
+                style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 14, overflow: 'hidden' }}
                 className="hover:shadow-md transition-shadow"
               >
                 {/* Thumbnail placeholder */}
-                <div style={{ height: 120, background: '#F5F4F2', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                <div style={{ height: 120, background: 'var(--bg-2)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                   <div style={{ width: 48, height: 48, borderRadius: '50%', background: typeStyle.background, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <span style={{ fontSize: 20 }}>
                       {ref.type === 'design' ? '🎨' : ref.type === 'copy' ? '✍️' : ref.type === 'video' ? '🎬' : ref.type === 'trend' ? '📈' : '🚀'}
@@ -92,9 +92,9 @@ export default function BibliotecaPage() {
                 </div>
 
                 <div style={{ padding: '14px 16px' }}>
-                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 6, lineHeight: 1.3 }}>{ref.title}</p>
+                  <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 6, lineHeight: 1.3 }}>{ref.title}</p>
                   {ref.description && (
-                    <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.6)', lineHeight: 1.5, marginBottom: 10, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any }}>
+                    <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.5, marginBottom: 10, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' as any }}>
                       {ref.description}
                     </p>
                   )}
@@ -103,7 +103,7 @@ export default function BibliotecaPage() {
                   {ref.tags && (
                     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 12 }}>
                       {ref.tags.slice(0, 3).map(tag => (
-                        <span key={tag} style={{ background: '#F5F4F2', color: 'rgba(31,27,26,0.6)', fontSize: 10, fontWeight: 600, padding: '2px 8px', borderRadius: 999 }}>
+                        <span key={tag} style={{ background: 'var(--bg-2)', color: 'var(--text-2)', fontSize: 10, fontWeight: 600, padding: '2px 8px', borderRadius: 999 }}>
                           #{tag}
                         </span>
                       ))}
@@ -111,7 +111,7 @@ export default function BibliotecaPage() {
                   )}
 
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)' }}>{ref.category}</span>
+                    <span style={{ fontSize: 11, color: 'var(--text-4)' }}>{ref.category}</span>
                     <a
                       href={ref.url}
                       target="_blank"
@@ -130,7 +130,7 @@ export default function BibliotecaPage() {
 
         {filtered.length === 0 && (
           <div style={{ textAlign: 'center', padding: '60px 0' }}>
-            <p style={{ fontSize: 15, color: 'rgba(31,27,26,0.4)' }}>Nenhuma referência encontrada.</p>
+            <p style={{ fontSize: 15, color: 'var(--text-4)' }}>Nenhuma referência encontrada.</p>
           </div>
         )}
       </div>

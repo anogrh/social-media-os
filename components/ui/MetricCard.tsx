@@ -28,8 +28,8 @@ export default function MetricCard({
   return (
     <div
       style={{
-        background: '#FFFFFF',
-        border: '1px solid rgba(31,27,26,0.10)',
+        background: 'var(--bg)',
+        border: '1px solid var(--border)',
         fontFamily: "'Inter', system-ui, sans-serif",
       }}
       className={cn('rounded-xl p-5', className)}
@@ -46,7 +46,7 @@ export default function MetricCard({
             style={{
               fontSize: 12,
               fontWeight: 600,
-              color: isPositive ? '#16a34a' : isNegative ? '#dc2626' : 'rgba(31,27,26,0.5)',
+              color: isPositive ? '#16a34a' : isNegative ? '#dc2626' : 'var(--text-2)',
               display: 'flex',
               alignItems: 'center',
               gap: 2,
@@ -58,13 +58,13 @@ export default function MetricCard({
         )}
       </div>
 
-      <p style={{ fontSize: 26, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.1 }}>
+      <p style={{ fontSize: 26, fontWeight: 700, color: 'var(--text)', lineHeight: 1.1 }}>
         {value}
       </p>
-      <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.5)', marginTop: 4 }}>{label}</p>
+      <p style={{ fontSize: 13, color: 'var(--text-2)', marginTop: 4 }}>{label}</p>
 
       {changeLabel && (
-        <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)', marginTop: 6 }}>{changeLabel}</p>
+        <p style={{ fontSize: 11, color: 'var(--text-4)', marginTop: 6 }}>{changeLabel}</p>
       )}
     </div>
   )

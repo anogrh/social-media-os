@@ -153,31 +153,31 @@ export default function ConfiguracoesPage() {
   }
 
   const inputStyle = {
-    width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12,
-    padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A',
+    width: '100%', border: '1px solid var(--border-2)', borderRadius: 12,
+    padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)',
     outline: 'none', fontFamily: font, boxSizing: 'border-box' as const,
   }
 
   const labelStyle = {
-    fontSize: 11, fontWeight: 700 as const, color: 'rgba(31,27,26,0.5)' as const,
+    fontSize: 11, fontWeight: 700 as const, color: 'var(--text-2)' as const,
     textTransform: 'uppercase' as const, letterSpacing: '0.07em', display: 'block' as const, marginBottom: 6,
   }
 
   const sectionTitle = (text: string) => (
-    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: '#1F1B1A', marginBottom: 18, borderBottom: '1px solid rgba(31,27,26,0.08)', paddingBottom: 12 }}>
+    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 18, borderBottom: '1px solid var(--border-3)', paddingBottom: 12 }}>
       {text}
     </h4>
   )
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Configurações" subtitle="Gerencie sua agência, equipe e integrações" />
 
       <div className="page-pad" style={{ fontFamily: font }}>
         <div className="rg-settings" style={{ gap: 24, alignItems: 'start' }}>
 
           {/* Sidebar nav */}
-          <div style={{ background: '#F5F4F2', borderRadius: 16, padding: 8, position: 'sticky', top: 24 }}>
+          <div style={{ background: 'var(--bg-2)', borderRadius: 16, padding: 8, position: 'sticky', top: 24 }}>
             {TABS.map(tab => {
               const Icon = tabIcons[tab]
               const active = activeTab === tab
@@ -185,7 +185,7 @@ export default function ConfiguracoesPage() {
                 <button key={tab} onClick={() => setActiveTab(tab)} style={{
                   width: '100%', display: 'flex', alignItems: 'center', gap: 10,
                   background: active ? '#F25BA5' : 'none',
-                  color: active ? '#FFFFFF' : 'rgba(31,27,26,0.6)',
+                  color: active ? '#FFFFFF' : 'var(--text-2)',
                   borderRadius: 10, border: 'none', padding: '10px 14px',
                   fontSize: 13, fontWeight: active ? 700 : 500,
                   cursor: 'pointer', marginBottom: 2, fontFamily: font,
@@ -199,7 +199,7 @@ export default function ConfiguracoesPage() {
           </div>
 
           {/* Content panel */}
-          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 16, padding: 28 }}>
+          <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 16, padding: 28 }}>
 
             {/* ── AGÊNCIA ─────────────────────────────── */}
             {activeTab === 'Agência' && (
@@ -243,7 +243,7 @@ export default function ConfiguracoesPage() {
 
                 {sectionTitle('Identidade visual do dashboard')}
                 <div style={{ marginBottom: 24 }}>
-                  <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', marginBottom: 14 }}>Escolha a cor de acento principal do seu dashboard:</p>
+                  <p style={{ fontSize: 12, color: 'var(--text-2)', marginBottom: 14 }}>Escolha a cor de acento principal do seu dashboard:</p>
                   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 16 }}>
                     {['#F25BA5', '#F19877', '#EE3528', '#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#1F1B1A'].map(color => (
                       <button
@@ -262,8 +262,8 @@ export default function ConfiguracoesPage() {
                     ))}
 
                     {/* Custom color input */}
-                    <label title="Cor personalizada" style={{ width: 40, height: 40, borderRadius: '50%', border: '2px dashed rgba(31,27,26,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', overflow: 'hidden', position: 'relative' }}>
-                      <Palette size={16} style={{ color: 'rgba(31,27,26,0.4)', pointerEvents: 'none' }} />
+                    <label title="Cor personalizada" style={{ width: 40, height: 40, borderRadius: '50%', border: '2px dashed var(--shadow)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', overflow: 'hidden', position: 'relative' }}>
+                      <Palette size={16} style={{ color: 'var(--text-4)', pointerEvents: 'none' }} />
                       <input
                         type="color"
                         value={accentColor}
@@ -274,15 +274,15 @@ export default function ConfiguracoesPage() {
                   </div>
 
                   {/* Preview */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#F5F4F2', borderRadius: 12, padding: '12px 16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'var(--bg-2)', borderRadius: 12, padding: '12px 16px' }}>
                     <div style={{ width: 28, height: 28, borderRadius: '50%', background: accentColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <Palette size={14} color="#FFFFFF" />
                     </div>
                     <div>
-                      <p style={{ fontSize: 12, fontWeight: 700, color: '#1F1B1A' }}>Cor selecionada</p>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', fontFamily: "'JetBrains Mono', monospace" }}>{accentColor.toUpperCase()}</p>
+                      <p style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)' }}>Cor selecionada</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-2)', fontFamily: "'JetBrains Mono', monospace" }}>{accentColor.toUpperCase()}</p>
                     </div>
-                    <div style={{ marginLeft: 'auto', fontSize: 12, color: 'rgba(31,27,26,0.4)' }}>
+                    <div style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--text-4)' }}>
                       Salve para aplicar
                     </div>
                   </div>
@@ -328,7 +328,7 @@ export default function ConfiguracoesPage() {
                               </select>
                             </div>
                             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
-                              <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 13, color: '#1F1B1A' }}>
+                              <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 13, color: 'var(--text)' }}>
                                 <input type="checkbox" checked={editForm.active ?? true} onChange={e => setEditForm(f => ({ ...f, active: e.target.checked }))}
                                   style={{ accentColor: '#F25BA5', width: 16, height: 16 }} />
                                 Ativo
@@ -339,31 +339,31 @@ export default function ConfiguracoesPage() {
                             <button onClick={commitEdit} style={{ background: '#F25BA5', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '8px 18px', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
                               <Check size={13} /> Salvar
                             </button>
-                            <button onClick={cancelEdit} style={{ background: '#F5F4F2', color: '#1F1B1A', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '8px 18px', fontSize: 12, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
+                            <button onClick={cancelEdit} style={{ background: 'var(--bg-2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 999, padding: '8px 18px', fontSize: 12, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
                               <X size={13} /> Cancelar
                             </button>
                           </div>
                         </div>
                       ) : (
                         /* ── View mode ── */
-                        <div style={{ display: 'flex', alignItems: 'center', gap: 16, background: '#F5F4F2', borderRadius: 12, padding: '14px 18px' }}>
-                          <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#FBD0DA', fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: 16, background: 'var(--bg-2)', borderRadius: 12, padding: '14px 18px' }}>
+                          <div style={{ width: 40, height: 40, borderRadius: '50%', background: '#FBD0DA', fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                             {member.avatar}
                           </div>
                           <div style={{ flex: 1 }}>
-                            <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A' }}>{member.name}</p>
-                            <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', marginTop: 2 }}>{member.email}</p>
+                            <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{member.name}</p>
+                            <p style={{ fontSize: 12, color: 'var(--text-2)', marginTop: 2 }}>{member.email}</p>
                           </div>
                           <span style={{
                             fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999,
                             background: member.role === 'Admin' ? '#F25BA5' : '#F5F4F2',
-                            color: member.role === 'Admin' ? '#FFFFFF' : 'rgba(31,27,26,0.6)',
-                            border: member.role === 'Admin' ? 'none' : '1px solid rgba(31,27,26,0.12)',
+                            color: member.role === 'Admin' ? '#FFFFFF' : 'var(--text-2)',
+                            border: member.role === 'Admin' ? 'none' : '1px solid var(--border)',
                           }}>
                             {member.role}
                           </span>
                           <div style={{ width: 8, height: 8, borderRadius: '50%', background: member.active ? '#10B981' : '#6b7280' }} title={member.active ? 'Ativo' : 'Inativo'} />
-                          <button onClick={() => startEdit(member)} title="Editar" style={{ background: 'none', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 8, padding: '6px 8px', cursor: 'pointer', color: 'rgba(31,27,26,0.5)', display: 'flex' }}>
+                          <button onClick={() => startEdit(member)} title="Editar" style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 8, padding: '6px 8px', cursor: 'pointer', color: 'var(--text-2)', display: 'flex' }}>
                             <Pencil size={13} />
                           </button>
                           {member.role !== 'Admin' && (
@@ -379,8 +379,8 @@ export default function ConfiguracoesPage() {
 
                 {/* Add member form */}
                 {showAddForm ? (
-                  <div style={{ background: '#F5F4F2', borderRadius: 14, padding: 20, marginBottom: 12 }}>
-                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 14 }}>Novo membro</p>
+                  <div style={{ background: 'var(--bg-2)', borderRadius: 14, padding: 20, marginBottom: 12 }}>
+                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>Novo membro</p>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
                       <div>
                         <label style={labelStyle}>Nome *</label>
@@ -405,14 +405,14 @@ export default function ConfiguracoesPage() {
                       <button onClick={addMember} style={{ background: '#F25BA5', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '9px 20px', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
                         <Plus size={13} /> Adicionar membro
                       </button>
-                      <button onClick={() => { setShowAddForm(false); setNewMember({ name: '', email: '', role: 'Equipe' }) }} style={{ background: 'transparent', color: 'rgba(31,27,26,0.5)', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '9px 18px', fontSize: 12, cursor: 'pointer', fontFamily: font }}>
+                      <button onClick={() => { setShowAddForm(false); setNewMember({ name: '', email: '', role: 'Equipe' }) }} style={{ background: 'transparent', color: 'var(--text-2)', border: '1px solid var(--border)', borderRadius: 999, padding: '9px 18px', fontSize: 12, cursor: 'pointer', fontFamily: font }}>
                         Cancelar
                       </button>
                     </div>
                   </div>
                 ) : (
                   <button onClick={() => setShowAddForm(true)} style={{
-                    background: '#F5F4F2', color: '#1F1B1A', border: '1px dashed rgba(31,27,26,0.2)',
+                    background: 'var(--bg-2)', color: 'var(--text)', border: '1px dashed var(--shadow)',
                     borderRadius: 12, padding: '12px 20px', fontSize: 13, fontWeight: 600,
                     cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center', fontFamily: font,
                   }}>
@@ -421,8 +421,8 @@ export default function ConfiguracoesPage() {
                 )}
 
                 <div style={{ marginTop: 24, background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', border: '1px solid rgba(242,91,165,0.2)' }}>
-                  <p style={{ fontSize: 13, fontWeight: 700, color: '#1F1B1A', marginBottom: 6 }}>Plano atual</p>
-                  <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.6)', lineHeight: 1.6 }}>
+                  <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>Plano atual</p>
+                  <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.6 }}>
                     Você está no plano <strong>Pro</strong> — até 5 membros, acesso completo a todas as funcionalidades.
                     Clientes ilimitados, integrações ativas e relatórios avançados.
                   </p>
@@ -438,27 +438,27 @@ export default function ConfiguracoesPage() {
                   {integrations.map(intg => {
                     const pill = STATUS_PILL[intg.status]
                     return (
-                      <div key={intg.id} style={{ background: '#F5F4F2', borderRadius: 14, padding: '16px 20px' }}>
+                      <div key={intg.id} style={{ background: 'var(--bg-2)', borderRadius: 14, padding: '16px 20px' }}>
                         <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 12 }}>
                           <div>
-                            <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A' }}>{intg.name}</p>
-                            <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.55)', marginTop: 4, lineHeight: 1.5 }}>{intg.desc}</p>
+                            <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{intg.name}</p>
+                            <p style={{ fontSize: 12, color: 'var(--text-2)', marginTop: 4, lineHeight: 1.5 }}>{intg.desc}</p>
                           </div>
                           <span style={{ fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999, background: pill.bg, color: pill.color, flexShrink: 0, marginLeft: 16 }}>
                             {pill.label}
                           </span>
                         </div>
                         <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                          <code style={{ flex: 1, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", background: 'rgba(31,27,26,0.06)', borderRadius: 8, padding: '6px 10px', color: '#1F1B1A' }}>
+                          <code style={{ flex: 1, fontSize: 11, fontFamily: "'JetBrains Mono', monospace", background: 'var(--border-3)', borderRadius: 8, padding: '6px 10px', color: 'var(--text)' }}>
                             {showKey[intg.id] ? `sk-••••••••••••••••` : intg.env}
                           </code>
-                          <button onClick={() => toggleKey(intg.id)} style={{ background: 'none', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', color: 'rgba(31,27,26,0.5)', display: 'flex' }}>
+                          <button onClick={() => toggleKey(intg.id)} style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 8, padding: '6px 10px', cursor: 'pointer', color: 'var(--text-2)', display: 'flex' }}>
                             {showKey[intg.id] ? <EyeOff size={13} /> : <Eye size={13} />}
                           </button>
                           <button style={{
                             background: intg.status === 'not_connected' ? '#F25BA5' : '#F5F4F2',
-                            color: intg.status === 'not_connected' ? '#FFFFFF' : 'rgba(31,27,26,0.7)',
-                            border: intg.status === 'not_connected' ? 'none' : '1px solid rgba(31,27,26,0.12)',
+                            color: intg.status === 'not_connected' ? '#FFFFFF' : 'var(--text-2)',
+                            border: intg.status === 'not_connected' ? 'none' : '1px solid var(--border)',
                             borderRadius: 999, padding: '7px 16px', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: font,
                           }}>
                             {intg.status === 'not_connected' ? 'Conectar' : 'Configurar'}
@@ -469,7 +469,7 @@ export default function ConfiguracoesPage() {
                   })}
                 </div>
 
-                <div style={{ background: '#F2F4A4', borderRadius: 12, padding: '14px 18px', fontSize: 12, color: 'rgba(31,27,26,0.7)', lineHeight: 1.6 }}>
+                <div style={{ background: '#F2F4A4', borderRadius: 12, padding: '14px 18px', fontSize: 12, color: 'var(--text-2)', lineHeight: 1.6 }}>
                   <strong>⚠ Importante:</strong> Nunca exponha chaves de API no frontend. Todas as chaves sensíveis
                   devem ser configuradas como variáveis de ambiente no servidor (<code style={{ fontFamily: 'monospace', fontSize: 11 }}>.env.local</code>).
                 </div>
@@ -489,25 +489,25 @@ export default function ConfiguracoesPage() {
                     { key: 'weeklyReport', label: 'Relatório semanal automático', desc: 'Resumo de segunda-feira às 08h.' },
                     { key: 'newClient', label: 'Novo cliente cadastrado', desc: 'Notificação ao cadastrar um novo cliente.' },
                   ].map(n => (
-                    <div key={n.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 0', borderBottom: '1px solid rgba(31,27,26,0.07)' }}>
+                    <div key={n.key} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '14px 0', borderBottom: '1px solid var(--border-3)' }}>
                       <div>
-                        <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }}>{n.label}</p>
-                        <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', marginTop: 2 }}>{n.desc}</p>
+                        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{n.label}</p>
+                        <p style={{ fontSize: 12, color: 'var(--text-2)', marginTop: 2 }}>{n.desc}</p>
                       </div>
                       <button
                         onClick={() => setNotifications(prev => ({ ...prev, [n.key]: !prev[n.key as keyof typeof prev] }))}
                         style={{
                           width: 44, height: 24, borderRadius: 999, border: 'none', cursor: 'pointer',
-                          background: notifications[n.key as keyof typeof notifications] ? '#F25BA5' : 'rgba(31,27,26,0.12)',
+                          background: notifications[n.key as keyof typeof notifications] ? '#F25BA5' : 'var(--border)',
                           position: 'relative', transition: 'background 0.2s', flexShrink: 0,
                         }}
                       >
                         <div style={{
-                          width: 18, height: 18, borderRadius: '50%', background: '#FFFFFF',
+                          width: 18, height: 18, borderRadius: '50%', background: 'var(--bg)',
                           position: 'absolute', top: 3,
                           left: notifications[n.key as keyof typeof notifications] ? 23 : 3,
                           transition: 'left 0.2s',
-                          boxShadow: '0 1px 4px rgba(31,27,26,0.2)',
+                          boxShadow: '0 1px 4px var(--shadow)',
                         }} />
                       </button>
                     </div>
@@ -546,11 +546,11 @@ export default function ConfiguracoesPage() {
                     { device: 'Chrome · MacBook Pro', location: 'São Paulo, BR', current: true, time: 'Agora' },
                     { device: 'Safari · iPhone 15', location: 'São Paulo, BR', current: false, time: 'Há 2 horas' },
                   ].map((s, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, background: '#F5F4F2', borderRadius: 10, padding: '12px 16px' }}>
-                      <Shield size={16} style={{ color: s.current ? '#F25BA5' : 'rgba(31,27,26,0.35)', flexShrink: 0 }} />
+                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'var(--bg-2)', borderRadius: 10, padding: '12px 16px' }}>
+                      <Shield size={16} style={{ color: s.current ? '#F25BA5' : 'var(--text-4)', flexShrink: 0 }} />
                       <div style={{ flex: 1 }}>
-                        <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }}>{s.device}</p>
-                        <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)' }}>{s.location} · {s.time}</p>
+                        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{s.device}</p>
+                        <p style={{ fontSize: 11, color: 'var(--text-2)' }}>{s.location} · {s.time}</p>
                       </div>
                       {s.current ? (
                         <span style={{ fontSize: 11, fontWeight: 700, background: '#d1fae5', color: '#065f46', borderRadius: 999, padding: '2px 8px' }}>Atual</span>
@@ -564,8 +564,8 @@ export default function ConfiguracoesPage() {
                 </div>
 
                 {sectionTitle('LGPD e privacidade')}
-                <div style={{ background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', fontSize: 13, color: 'rgba(31,27,26,0.7)', lineHeight: 1.7, border: '1px solid rgba(242,91,165,0.2)' }}>
-                  <strong style={{ color: '#1F1B1A' }}>Conformidade com a LGPD.</strong> Todos os dados dos clientes são
+                <div style={{ background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', fontSize: 13, color: 'var(--text-2)', lineHeight: 1.7, border: '1px solid rgba(242,91,165,0.2)' }}>
+                  <strong style={{ color: 'var(--text)' }}>Conformidade com a LGPD.</strong> Todos os dados dos clientes são
                   armazenados com segurança e criptografados. Tokens do Instagram são salvos em variáveis de ambiente
                   seguras e nunca expostos no frontend. Para solicitar exclusão de dados, entre em contato com o suporte.
                 </div>

@@ -294,7 +294,7 @@ export default function EstrategiaPage() {
   )
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Estratégia" subtitle="Briefing mensal, planejamento e geração de estratégia com IA" />
 
       <div className="page-pad" style={{ paddingBottom: 40, fontFamily: font }}>
@@ -302,20 +302,20 @@ export default function EstrategiaPage() {
         {/* ─── Top bar ─────────────────────────────────────────────────── */}
         <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 24, flexWrap: 'wrap' }}>
           <select value={clientId} onChange={e => switchClient(e.target.value)}
-            style={{ border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '10px 18px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontWeight: 700, cursor: 'pointer' }}>
+            style={{ border: '1px solid var(--border-2)', borderRadius: 999, padding: '10px 18px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontWeight: 700, cursor: 'pointer' }}>
             {clients.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
           </select>
           <select value={mes} onChange={e => setMes(e.target.value)}
-            style={{ border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '10px 18px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontWeight: 600, cursor: 'pointer' }}>
+            style={{ border: '1px solid var(--border-2)', borderRadius: 999, padding: '10px 18px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontWeight: 600, cursor: 'pointer' }}>
             {MESES.map(m => <option key={m} value={m}>{m}</option>)}
           </select>
-          <span style={{ background: client.color, color: '#1F1B1A', fontSize: 11, fontWeight: 700, padding: '5px 12px', borderRadius: 999, opacity: 0.85 }}>
+          <span style={{ background: client.color, color: 'var(--text)', fontSize: 11, fontWeight: 700, padding: '5px 12px', borderRadius: 999, opacity: 0.85 }}>
             {client.segment}
           </span>
         </div>
 
         {/* ─── Tab nav ──────────────────────────────────────────────────── */}
-        <div style={{ display: 'flex', gap: 4, marginBottom: 28, borderBottom: '1px solid rgba(31,27,26,0.10)', paddingBottom: 0, overflowX: 'auto', WebkitOverflowScrolling: 'touch' as const }}>
+        <div style={{ display: 'flex', gap: 4, marginBottom: 28, borderBottom: '1px solid var(--border)', paddingBottom: 0, overflowX: 'auto', WebkitOverflowScrolling: 'touch' as const }}>
           {TABS.map((t, i) => (
             <button key={t} onClick={() => setTab(i)}
               style={{
@@ -348,12 +348,12 @@ export default function EstrategiaPage() {
                   BRIEFING MENSAL · {filledCount} DE 5 RESPONDIDAS
                 </span>
               </div>
-              <h2 style={{ fontFamily: serif, fontSize: 42, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.15, marginBottom: 12 }}>
+              <h2 style={{ fontFamily: serif, fontSize: 42, fontWeight: 700, color: 'var(--text)', lineHeight: 1.15, marginBottom: 12 }}>
                 Briefing de{' '}
                 <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>
                 {' '}para {mes}.
               </h2>
-              <p style={{ fontSize: 15, color: 'rgba(31,27,26,0.55)', maxWidth: 540, lineHeight: 1.7 }}>
+              <p style={{ fontSize: 15, color: 'var(--text-2)', maxWidth: 540, lineHeight: 1.7 }}>
                 Responda as 5 perguntas abaixo. Quanto mais específica a resposta, mais cirúrgica será a estratégia gerada.
               </p>
             </div>
@@ -367,29 +367,29 @@ export default function EstrategiaPage() {
                   <div key={q.id}
                     style={{
                       background: done ? '#F5F4F2' : '#FFFFFF',
-                      border: `1.5px solid ${done ? 'rgba(242,91,165,0.25)' : 'rgba(31,27,26,0.10)'}`,
+                      border: `1.5px solid ${done ? 'rgba(242,91,165,0.25)' : 'var(--border)'}`,
                       borderRadius: 16, padding: '28px 32px',
                       transition: 'border-color 0.2s, background 0.2s',
                     }}>
                     {/* Question header */}
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 18 }}>
                       <div style={{
-                        fontFamily: serif, fontSize: 36, fontWeight: 700, color: done ? '#F25BA5' : 'rgba(31,27,26,0.12)',
+                        fontFamily: serif, fontSize: 36, fontWeight: 700, color: done ? '#F25BA5' : 'var(--border)',
                         lineHeight: 1, flexShrink: 0, transition: 'color 0.2s', minWidth: 48,
                       }}>
                         {q.n}
                       </div>
                       <div style={{ flex: 1 }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                          <span style={{ fontSize: 10, fontWeight: 700, color: 'rgba(31,27,26,0.35)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+                          <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                             {q.label}
                           </span>
                           {done && <Check size={12} color="#F25BA5" />}
                         </div>
-                        <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 600, color: '#1F1B1A', lineHeight: 1.35 }}>
+                        <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 600, color: 'var(--text)', lineHeight: 1.35 }}>
                           {q.q(client.name, mes)}
                         </p>
-                        <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.45)', marginTop: 6, lineHeight: 1.6 }}>
+                        <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 6, lineHeight: 1.6 }}>
                           {q.hint}
                         </p>
                       </div>
@@ -402,14 +402,14 @@ export default function EstrategiaPage() {
                       placeholder={q.placeholder}
                       rows={3}
                       style={{
-                        width: '100%', background: '#FFFFFF',
-                        border: `1px solid ${done ? 'rgba(242,91,165,0.2)' : 'rgba(31,27,26,0.10)'}`,
-                        borderRadius: 12, padding: '14px 16px', fontSize: 14, color: '#1F1B1A',
+                        width: '100%', background: 'var(--bg)',
+                        border: `1px solid ${done ? 'rgba(242,91,165,0.2)' : 'var(--border)'}`,
+                        borderRadius: 12, padding: '14px 16px', fontSize: 14, color: 'var(--text)',
                         lineHeight: 1.7, resize: 'vertical', outline: 'none', fontFamily: font,
                         boxSizing: 'border-box',
                       }}
                       onFocus={e => (e.target.style.borderColor = '#F25BA5')}
-                      onBlur={e => (e.target.style.borderColor = done ? 'rgba(242,91,165,0.2)' : 'rgba(31,27,26,0.10)')}
+                      onBlur={e => (e.target.style.borderColor = done ? 'rgba(242,91,165,0.2)' : 'var(--border)')}
                     />
                   </div>
                 )
@@ -422,7 +422,7 @@ export default function EstrategiaPage() {
                 onClick={handleGenStrategy}
                 disabled={stratLoading || filledCount < 3}
                 style={{
-                  background: filledCount < 3 ? 'rgba(31,27,26,0.15)' : stratLoading ? 'rgba(31,27,26,0.7)' : '#1F1B1A',
+                  background: filledCount < 3 ? 'var(--border-2)' : stratLoading ? 'rgba(31,27,26,0.7)' : '#1F1B1A',
                   color: filledCount < 3 ? 'rgba(31,27,26,0.4)' : '#FFFFFF',
                   border: 'none', borderRadius: 999, padding: '14px 32px',
                   fontSize: 15, fontWeight: 700, cursor: filledCount < 3 || stratLoading ? 'not-allowed' : 'pointer',
@@ -436,13 +436,13 @@ export default function EstrategiaPage() {
                 )}
               </button>
               {filledCount < 3 && (
-                <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.4)' }}>
+                <p style={{ fontSize: 12, color: 'var(--text-4)' }}>
                   Responda pelo menos 3 perguntas para gerar
                 </p>
               )}
               {strategy && !stratLoading && (
                 <button onClick={() => setStrategy(null)}
-                  style={{ background: 'transparent', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '12px 18px', fontSize: 12, color: 'rgba(31,27,26,0.5)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+                  style={{ background: 'transparent', border: '1px solid var(--border-2)', borderRadius: 999, padding: '12px 18px', fontSize: 12, color: 'var(--text-2)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
                   <X size={12} /> Limpar
                 </button>
               )}
@@ -458,13 +458,13 @@ export default function EstrategiaPage() {
                       <Sparkles size={12} color="#fff" />
                       <span style={{ color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em' }}>ESTRATÉGIA GERADA</span>
                     </div>
-                    <h3 style={{ fontFamily: serif, fontSize: 32, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2 }}>
+                    <h3 style={{ fontFamily: serif, fontSize: 32, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2 }}>
                       Estratégia de {client.name} —{' '}
                       <span style={{ color: '#F25BA5' }}>{mes}</span>
                     </h3>
                   </div>
                   <button onClick={handleGenStrategy}
-                    style={{ background: '#F5F4F2', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '10px 18px', fontSize: 12, fontWeight: 600, color: '#1F1B1A', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
+                    style={{ background: 'var(--bg-2)', border: '1px solid var(--border)', borderRadius: 999, padding: '10px 18px', fontSize: 12, fontWeight: 600, color: 'var(--text)', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
                     <RefreshCw size={13} /> Regerar
                   </button>
                 </div>
@@ -473,16 +473,16 @@ export default function EstrategiaPage() {
 
                   {/* 1. Posicionamento */}
                   <StratSection label="01 — Posicionamento do mês" accent="#F25BA5">
-                    <p style={{ fontSize: 15, color: '#1F1B1A', lineHeight: 1.8 }}>{strategy.posicionamento}</p>
+                    <p style={{ fontSize: 15, color: 'var(--text)', lineHeight: 1.8 }}>{strategy.posicionamento}</p>
                   </StratSection>
 
                   {/* 2. Pilares */}
                   <StratSection label="02 — Pilares de conteúdo" accent="#F19877">
                     <div className="rg-2" style={{ gap: 12 }}>
                       {strategy.pilares.map((p, i) => (
-                        <div key={i} style={{ background: '#FFFFFF', borderRadius: 10, padding: '14px 16px', borderLeft: '3px solid #F19877' }}>
-                          <p style={{ fontWeight: 700, fontSize: 13, color: '#1F1B1A', marginBottom: 4 }}>{p.nome}</p>
-                          <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.6)', lineHeight: 1.6 }}>{p.desc}</p>
+                        <div key={i} style={{ background: 'var(--bg)', borderRadius: 10, padding: '14px 16px', borderLeft: '3px solid #F19877' }}>
+                          <p style={{ fontWeight: 700, fontSize: 13, color: 'var(--text)', marginBottom: 4 }}>{p.nome}</p>
+                          <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.6 }}>{p.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -493,17 +493,17 @@ export default function EstrategiaPage() {
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                       {strategy.calendario.map((sem, si) => (
                         <div key={si}>
-                          <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>
+                          <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>
                             {sem.semana}
                           </p>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                             {sem.pautas.map((pauta, pi) => (
-                              <div key={pi} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 160px', gap: 12, alignItems: 'center', background: '#FFFFFF', borderRadius: 10, padding: '12px 14px' }}>
+                              <div key={pi} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 160px', gap: 12, alignItems: 'center', background: 'var(--bg)', borderRadius: 10, padding: '12px 14px' }}>
                                 <span style={{ background: '#1F1B1A', color: '#FFFFFF', fontSize: 10, fontWeight: 700, padding: '4px 10px', borderRadius: 999, textAlign: 'center' }}>
                                   {pauta.formato}
                                 </span>
-                                <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }}>{pauta.titulo}</p>
-                                <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', textAlign: 'right', lineHeight: 1.4 }}>{pauta.objetivo}</p>
+                                <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{pauta.titulo}</p>
+                                <p style={{ fontSize: 11, color: 'var(--text-2)', textAlign: 'right', lineHeight: 1.4 }}>{pauta.objetivo}</p>
                               </div>
                             ))}
                           </div>
@@ -520,14 +520,14 @@ export default function EstrategiaPage() {
                         { title: 'Evitar', items: strategy.tom.evitar, color: '#fee2e2', dot: '#ef4444' },
                       ].map(col => (
                         <div key={col.title}>
-                          <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>
+                          <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 10 }}>
                             {col.title}
                           </p>
                           <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                             {col.items.map((item, i) => (
                               <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
                                 <div style={{ width: 6, height: 6, borderRadius: '50%', background: col.dot, marginTop: 5, flexShrink: 0 }} />
-                                <span style={{ fontSize: 13, color: '#1F1B1A', lineHeight: 1.5 }}>{item}</span>
+                                <span style={{ fontSize: 13, color: 'var(--text)', lineHeight: 1.5 }}>{item}</span>
                               </div>
                             ))}
                           </div>
@@ -566,28 +566,28 @@ export default function EstrategiaPage() {
                 { key: 'brandVoice', label: 'Tom de voz', ph: 'Como a marca se comunica...' },
                 { key: 'editorialLines', label: 'Linhas editoriais', ph: 'Educativo, Entretenimento...' },
               ].map(s => (
-                <div key={s.key} style={{ background: '#F5F4F2', borderRadius: 14, padding: 20 }}>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 10 }}>{s.label}</label>
+                <div key={s.key} style={{ background: 'var(--bg-2)', borderRadius: 14, padding: 20 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 10 }}>{s.label}</label>
                   <textarea value={fields[s.key as keyof typeof fields]} onChange={e => setFields(f => ({ ...f, [s.key]: e.target.value }))} placeholder={s.ph}
-                    style={{ width: '100%', minHeight: 100, background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 10, padding: 12, fontSize: 13, color: '#1F1B1A', lineHeight: 1.7, resize: 'vertical', outline: 'none', fontFamily: font }} />
+                    style={{ width: '100%', minHeight: 100, background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: 12, fontSize: 13, color: 'var(--text)', lineHeight: 1.7, resize: 'vertical', outline: 'none', fontFamily: font }} />
                 </div>
               ))}
-              <div style={{ background: '#F5F4F2', borderRadius: 14, padding: 20 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 10 }}>Pilares de conteúdo</label>
+              <div style={{ background: 'var(--bg-2)', borderRadius: 14, padding: 20 }}>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 10 }}>Pilares de conteúdo</label>
                 <input value={fields.contentPillars} onChange={e => setFields(f => ({ ...f, contentPillars: e.target.value }))} placeholder="Separados por vírgula..."
-                  style={{ width: '100%', background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 10, padding: 12, fontSize: 13, color: '#1F1B1A', outline: 'none', fontFamily: font }} />
+                  style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: 12, fontSize: 13, color: 'var(--text)', outline: 'none', fontFamily: font }} />
                 {fields.contentPillars && (
                   <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 12 }}>
                     {fields.contentPillars.split(',').map(p => p.trim()).filter(Boolean).map(p => (
-                      <span key={p} style={{ background: '#FBD0DA', color: '#1F1B1A', fontSize: 12, fontWeight: 600, padding: '5px 12px', borderRadius: 999 }}>{p}</span>
+                      <span key={p} style={{ background: '#FBD0DA', color: 'var(--text)', fontSize: 12, fontWeight: 600, padding: '5px 12px', borderRadius: 999 }}>{p}</span>
                     ))}
                   </div>
                 )}
               </div>
-              <div style={{ gridColumn: '1/-1', background: '#F5F4F2', borderRadius: 14, padding: 20 }}>
-                <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.45)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 10 }}>Objetivos</label>
+              <div style={{ gridColumn: '1/-1', background: 'var(--bg-2)', borderRadius: 14, padding: 20 }}>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 10 }}>Objetivos</label>
                 <textarea value={fields.objectives} onChange={e => setFields(f => ({ ...f, objectives: e.target.value }))} placeholder="Um objetivo por linha..."
-                  style={{ width: '100%', minHeight: 90, background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 10, padding: 12, fontSize: 13, color: '#1F1B1A', lineHeight: 1.7, resize: 'vertical', outline: 'none', fontFamily: font }} />
+                  style={{ width: '100%', minHeight: 90, background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: 12, fontSize: 13, color: 'var(--text)', lineHeight: 1.7, resize: 'vertical', outline: 'none', fontFamily: font }} />
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
@@ -604,16 +604,16 @@ export default function EstrategiaPage() {
         {tab === 2 && (
           <div>
             <div style={{ marginBottom: 28 }}>
-              <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2, marginBottom: 8 }}>
+              <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2, marginBottom: 8 }}>
                 Quem compra de{' '}
                 <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>?
               </h2>
-              <p style={{ fontSize: 14, color: 'rgba(31,27,26,0.5)', lineHeight: 1.7 }}>
+              <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.7 }}>
                 Crie a persona ideal baseada no segmento e perfil do cliente. Personalize os campos ou deixe em branco para gerar automaticamente.
               </p>
             </div>
 
-            <div style={{ background: '#F5F4F2', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
+            <div style={{ background: 'var(--bg-2)', borderRadius: 16, padding: '24px 28px', marginBottom: 20 }}>
               <div className="rg-3" style={{ gap: 14, marginBottom: 20 }}>
                 {[
                   { key: 'name', label: 'Nome sugerido', ph: 'Ex: Sofia Mendes' },
@@ -623,9 +623,9 @@ export default function EstrategiaPage() {
                   { key: 'interests', label: 'Interesses principais', ph: 'Ex: viagem, gastronomia...' },
                 ].map(f => (
                   <div key={f.key}>
-                    <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 6 }}>{f.label}</label>
+                    <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.08em', display: 'block', marginBottom: 6 }}>{f.label}</label>
                     <input value={personaParams[f.key as keyof PersonaParams]} onChange={e => setPersonaParams(p => ({ ...p, [f.key]: e.target.value }))} placeholder={f.ph}
-                      style={{ width: '100%', background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 10, padding: '10px 12px', fontSize: 13, color: '#1F1B1A', outline: 'none', fontFamily: font }} />
+                      style={{ width: '100%', background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 12px', fontSize: 13, color: 'var(--text)', outline: 'none', fontFamily: font }} />
                   </div>
                 ))}
               </div>
@@ -645,14 +645,14 @@ export default function EstrategiaPage() {
                       {persona.name.charAt(0)}
                     </div>
                     <div>
-                      <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 600, color: '#1F1B1A' }}>{persona.name}</p>
-                      <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)' }}>{persona.age} · {persona.job}</p>
+                      <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 600, color: 'var(--text)' }}>{persona.name}</p>
+                      <p style={{ fontSize: 12, color: 'var(--text-2)' }}>{persona.age} · {persona.job}</p>
                     </div>
                   </div>
                   {[{ l: 'Renda', v: persona.income }, { l: 'Localização', v: persona.location }].map(row => (
                     <div key={row.l} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
-                      <span style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.35)', textTransform: 'uppercase', letterSpacing: '0.06em', minWidth: 80 }}>{row.l}</span>
-                      <span style={{ fontSize: 13, color: '#1F1B1A' }}>{row.v}</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.06em', minWidth: 80 }}>{row.l}</span>
+                      <span style={{ fontSize: 13, color: 'var(--text)' }}>{row.v}</span>
                     </div>
                   ))}
                   <div style={{ background: '#1F1B1A', borderRadius: 10, padding: '14px 16px', marginTop: 16 }}>
@@ -662,11 +662,11 @@ export default function EstrategiaPage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {[{ label: 'Objetivos', items: persona.goals, dot: '#22c55e' }, { label: 'Dores', items: persona.pains, dot: '#F25BA5' }, { label: 'Comportamentos', items: persona.behaviors, dot: '#F19877' }].map(sec => (
                     <div key={sec.label}>
-                      <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8 }}>{sec.label}</p>
+                      <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8 }}>{sec.label}</p>
                       {sec.items.map((item, i) => (
                         <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start', marginBottom: 5 }}>
                           <div style={{ width: 6, height: 6, borderRadius: '50%', background: sec.dot, marginTop: 5, flexShrink: 0 }} />
-                          <span style={{ fontSize: 12, color: '#1F1B1A', lineHeight: 1.5 }}>{item}</span>
+                          <span style={{ fontSize: 12, color: 'var(--text)', lineHeight: 1.5 }}>{item}</span>
                         </div>
                       ))}
                     </div>
@@ -683,23 +683,23 @@ export default function EstrategiaPage() {
         {tab === 3 && (
           <div>
             <div style={{ marginBottom: 28 }}>
-              <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: '#1F1B1A', lineHeight: 1.2, marginBottom: 8 }}>
+              <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2, marginBottom: 8 }}>
                 Referências para{' '}
                 <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>.
               </h2>
-              <p style={{ fontSize: 14, color: 'rgba(31,27,26,0.5)', lineHeight: 1.7 }}>
+              <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.7 }}>
                 Sugestões de conteúdo baseadas no segmento <strong>{client.segment}</strong>. Filtre por formato ou busque por tema.
               </p>
             </div>
 
             {/* Commercial dates */}
-            <div style={{ background: '#F5F4F2', borderRadius: 14, padding: 20, marginBottom: 24 }}>
-              <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>Datas comemorativas — {mes}</p>
+            <div style={{ background: 'var(--bg-2)', borderRadius: 14, padding: 20, marginBottom: 24 }}>
+              <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>Datas comemorativas — {mes}</p>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {comercialDates.map(d => (
-                  <div key={d.date + d.event} style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 10, padding: '6px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div key={d.date + d.event} style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '6px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ fontSize: 11, fontWeight: 700, color: '#F25BA5' }}>{d.date}</span>
-                    <span style={{ fontSize: 12, color: '#1F1B1A' }}>{d.event}</span>
+                    <span style={{ fontSize: 12, color: 'var(--text)' }}>{d.event}</span>
                   </div>
                 ))}
               </div>
@@ -708,31 +708,31 @@ export default function EstrategiaPage() {
             {/* Search + filters */}
             <div style={{ display: 'flex', gap: 12, alignItems: 'center', flexWrap: 'wrap', marginBottom: 20 }}>
               <div style={{ position: 'relative', flex: 1, minWidth: 200 }}>
-                <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'rgba(31,27,26,0.35)', pointerEvents: 'none' }} />
+                <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-4)', pointerEvents: 'none' }} />
                 <input value={refSearch} onChange={e => setRefSearch(e.target.value)} placeholder="Buscar tema ou ideia..."
-                  style={{ width: '100%', background: '#F5F4F2', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '10px 16px 10px 34px', fontSize: 13, color: '#1F1B1A', outline: 'none', fontFamily: font }} />
+                  style={{ width: '100%', background: 'var(--bg-2)', border: '1px solid var(--border)', borderRadius: 999, padding: '10px 16px 10px 34px', fontSize: 13, color: 'var(--text)', outline: 'none', fontFamily: font }} />
               </div>
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                 {['foto', 'feed', 'reels', 'carrossel', 'stories'].map(f => (
                   <button key={f} onClick={() => setFmts(p => p.includes(f) ? p.filter(x => x !== f) : [...p, f])}
-                    style={{ background: fmts.includes(f) ? '#86efac' : '#F5F4F2', border: `1px solid ${fmts.includes(f) ? '#4ade80' : 'rgba(31,27,26,0.15)'}`, borderRadius: 999, padding: '6px 14px', fontSize: 12, fontWeight: fmts.includes(f) ? 700 : 400, color: '#1F1B1A', cursor: 'pointer' }}>
+                    style={{ background: fmts.includes(f) ? '#86efac' : '#F5F4F2', border: `1px solid ${fmts.includes(f) ? '#4ade80' : 'var(--border-2)'}`, borderRadius: 999, padding: '6px 14px', fontSize: 12, fontWeight: fmts.includes(f) ? 700 : 400, color: 'var(--text)', cursor: 'pointer' }}>
                     {f}
                   </button>
                 ))}
                 {fmts.length > 0 && (
-                  <button onClick={() => setFmts([])} style={{ background: 'transparent', border: 'none', fontSize: 12, color: 'rgba(31,27,26,0.4)', cursor: 'pointer' }}>limpar</button>
+                  <button onClick={() => setFmts([])} style={{ background: 'transparent', border: 'none', fontSize: 12, color: 'var(--text-4)', cursor: 'pointer' }}>limpar</button>
                 )}
               </div>
             </div>
 
             <div className="rg-2" style={{ gap: 14 }}>
               {filteredRefs.map((ref, i) => (
-                <div key={i} style={{ background: '#F5F4F2', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <div key={i} style={{ background: 'var(--bg-2)', borderRadius: 12, padding: 20, display: 'flex', flexDirection: 'column', gap: 10 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A' }}>{ref.theme}</p>
+                    <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{ref.theme}</p>
                     <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
                       {ref.formats.map(f => (
-                        <span key={f} style={{ background: '#86efac', color: '#1F1B1A', fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 999, textTransform: 'capitalize' }}>{f}</span>
+                        <span key={f} style={{ background: '#86efac', color: 'var(--text)', fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 999, textTransform: 'capitalize' }}>{f}</span>
                       ))}
                     </div>
                   </div>
@@ -757,9 +757,9 @@ export default function EstrategiaPage() {
 function StratSection({ label, accent, children }: { label: string; accent: string; children: React.ReactNode }) {
   const serif = "'Playfair Display', Georgia, serif"
   return (
-    <div style={{ background: '#F5F4F2', borderRadius: 16, overflow: 'hidden' }}>
+    <div style={{ background: 'var(--bg-2)', borderRadius: 16, overflow: 'hidden' }}>
       <div style={{ borderLeft: `4px solid ${accent}`, padding: '20px 24px 0' }}>
-        <p style={{ fontFamily: serif, fontSize: 18, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>{label}</p>
+        <p style={{ fontFamily: serif, fontSize: 18, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>{label}</p>
       </div>
       <div style={{ padding: '0 24px 24px' }}>
         {children}

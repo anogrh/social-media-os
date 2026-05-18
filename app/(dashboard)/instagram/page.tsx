@@ -70,15 +70,15 @@ function generateFeedData(count = 6) {
 const METRIC_TABS = ['Perfil', 'Stories', 'Reels', 'Feed']
 
 const S = {
-  card: { background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: '16px' },
-  tinted: { background: '#F5F4F2', borderRadius: 12, padding: '14px 16px' },
-  label: { fontSize: 11 as const, color: 'rgba(31,27,26,0.45)' as const, fontWeight: 700 as const, textTransform: 'uppercase' as const, letterSpacing: '0.07em' as const },
-  value: { fontSize: 24 as const, fontWeight: 700 as const, color: '#1F1B1A' as const, marginTop: 6 },
+  card: { background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '16px' },
+  tinted: { background: 'var(--bg-2)', borderRadius: 12, padding: '14px 16px' },
+  label: { fontSize: 11 as const, color: 'var(--text-3)' as const, fontWeight: 700 as const, textTransform: 'uppercase' as const, letterSpacing: '0.07em' as const },
+  value: { fontSize: 24 as const, fontWeight: 700 as const, color: 'var(--text)' as const, marginTop: 6 },
 }
 
 const chartStyle = {
-  contentStyle: { background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 10, fontFamily: 'Inter', fontSize: 12 },
-  gridProps: { strokeDasharray: '0' as const, stroke: 'rgba(31,27,26,0.06)', vertical: false as const },
+  contentStyle: { background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, fontFamily: 'Inter', fontSize: 12 },
+  gridProps: { strokeDasharray: '0' as const, stroke: 'var(--border-3)', vertical: false as const },
   axisProps: { axisLine: false as const, tickLine: false as const },
 }
 
@@ -96,7 +96,7 @@ export default function InstagramPage() {
   const font = "'Inter', system-ui, sans-serif"
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Instagram analytics" subtitle="Performance detalhada das contas conectadas" />
 
       <div className="page-pad" style={{ fontFamily: font }}>
@@ -106,7 +106,7 @@ export default function InstagramPage() {
           <select
             value={selectedClientId}
             onChange={e => setSelectedClientId(e.target.value)}
-            style={{ border: '1px solid rgba(31,27,26,0.15)', borderRadius: 999, padding: '10px 18px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', cursor: 'pointer', fontWeight: 600 }}
+            style={{ border: '1px solid var(--border-2)', borderRadius: 999, padding: '10px 18px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', cursor: 'pointer', fontWeight: 600 }}
           >
             {clients.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
           </select>
@@ -125,11 +125,11 @@ export default function InstagramPage() {
           <div style={{ flex: 1 }} />
 
           {/* Period picker */}
-          <div style={{ display: 'flex', gap: 4, background: '#F5F4F2', borderRadius: 999, padding: 4 }}>
+          <div style={{ display: 'flex', gap: 4, background: 'var(--bg-2)', borderRadius: 999, padding: 4 }}>
             {['7d', '30d', '90d'].map(p => (
               <button key={p} style={{
                 background: p === '30d' ? '#F25BA5' : 'transparent',
-                color: p === '30d' ? '#FFFFFF' : 'rgba(31,27,26,0.6)',
+                color: p === '30d' ? '#FFFFFF' : 'var(--text-2)',
                 borderRadius: 999, border: 'none', padding: '5px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
               }}>
                 {p}
@@ -140,9 +140,9 @@ export default function InstagramPage() {
 
         {!ig?.connected ? (
           <div style={{ textAlign: 'center', padding: '80px 0' }}>
-            <Camera size={48} style={{ color: 'rgba(31,27,26,0.2)', margin: '0 auto 16px', display: 'block' }} />
-            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: '#1F1B1A', marginBottom: 8 }}>Instagram não conectado</h3>
-            <p style={{ fontSize: 14, color: 'rgba(31,27,26,0.5)', maxWidth: 340, margin: '0 auto 24px' }}>
+            <Camera size={48} style={{ color: 'var(--shadow)', margin: '0 auto 16px', display: 'block' }} />
+            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 18, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>Instagram não conectado</h3>
+            <p style={{ fontSize: 14, color: 'var(--text-2)', maxWidth: 340, margin: '0 auto 24px' }}>
               Conecte a conta do Instagram de <strong>{client?.name}</strong> para ver os dados reais de performance.
             </p>
             <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '12px 28px', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
@@ -152,12 +152,12 @@ export default function InstagramPage() {
         ) : ig && (
           <>
             {/* Sub-tabs */}
-            <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid rgba(31,27,26,0.10)', marginBottom: 24 }}>
+            <div style={{ display: 'flex', gap: 0, borderBottom: '1px solid var(--border)', marginBottom: 24 }}>
               {METRIC_TABS.map(tab => (
                 <button key={tab} onClick={() => setActiveTab(tab)} style={{
                   background: 'none', border: 'none',
                   borderBottom: activeTab === tab ? '2px solid #F25BA5' : '2px solid transparent',
-                  color: activeTab === tab ? '#F25BA5' : 'rgba(31,27,26,0.55)',
+                  color: activeTab === tab ? '#F25BA5' : 'var(--text-2)',
                   padding: '10px 18px', fontSize: 13,
                   fontWeight: activeTab === tab ? 700 : 500,
                   cursor: 'pointer', marginBottom: -1,
@@ -189,9 +189,9 @@ export default function InstagramPage() {
                           : <TrendingDown size={14} style={{ color: '#EE3528' }} />
                         }
                       </div>
-                      <p style={{ fontSize: 28, fontWeight: 700, color: '#1F1B1A', lineHeight: 1 }}>{m.value}</p>
-                      <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', marginTop: 5 }}>{m.label}</p>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)', marginTop: 2 }}>{m.sub}</p>
+                      <p style={{ fontSize: 28, fontWeight: 700, color: 'var(--text)', lineHeight: 1 }}>{m.value}</p>
+                      <p style={{ fontSize: 12, color: 'var(--text-2)', marginTop: 5 }}>{m.label}</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-4)', marginTop: 2 }}>{m.sub}</p>
                     </div>
                   ))}
                 </div>
@@ -199,12 +199,12 @@ export default function InstagramPage() {
                 {/* Charts */}
                 <div className="rg-chart" style={{ gap: 20, marginBottom: 20 }}>
                   <div style={{ ...S.card, padding: '20px 20px 10px' }}>
-                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Crescimento de seguidores — 30 dias</h4>
+                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>Crescimento de seguidores — 30 dias</h4>
                     <ResponsiveContainer width="100%" height={220}>
                       <LineChart data={dailyMetrics}>
                         <CartesianGrid {...chartStyle.gridProps} />
-                        <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} tickFormatter={d => d.slice(8)} {...chartStyle.axisProps} interval={4} />
-                        <YAxis tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} {...chartStyle.axisProps} tickFormatter={v => formatNumber(v)} domain={['auto', 'auto']} />
+                        <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'var(--text-4)' }} tickFormatter={d => d.slice(8)} {...chartStyle.axisProps} interval={4} />
+                        <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} tickFormatter={v => formatNumber(v)} domain={['auto', 'auto']} />
                         <Tooltip contentStyle={chartStyle.contentStyle} />
                         <Line type="monotone" dataKey="followers" stroke="#F25BA5" strokeWidth={2.5} dot={false} name="Seguidores" />
                       </LineChart>
@@ -212,7 +212,7 @@ export default function InstagramPage() {
                   </div>
 
                   <div style={S.card}>
-                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Resumo do perfil</h4>
+                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>Resumo do perfil</h4>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                       {[
                         { label: 'Impressões 30d', value: formatNumber(ig.impressions30d) },
@@ -222,9 +222,9 @@ export default function InstagramPage() {
                         { label: 'Total de posts', value: ig.posts },
                         { label: 'Seguindo', value: formatNumber(ig.following) },
                       ].map(m => (
-                        <div key={m.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 10, borderBottom: '1px solid rgba(31,27,26,0.06)' }}>
-                          <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.55)' }}>{m.label}</span>
-                          <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A' }}>{m.value}</span>
+                        <div key={m.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: 10, borderBottom: '1px solid var(--border-3)' }}>
+                          <span style={{ fontSize: 12, color: 'var(--text-2)' }}>{m.label}</span>
+                          <span style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>{m.value}</span>
                         </div>
                       ))}
                     </div>
@@ -233,12 +233,12 @@ export default function InstagramPage() {
 
                 {/* Reach & engagement chart */}
                 <div style={{ ...S.card, padding: '20px 20px 10px' }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Alcance e engajamento diário</h4>
+                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>Alcance e engajamento diário</h4>
                   <ResponsiveContainer width="100%" height={200}>
                     <LineChart data={dailyMetrics}>
                       <CartesianGrid {...chartStyle.gridProps} />
-                      <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} tickFormatter={d => d.slice(8)} {...chartStyle.axisProps} interval={4} />
-                      <YAxis tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} {...chartStyle.axisProps} />
+                      <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'var(--text-4)' }} tickFormatter={d => d.slice(8)} {...chartStyle.axisProps} interval={4} />
+                      <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} />
                       <Tooltip contentStyle={chartStyle.contentStyle} />
                       <Legend wrapperStyle={{ fontSize: 12 }} />
                       <Line type="monotone" dataKey="reach" stroke="#F19877" strokeWidth={2} dot={false} name="Alcance" />
@@ -264,20 +264,20 @@ export default function InstagramPage() {
                       <div style={{ width: 32, height: 32, borderRadius: 8, background: m.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
                         <m.icon size={14} style={{ color: m.color }} />
                       </div>
-                      <p style={{ fontSize: 22, fontWeight: 700, color: '#1F1B1A' }}>{m.value}</p>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', marginTop: 4 }}>{m.label}</p>
+                      <p style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)' }}>{m.value}</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-2)', marginTop: 4 }}>{m.label}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Stories chart */}
                 <div style={{ ...S.card, padding: '20px 20px 10px', marginBottom: 20 }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Alcance e respostas — últimos 14 dias</h4>
+                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>Alcance e respostas — últimos 14 dias</h4>
                   <ResponsiveContainer width="100%" height={220}>
                     <BarChart data={storyData} barSize={12}>
                       <CartesianGrid {...chartStyle.gridProps} />
-                      <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} tickFormatter={d => d.slice(8)} {...chartStyle.axisProps} />
-                      <YAxis tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} {...chartStyle.axisProps} />
+                      <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'var(--text-4)' }} tickFormatter={d => d.slice(8)} {...chartStyle.axisProps} />
+                      <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} />
                       <Tooltip contentStyle={chartStyle.contentStyle} />
                       <Legend wrapperStyle={{ fontSize: 12 }} />
                       <Bar dataKey="alcance" name="Alcance" fill="#F25BA5" radius={[3, 3, 0, 0]} />
@@ -294,8 +294,8 @@ export default function InstagramPage() {
                     { title: 'Dica estratégica', desc: 'Stories com enquetes tiveram 3× mais respostas. Recomendação: aumentar para 3 enquetes por semana.', color: '#FBD0DA', border: '#F25BA5' },
                   ].map(box => (
                     <div key={box.title} style={{ background: box.color, borderRadius: 12, borderLeft: `3px solid ${box.border}`, padding: '16px 18px' }}>
-                      <p style={{ fontSize: 13, fontWeight: 700, color: '#1F1B1A', marginBottom: 8 }}>{box.title}</p>
-                      <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.7)', lineHeight: 1.6 }}>{box.desc}</p>
+                      <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>{box.title}</p>
+                      <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.6 }}>{box.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -317,40 +317,40 @@ export default function InstagramPage() {
                       <div style={{ width: 32, height: 32, borderRadius: 8, background: m.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
                         <m.icon size={14} style={{ color: m.color }} />
                       </div>
-                      <p style={{ fontSize: 22, fontWeight: 700, color: '#1F1B1A' }}>{m.value}</p>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', marginTop: 4 }}>{m.label}</p>
+                      <p style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)' }}>{m.value}</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-2)', marginTop: 4 }}>{m.label}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Reels table */}
-                <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, overflow: 'hidden', marginBottom: 20 }}>
-                  <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(31,27,26,0.08)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A' }}>Reels do período</h4>
-                    <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.45)' }}>Ordenado por reproduções</span>
+                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', marginBottom: 20 }}>
+                  <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-3)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>Reels do período</h4>
+                    <span style={{ fontSize: 12, color: 'var(--text-3)' }}>Ordenado por reproduções</span>
                   </div>
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                    <thead style={{ background: '#F5F4F2' }}>
+                    <thead style={{ background: 'var(--bg-2)' }}>
                       <tr>
                         {['Título', 'Data', 'Reproduções', 'Alcance', 'Curtidas', 'Coment.', 'Compart.', 'Salvamentos'].map(h => (
-                          <th key={h} style={{ fontSize: 10, fontWeight: 700, color: 'rgba(31,27,26,0.45)', textAlign: 'left', padding: '10px 14px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
+                          <th key={h} style={{ fontSize: 10, fontWeight: 700, color: 'var(--text-3)', textAlign: 'left', padding: '10px 14px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {[...reelsData].sort((a, b) => b.reproducoes - a.reproducoes).map((r, i) => (
-                        <tr key={r.id} style={{ borderTop: '1px solid rgba(31,27,26,0.05)', background: i === 0 ? '#FBD0DA22' : undefined }}>
+                        <tr key={r.id} style={{ borderTop: '1px solid var(--border-3)', background: i === 0 ? '#FBD0DA22' : undefined }}>
                           <td style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
                             {i === 0 && <Zap size={12} style={{ color: '#F25BA5', flexShrink: 0 }} />}
-                            <span style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.titulo}</span>
+                            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.titulo}</span>
                           </td>
-                          <td style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', padding: '12px 14px' }}>{r.data}</td>
+                          <td style={{ fontSize: 12, color: 'var(--text-2)', padding: '12px 14px' }}>{r.data}</td>
                           <td style={{ fontSize: 13, fontWeight: 700, color: '#F25BA5', padding: '12px 14px' }}>{formatNumber(r.reproducoes)}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{formatNumber(r.alcance)}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{formatNumber(r.curtidas)}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{r.comentarios}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{r.compartilhamentos}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{r.salvamentos}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{formatNumber(r.alcance)}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{formatNumber(r.curtidas)}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{r.comentarios}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{r.compartilhamentos}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{r.salvamentos}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -359,12 +359,12 @@ export default function InstagramPage() {
 
                 {/* Bar chart */}
                 <div style={{ ...S.card, padding: '20px 20px 10px' }}>
-                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A', marginBottom: 16 }}>Reproduções × alcance por Reel</h4>
+                  <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 16 }}>Reproduções × alcance por Reel</h4>
                   <ResponsiveContainer width="100%" height={220}>
                     <BarChart data={reelsData} barSize={16}>
                       <CartesianGrid {...chartStyle.gridProps} />
-                      <XAxis dataKey="data" tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} {...chartStyle.axisProps} />
-                      <YAxis tick={{ fontSize: 10, fill: 'rgba(31,27,26,0.4)' }} {...chartStyle.axisProps} tickFormatter={v => `${(v / 1000).toFixed(0)}k`} />
+                      <XAxis dataKey="data" tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} />
+                      <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} tickFormatter={v => `${(v / 1000).toFixed(0)}k`} />
                       <Tooltip contentStyle={chartStyle.contentStyle} />
                       <Legend wrapperStyle={{ fontSize: 12 }} />
                       <Bar dataKey="reproducoes" name="Reproduções" fill="#F25BA5" radius={[3, 3, 0, 0]} />
@@ -390,38 +390,38 @@ export default function InstagramPage() {
                       <div style={{ width: 32, height: 32, borderRadius: 8, background: m.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
                         <m.icon size={14} style={{ color: m.color }} />
                       </div>
-                      <p style={{ fontSize: 22, fontWeight: 700, color: '#1F1B1A' }}>{m.value}</p>
-                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', marginTop: 4 }}>{m.label}</p>
+                      <p style={{ fontSize: 22, fontWeight: 700, color: 'var(--text)' }}>{m.value}</p>
+                      <p style={{ fontSize: 11, color: 'var(--text-2)', marginTop: 4 }}>{m.label}</p>
                     </div>
                   ))}
                 </div>
 
                 {/* Feed posts table */}
-                <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, overflow: 'hidden' }}>
-                  <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(31,27,26,0.08)' }}>
-                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: '#1F1B1A' }}>Posts de feed — performance</h4>
+                <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
+                  <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-3)' }}>
+                    <h4 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)' }}>Posts de feed — performance</h4>
                   </div>
                   <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-                    <thead style={{ background: '#F5F4F2' }}>
+                    <thead style={{ background: 'var(--bg-2)' }}>
                       <tr>
                         {['Título', 'Tipo', 'Data', 'Alcance', 'Curtidas', 'Salv.', 'Compart.', 'Impressões'].map(h => (
-                          <th key={h} style={{ fontSize: 10, fontWeight: 700, color: 'rgba(31,27,26,0.45)', textAlign: 'left', padding: '10px 14px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
+                          <th key={h} style={{ fontSize: 10, fontWeight: 700, color: 'var(--text-3)', textAlign: 'left', padding: '10px 14px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
                         ))}
                       </tr>
                     </thead>
                     <tbody>
                       {feedData.map((f, i) => (
-                        <tr key={f.id} style={{ borderTop: '1px solid rgba(31,27,26,0.05)' }}>
-                          <td style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A', padding: '12px 14px', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.titulo}</td>
+                        <tr key={f.id} style={{ borderTop: '1px solid var(--border-3)' }}>
+                          <td style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', padding: '12px 14px', maxWidth: 160, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{f.titulo}</td>
                           <td style={{ padding: '12px 14px' }}>
-                            <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: f.tipo === 'Carrossel' ? '#F2F4A4' : '#FBD0DA', color: '#1F1B1A' }}>{f.tipo}</span>
+                            <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: f.tipo === 'Carrossel' ? '#F2F4A4' : '#FBD0DA', color: 'var(--text)' }}>{f.tipo}</span>
                           </td>
-                          <td style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', padding: '12px 14px' }}>{f.data}</td>
+                          <td style={{ fontSize: 12, color: 'var(--text-2)', padding: '12px 14px' }}>{f.data}</td>
                           <td style={{ fontSize: 13, fontWeight: 700, color: '#F25BA5', padding: '12px 14px' }}>{formatNumber(f.alcance)}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{formatNumber(f.curtidas)}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{formatNumber(f.curtidas)}</td>
                           <td style={{ fontSize: 13, color: '#10B981', fontWeight: 600, padding: '12px 14px' }}>{f.salvamentos}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{f.compartilhamentos}</td>
-                          <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 14px' }}>{formatNumber(f.impressoes)}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{f.compartilhamentos}</td>
+                          <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{formatNumber(f.impressoes)}</td>
                         </tr>
                       ))}
                     </tbody>

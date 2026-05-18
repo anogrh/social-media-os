@@ -99,7 +99,7 @@ export default function Sidebar() {
           style={{
             position: 'fixed',
             inset: 0,
-            background: 'rgba(31,27,26,0.45)',
+            background: 'var(--overlay)',
             zIndex: 40,
             backdropFilter: 'blur(2px)',
           }}
@@ -107,7 +107,7 @@ export default function Sidebar() {
       )}
 
       <aside
-        style={{ background: '#F5F4F2', borderRight: '1px solid rgba(31,27,26,0.10)' }}
+        style={{ background: 'var(--bg-2)', borderRight: '1px solid var(--border)' }}
         className={cn(
           'sidebar-mobile relative flex flex-col h-screen transition-all duration-300 flex-shrink-0',
           mobileOpen && 'open',
@@ -119,7 +119,7 @@ export default function Sidebar() {
           onClick={() => setMobileOpen(false)}
           className="lg:hidden absolute right-3 top-4 z-10"
           style={{
-            background: 'rgba(31,27,26,0.08)',
+            background: 'var(--border)',
             border: 'none',
             borderRadius: 8,
             width: 32,
@@ -128,7 +128,7 @@ export default function Sidebar() {
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            color: '#1F1B1A',
+            color: 'var(--text)',
           }}
         >
           <X size={16} />
@@ -136,7 +136,7 @@ export default function Sidebar() {
 
         {/* Logo */}
         <div
-          style={{ borderBottom: '1px solid rgba(31,27,26,0.10)' }}
+          style={{ borderBottom: '1px solid var(--border)' }}
           className="flex items-center gap-2 px-4 py-5 flex-shrink-0"
         >
           <div
@@ -148,12 +148,12 @@ export default function Sidebar() {
           {!collapsed && (
             <div className="overflow-hidden">
               <span
-                style={{ fontFamily: "'Playfair Display', Georgia, serif", color: '#1F1B1A', fontWeight: 600, fontSize: 18, lineHeight: 1 }}
+                style={{ fontFamily: "'Playfair Display', Georgia, serif", color: 'var(--text)', fontWeight: 600, fontSize: 18, lineHeight: 1 }}
               >
                 rhania.
               </span>
               <span
-                style={{ fontFamily: "'Inter', system-ui, sans-serif", color: '#1F1B1A', fontSize: 11, display: 'block', opacity: 0.5, letterSpacing: '0.08em', marginTop: 1 }}
+                style={{ fontFamily: "'Inter', system-ui, sans-serif", color: 'var(--text)', fontSize: 11, display: 'block', opacity: 0.5, letterSpacing: '0.08em', marginTop: 1 }}
               >
                 araújo
               </span>
@@ -167,7 +167,7 @@ export default function Sidebar() {
             <div key={group.label} className="mb-4">
               {!collapsed && (
                 <p
-                  style={{ fontFamily: "'Inter', system-ui, sans-serif", color: 'rgba(31,27,26,0.4)', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}
+                  style={{ fontFamily: "'Inter', system-ui, sans-serif", color: 'var(--text-4)', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: 600 }}
                   className="px-3 mb-1"
                 >
                   {group.label}
@@ -183,7 +183,7 @@ export default function Sidebar() {
                     title={collapsed ? item.label : undefined}
                     style={{
                       borderLeft: active ? '2px solid #F25BA5' : '2px solid transparent',
-                      color: active ? '#F25BA5' : '#1F1B1A',
+                      color: active ? '#F25BA5' : 'var(--text)',
                       background: active ? 'rgba(242,91,165,0.07)' : 'transparent',
                       fontFamily: "'Inter', system-ui, sans-serif",
                       fontSize: 14,
@@ -206,7 +206,7 @@ export default function Sidebar() {
         {/* User */}
         {!collapsed && (
           <div
-            style={{ borderTop: '1px solid rgba(31,27,26,0.10)', fontFamily: "'Inter', system-ui, sans-serif" }}
+            style={{ borderTop: '1px solid var(--border)', fontFamily: "'Inter', system-ui, sans-serif" }}
             className="px-4 py-3 flex items-center gap-3"
           >
             <div
@@ -216,13 +216,13 @@ export default function Sidebar() {
               RN
             </div>
             <div className="overflow-hidden flex-1">
-              <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }} className="truncate">Rhania Nogueira</p>
-              <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)' }} className="truncate">Admin</p>
+              <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }} className="truncate">Rhania Nogueira</p>
+              <p style={{ fontSize: 11, color: 'var(--text-2)' }} className="truncate">Admin</p>
             </div>
             <button
               onClick={handleLogout}
               title="Sair"
-              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', padding: 4, borderRadius: 6, flexShrink: 0 }}
+              style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', padding: 4, borderRadius: 6, flexShrink: 0 }}
               className="hover:text-[#F25BA5] transition-colors"
             >
               <LogOut size={15} />
@@ -233,7 +233,7 @@ export default function Sidebar() {
         {/* Collapse button — desktop only */}
         <button
           onClick={() => setCollapsed(!collapsed)}
-          style={{ background: '#F5F4F2', border: '1px solid rgba(31,27,26,0.12)', color: '#1F1B1A' }}
+          style={{ background: 'var(--bg-2)', border: '1px solid var(--border)', color: 'var(--text)' }}
           className="lg:flex hidden absolute -right-3 top-6 w-6 h-6 rounded-full items-center justify-center hover:bg-[#F25BA5] hover:text-white hover:border-[#F25BA5] transition-colors z-10"
         >
           {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}

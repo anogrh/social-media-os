@@ -64,7 +64,7 @@ export default function TarefasPage() {
   }
 
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Tarefas" subtitle="Kanban da operação" />
 
       <div className="page-pad" style={{ fontFamily: font }}>
@@ -74,10 +74,10 @@ export default function TarefasPage() {
           {COLUMNS.map(col => {
             const count = byCol(col.id).length
             return (
-              <div key={col.id} style={{ background: '#F5F4F2', borderRadius: 999, padding: '8px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div key={col.id} style={{ background: 'var(--bg-2)', borderRadius: 999, padding: '8px 16px', display: 'flex', alignItems: 'center', gap: 8 }}>
                 <span style={{ width: 7, height: 7, borderRadius: '50%', background: col.color, display: 'inline-block' }} />
-                <span style={{ fontSize: 13, fontWeight: 700, color: '#1F1B1A' }}>{count}</span>
-                <span style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)' }}>{col.label}</span>
+                <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)' }}>{count}</span>
+                <span style={{ fontSize: 12, color: 'var(--text-2)' }}>{col.label}</span>
               </div>
             )
           })}
@@ -99,7 +99,7 @@ export default function TarefasPage() {
                 {/* Column header */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12, padding: '0 4px' }}>
                   <span style={{ width: 8, height: 8, borderRadius: '50%', background: col.color, display: 'inline-block' }} />
-                  <span style={{ fontSize: 13, fontWeight: 700, color: '#1F1B1A' }}>{col.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)' }}>{col.label}</span>
                   <span style={{
                     fontSize: 11, color: col.color, background: col.bg,
                     borderRadius: 999, padding: '1px 8px', marginLeft: 'auto', fontWeight: 700,
@@ -114,23 +114,23 @@ export default function TarefasPage() {
                     const ps = PRIORITY_STYLES[task.priority]
                     return (
                       <div key={task.id} style={{
-                        background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)',
+                        background: 'var(--bg)', border: '1px solid var(--border)',
                         borderRadius: 12, padding: 14, cursor: 'pointer',
-                        boxShadow: '0 1px 4px rgba(31,27,26,0.04)',
+                        boxShadow: '0 1px 4px var(--shadow)',
                         transition: 'box-shadow 0.15s',
                       }}>
                         {/* Client */}
                         {task.clientName && (
                           <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
                             <span style={{ width: 6, height: 6, borderRadius: '50%', background: task.clientColor || '#ccc', flexShrink: 0, display: 'inline-block' }} />
-                            <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                            <span style={{ fontSize: 11, color: 'var(--text-2)', fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                               {task.clientName}
                             </span>
                           </div>
                         )}
 
                         {/* Title */}
-                        <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A', lineHeight: 1.45, marginBottom: 10 }}>
+                        <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', lineHeight: 1.45, marginBottom: 10 }}>
                           {task.title}
                         </p>
 
@@ -138,7 +138,7 @@ export default function TarefasPage() {
                         {task.tags && task.tags.length > 0 && (
                           <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
                             {task.tags.slice(0, 3).map(tag => (
-                              <span key={tag} style={{ background: '#F5F4F2', color: 'rgba(31,27,26,0.6)', fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 999 }}>
+                              <span key={tag} style={{ background: 'var(--bg-2)', color: 'var(--text-2)', fontSize: 10, fontWeight: 600, padding: '2px 7px', borderRadius: 999 }}>
                                 {tag}
                               </span>
                             ))}
@@ -147,7 +147,7 @@ export default function TarefasPage() {
 
                         {/* Footer */}
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                          <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.4)' }}>
+                          <span style={{ fontSize: 11, color: 'var(--text-4)' }}>
                             {task.dueDate ? `Vence ${formatDate(task.dueDate)}` : '—'}
                           </span>
                           <span style={{ ...ps, fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 999 }}>
@@ -156,13 +156,13 @@ export default function TarefasPage() {
                         </div>
 
                         {/* Assignee + move */}
-                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, paddingTop: 10, borderTop: '1px solid rgba(31,27,26,0.07)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 10, paddingTop: 10, borderTop: '1px solid var(--border-3)' }}>
                           {task.assignee ? (
                             <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                              <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#FBD0DA', fontSize: 9, fontWeight: 700, color: '#1F1B1A', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                              <div style={{ width: 20, height: 20, borderRadius: '50%', background: '#FBD0DA', fontSize: 9, fontWeight: 700, color: 'var(--text)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 {task.assignee.split(' ').map(w => w[0]).join('').slice(0, 2)}
                               </div>
-                              <span style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)' }}>{task.assignee}</span>
+                              <span style={{ fontSize: 11, color: 'var(--text-2)' }}>{task.assignee}</span>
                             </div>
                           ) : <span />}
 
@@ -171,7 +171,7 @@ export default function TarefasPage() {
                             value={task.status}
                             onChange={e => moveTask(task.id, e.target.value as TaskStatus)}
                             onClick={e => e.stopPropagation()}
-                            style={{ fontSize: 10, border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '2px 6px', background: '#F5F4F2', color: '#1F1B1A', outline: 'none', cursor: 'pointer' }}
+                            style={{ fontSize: 10, border: '1px solid var(--border)', borderRadius: 999, padding: '2px 6px', background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', cursor: 'pointer' }}
                           >
                             {COLUMNS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}
                           </select>
@@ -181,8 +181,8 @@ export default function TarefasPage() {
                   })}
 
                   {colTasks.length === 0 && (
-                    <div style={{ background: '#F5F4F2', borderRadius: 10, padding: '28px 14px', textAlign: 'center', border: '1px dashed rgba(31,27,26,0.12)' }}>
-                      <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.3)' }}>Nenhuma tarefa</p>
+                    <div style={{ background: 'var(--bg-2)', borderRadius: 10, padding: '28px 14px', textAlign: 'center', border: '1px dashed var(--border)' }}>
+                      <p style={{ fontSize: 12, color: 'var(--text-4)' }}>Nenhuma tarefa</p>
                     </div>
                   )}
                 </div>
@@ -195,21 +195,21 @@ export default function TarefasPage() {
       {/* ── MODAL ───────────────────────────────────────────────── */}
       {showModal && (
         <div style={{
-          position: 'fixed', inset: 0, background: 'rgba(31,27,26,0.45)',
+          position: 'fixed', inset: 0, background: 'var(--overlay)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50,
           backdropFilter: 'blur(2px)',
         }} onClick={() => setShowModal(false)}>
           <div style={{
-            background: '#FFFFFF', borderRadius: 20, padding: 32, width: '100%', maxWidth: 520,
-            boxShadow: '0 24px 64px rgba(31,27,26,0.18)', fontFamily: font,
+            background: 'var(--bg)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 520,
+            boxShadow: '0 24px 64px var(--shadow)', fontFamily: font,
           }} onClick={e => e.stopPropagation()}>
 
             {/* Modal header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
-              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 600, color: '#1F1B1A' }}>
+              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 600, color: 'var(--text)' }}>
                 Nova <span style={{ color: '#F25BA5' }}>tarefa</span>
               </h3>
-              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', display: 'flex' }}>
+              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex' }}>
                 <X size={20} />
               </button>
             </div>
@@ -219,40 +219,40 @@ export default function TarefasPage() {
 
               {/* Title */}
               <div>
-                <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
                   Título da tarefa *
                 </label>
                 <input
                   value={form.title}
                   onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
                   placeholder="Ex: Criar grid de junho para Sinta Gummies"
-                  style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontFamily: font, boxSizing: 'border-box' }}
+                  style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font, boxSizing: 'border-box' }}
                 />
               </div>
 
               {/* Client + Priority */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
                     <User size={10} style={{ display: 'inline', marginRight: 4 }} /> Cliente
                   </label>
                   <select
                     value={form.clientId}
                     onChange={e => setForm(f => ({ ...f, clientId: e.target.value }))}
-                    style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontFamily: font }}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
                   >
                     <option value="">Sem cliente</option>
                     {clients.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
                     <AlertCircle size={10} style={{ display: 'inline', marginRight: 4 }} /> Prioridade
                   </label>
                   <select
                     value={form.priority}
                     onChange={e => setForm(f => ({ ...f, priority: e.target.value as TaskPriority }))}
-                    style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontFamily: font }}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
                   >
                     <option value="baixa">Baixa</option>
                     <option value="media">Média</option>
@@ -265,26 +265,26 @@ export default function TarefasPage() {
               {/* Status + Due date */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
                     Status inicial
                   </label>
                   <select
                     value={form.status}
                     onChange={e => setForm(f => ({ ...f, status: e.target.value as TaskStatus }))}
-                    style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontFamily: font }}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
                   >
                     {COLUMNS.map(c => <option key={c.id} value={c.id}>{c.label}</option>)}
                   </select>
                 </div>
                 <div>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
                     <Calendar size={10} style={{ display: 'inline', marginRight: 4 }} /> Prazo
                   </label>
                   <input
                     type="date"
                     value={form.dueDate}
                     onChange={e => setForm(f => ({ ...f, dueDate: e.target.value }))}
-                    style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontFamily: font }}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
                   />
                 </div>
               </div>
@@ -292,25 +292,25 @@ export default function TarefasPage() {
               {/* Assignee + Tags */}
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                 <div>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
                     Responsável
                   </label>
                   <input
                     value={form.assignee}
                     onChange={e => setForm(f => ({ ...f, assignee: e.target.value }))}
                     placeholder="Ex: Rhania N."
-                    style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontFamily: font }}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
                   />
                 </div>
                 <div>
-                  <label style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>
                     <Tag size={10} style={{ display: 'inline', marginRight: 4 }} /> Tags (separadas por vírgula)
                   </label>
                   <input
                     value={form.tags}
                     onChange={e => setForm(f => ({ ...f, tags: e.target.value }))}
                     placeholder="reels, copy, estrategia"
-                    style={{ width: '100%', border: '1px solid rgba(31,27,26,0.15)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: '#F5F4F2', color: '#1F1B1A', outline: 'none', fontFamily: font }}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
                   />
                 </div>
               </div>
@@ -319,7 +319,7 @@ export default function TarefasPage() {
               <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
                 <button
                   onClick={() => { setShowModal(false); setForm(emptyForm) }}
-                  style={{ flex: 1, border: '1px solid rgba(31,27,26,0.15)', background: 'none', borderRadius: 999, padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: 'rgba(31,27,26,0.6)', fontFamily: font }}
+                  style={{ flex: 1, border: '1px solid var(--border-2)', background: 'none', borderRadius: 999, padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: 'var(--text-2)', fontFamily: font }}
                 >
                   Cancelar
                 </button>
@@ -327,8 +327,8 @@ export default function TarefasPage() {
                   onClick={handleAdd}
                   disabled={!form.title.trim()}
                   style={{
-                    flex: 2, background: form.title.trim() ? '#F25BA5' : 'rgba(31,27,26,0.1)',
-                    color: form.title.trim() ? '#FFFFFF' : 'rgba(31,27,26,0.3)',
+                    flex: 2, background: form.title.trim() ? '#F25BA5' : 'var(--border)',
+                    color: form.title.trim() ? '#FFFFFF' : 'var(--text-4)',
                     borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700,
                     cursor: form.title.trim() ? 'pointer' : 'not-allowed', fontFamily: font,
                     transition: 'all 0.15s',

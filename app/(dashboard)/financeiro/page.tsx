@@ -24,20 +24,20 @@ const totalAtrasado = payments.filter(p => p.status === 'atrasado').reduce((a, p
 
 export default function FinanceiroPage() {
   return (
-    <div style={{ background: '#FFFFFF', minHeight: '100vh' }}>
+    <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Financeiro" subtitle="Controle de receitas e pagamentos" />
 
       <div className="page-pad" style={{ fontFamily: "'Inter', system-ui, sans-serif" }}>
         {/* Top cards */}
         <div className="rg-4" style={{ gap: 14, marginBottom: 24 }}>
           {[
-            { label: 'Receita prevista (jun)', value: formatCurrency(totalPrevisto), color: '#1F1B1A', bg: '#F5F4F2' },
+            { label: 'Receita prevista (jun)', value: formatCurrency(totalPrevisto), color: 'var(--text)', bg: '#F5F4F2' },
             { label: 'Receita recebida (total)', value: formatCurrency(totalRecebido), color: '#10B981', bg: '#d1fae5' },
             { label: 'Pendente', value: formatCurrency(totalPendente), color: '#F59E0B', bg: '#fef9c3' },
             { label: 'Inadimplente', value: formatCurrency(totalAtrasado), color: '#EE3528', bg: '#fee2e2' },
           ].map(s => (
             <div key={s.label} style={{ background: s.bg, borderRadius: 12, padding: '16px 18px' }}>
-              <p style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</p>
+              <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{s.label}</p>
               <p style={{ fontSize: 26, fontWeight: 700, color: s.color, marginTop: 8 }}>{s.value}</p>
             </div>
           ))}
@@ -46,14 +46,14 @@ export default function FinanceiroPage() {
         {/* Charts */}
         <div className="rg-chart" style={{ gap: 20, marginBottom: 24 }}>
           {/* Bar chart */}
-          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: '20px 20px 10px' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: '#1F1B1A', marginBottom: 18 }}>Receita mensal — últimos 6 meses</h3>
+          <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px 20px 10px' }}>
+            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 18 }}>Receita mensal — últimos 6 meses</h3>
             <ResponsiveContainer width="100%" height={240}>
               <BarChart data={revenueByMonth} barSize={18} barGap={4}>
-                <CartesianGrid strokeDasharray="0" stroke="rgba(31,27,26,0.06)" vertical={false} />
-                <XAxis dataKey="month" tick={{ fontSize: 12, fill: 'rgba(31,27,26,0.5)', fontFamily: 'Inter' }} axisLine={false} tickLine={false} />
-                <YAxis tick={{ fontSize: 11, fill: 'rgba(31,27,26,0.4)', fontFamily: 'Inter' }} axisLine={false} tickLine={false} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
-                <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 12, fontFamily: 'Inter', fontSize: 12 }} formatter={(v: unknown) => formatCurrency(v as number)} />
+                <CartesianGrid strokeDasharray="0" stroke="var(--border-3)" vertical={false} />
+                <XAxis dataKey="month" tick={{ fontSize: 12, fill: 'var(--text-2)', fontFamily: 'Inter' }} axisLine={false} tickLine={false} />
+                <YAxis tick={{ fontSize: 11, fill: 'var(--text-4)', fontFamily: 'Inter' }} axisLine={false} tickLine={false} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
+                <Tooltip contentStyle={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, fontFamily: 'Inter', fontSize: 12 }} formatter={(v: unknown) => formatCurrency(v as number)} />
                 <Legend wrapperStyle={{ fontSize: 12, fontFamily: 'Inter' }} />
                 <Bar dataKey="previsto" name="Previsto" fill="#F5F4F2" stroke="#F25BA5" strokeWidth={1} radius={[4,4,0,0]} />
                 <Bar dataKey="recebido" name="Recebido" fill="#F25BA5" radius={[4,4,0,0]} />
@@ -63,8 +63,8 @@ export default function FinanceiroPage() {
           </div>
 
           {/* Pie chart */}
-          <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, padding: '20px' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: '#1F1B1A', marginBottom: 14 }}>Receita por cliente</h3>
+          <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, padding: '20px' }}>
+            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 14 }}>Receita por cliente</h3>
             <ResponsiveContainer width="100%" height={160}>
               <PieChart>
                 <Pie data={pieData} cx="50%" cy="50%" innerRadius={45} outerRadius={72} paddingAngle={3} dataKey="value">
@@ -72,7 +72,7 @@ export default function FinanceiroPage() {
                     <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip contentStyle={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 10, fontFamily: 'Inter', fontSize: 12 }} formatter={(v: unknown) => formatCurrency(v as number)} />
+                <Tooltip contentStyle={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, fontFamily: 'Inter', fontSize: 12 }} formatter={(v: unknown) => formatCurrency(v as number)} />
               </PieChart>
             </ResponsiveContainer>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginTop: 8 }}>
@@ -80,9 +80,9 @@ export default function FinanceiroPage() {
                 <div key={d.name} style={{ display: 'flex', alignItems: 'center', gap: 8, justifyContent: 'space-between' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                     <div style={{ width: 8, height: 8, borderRadius: '50%', background: PIE_COLORS[i % PIE_COLORS.length], flexShrink: 0 }} />
-                    <span style={{ fontSize: 12, color: '#1F1B1A', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }}>{d.name}</span>
+                    <span style={{ fontSize: 12, color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: 120 }}>{d.name}</span>
                   </div>
-                  <span style={{ fontSize: 12, fontWeight: 700, color: '#1F1B1A', flexShrink: 0 }}>{formatCurrency(d.value)}</span>
+                  <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--text)', flexShrink: 0 }}>{formatCurrency(d.value)}</span>
                 </div>
               ))}
             </div>
@@ -90,34 +90,34 @@ export default function FinanceiroPage() {
         </div>
 
         {/* Payments table */}
-        <div style={{ background: '#FFFFFF', border: '1px solid rgba(31,27,26,0.10)', borderRadius: 12, overflow: 'hidden' }}>
-          <div style={{ padding: '16px 20px', borderBottom: '1px solid rgba(31,27,26,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: '#1F1B1A' }}>Todos os pagamentos</h3>
+        <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-3)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>Todos os pagamentos</h3>
             <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '7px 16px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
               + Registrar pagamento
             </button>
           </div>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-            <thead style={{ background: '#F5F4F2' }}>
+            <thead style={{ background: 'var(--bg-2)' }}>
               <tr>
                 {['Cliente', 'Referência', 'Vencimento', 'Pagamento', 'Valor', 'Método', 'Status', ''].map(h => (
-                  <th key={h} style={{ fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.5)', textAlign: 'left', padding: '12px 16px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
+                  <th key={h} style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textAlign: 'left', padding: '12px 16px', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{h}</th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {payments.map(p => (
-                <tr key={p.id} style={{ borderTop: '1px solid rgba(31,27,26,0.05)' }}>
-                  <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 16px', fontWeight: 600 }}>{p.clientName}</td>
-                  <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 16px' }}>{p.reference}</td>
+                <tr key={p.id} style={{ borderTop: '1px solid var(--border-3)' }}>
+                  <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px', fontWeight: 600 }}>{p.clientName}</td>
+                  <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{p.reference}</td>
                   <td style={{ fontSize: 13, color: p.status === 'atrasado' ? '#EE3528' : '#1F1B1A', padding: '12px 16px' }}>{formatDate(p.dueDate)}</td>
-                  <td style={{ fontSize: 13, color: '#1F1B1A', padding: '12px 16px' }}>{p.paidDate ? formatDate(p.paidDate) : '—'}</td>
-                  <td style={{ fontSize: 13, fontWeight: 700, color: '#1F1B1A', padding: '12px 16px' }}>{formatCurrency(p.value)}</td>
-                  <td style={{ fontSize: 13, color: 'rgba(31,27,26,0.6)', padding: '12px 16px' }}>{p.method || '—'}</td>
+                  <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{p.paidDate ? formatDate(p.paidDate) : '—'}</td>
+                  <td style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', padding: '12px 16px' }}>{formatCurrency(p.value)}</td>
+                  <td style={{ fontSize: 13, color: 'var(--text-2)', padding: '12px 16px' }}>{p.method || '—'}</td>
                   <td style={{ padding: '12px 16px' }}><StatusBadge status={p.status} size="sm" /></td>
                   <td style={{ padding: '12px 16px' }}>
                     {p.status !== 'pago' && (
-                      <button style={{ background: 'none', border: '1px solid rgba(31,27,26,0.12)', borderRadius: 999, padding: '4px 12px', fontSize: 11, fontWeight: 600, cursor: 'pointer', color: '#1F1B1A' }}>
+                      <button style={{ background: 'none', border: '1px solid var(--border)', borderRadius: 999, padding: '4px 12px', fontSize: 11, fontWeight: 600, cursor: 'pointer', color: 'var(--text)' }}>
                         Marcar pago
                       </button>
                     )}

@@ -1,14 +1,15 @@
 'use client'
 
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import {
   LayoutDashboard, Users, CalendarDays, CheckSquare,
   DollarSign, FileText, Lightbulb, BarChart, Library, MessageSquare,
-  ChevronLeft, ChevronRight, Camera, Sparkles, Settings
+  ChevronLeft, ChevronRight, Camera, Sparkles, Settings, LogOut
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { supabase } from '@/lib/supabase'
 
 const navGroups = [
   {
@@ -67,7 +68,14 @@ const navGroups = [
 
 export default function Sidebar() {
   const pathname = usePathname()
+  const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
+
+  async function handleLogout() {
+    await supabase.auth.signOut()
+    router.push('/login')
+    router.refresh()
+  }
 
   function isActive(href: string) {
     if (href === '/') return pathname === '/'
@@ -162,10 +170,18 @@ export default function Sidebar() {
           >
             RN
           </div>
-          <div className="overflow-hidden">
+          <div className="overflow-hidden flex-1">
             <p style={{ fontSize: 13, fontWeight: 600, color: '#1F1B1A' }} className="truncate">Rhania Nogueira</p>
             <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)' }} className="truncate">Admin</p>
           </div>
+          <button
+            onClick={handleLogout}
+            title="Sair"
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'rgba(31,27,26,0.4)', padding: 4, borderRadius: 6, flexShrink: 0 }}
+            className="hover:text-[#F25BA5] transition-colors"
+          >
+            <LogOut size={15} />
+          </button>
         </div>
       )}
 

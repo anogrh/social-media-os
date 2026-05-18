@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Eye, EyeOff, Sparkles } from 'lucide-react'
+import { supabase } from '@/lib/supabase'
 
 export default function LoginPage() {
   const router = useRouter()
@@ -16,12 +17,13 @@ export default function LoginPage() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    await new Promise(r => setTimeout(r, 800))
-    if (email && password) {
-      router.push('/')
-    } else {
-      setError('Preencha e-mail e senha para continuar.')
+    const { error: authError } = await supabase.auth.signInWithPassword({ email, password })
+    if (authError) {
+      setError('E-mail ou senha incorretos.')
       setLoading(false)
+    } else {
+      router.push('/')
+      router.refresh()
     }
   }
 

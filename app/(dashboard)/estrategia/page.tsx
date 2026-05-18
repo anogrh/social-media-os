@@ -315,7 +315,7 @@ export default function EstrategiaPage() {
         </div>
 
         {/* ─── Tab nav ──────────────────────────────────────────────────── */}
-        <div style={{ display: 'flex', gap: 4, marginBottom: 28, borderBottom: '1px solid rgba(31,27,26,0.10)', paddingBottom: 0 }}>
+        <div style={{ display: 'flex', gap: 4, marginBottom: 28, borderBottom: '1px solid rgba(31,27,26,0.10)', paddingBottom: 0, overflowX: 'auto', WebkitOverflowScrolling: 'touch' as const }}>
           {TABS.map((t, i) => (
             <button key={t} onClick={() => setTab(i)}
               style={{

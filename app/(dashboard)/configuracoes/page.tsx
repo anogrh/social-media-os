@@ -62,16 +62,20 @@ export default function ConfiguracoesPage() {
 
   // ── Agency profile ───────────────────────────────────────────────────────────
   const [agency, setAgency] = useState(DEFAULT_AGENCY)
+  const [accentColor, setAccentColor] = useState('#F25BA5')
 
   useEffect(() => {
     const stored = localStorage.getItem('sm_agency_profile')
     if (stored) {
       try { setAgency(JSON.parse(stored)) } catch {}
     }
+    const storedColor = localStorage.getItem('sm_accent_color')
+    if (storedColor) setAccentColor(storedColor)
   }, [])
 
   function handleSaveAgency() {
     localStorage.setItem('sm_agency_profile', JSON.stringify(agency))
+    localStorage.setItem('sm_accent_color', accentColor)
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
   }
@@ -238,16 +242,49 @@ export default function ConfiguracoesPage() {
                 </div>
 
                 {sectionTitle('Identidade visual do dashboard')}
-                <div style={{ display: 'flex', gap: 12, marginBottom: 24, flexWrap: 'wrap' }}>
-                  {['#F25BA5', '#F19877', '#FBD0DA', '#F2F4A4', '#1F1B1A', '#EE3528'].map(color => (
-                    <div key={color} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
-                      <div style={{ width: 36, height: 36, borderRadius: 999, background: color, border: color === '#F25BA5' ? '2px solid #1F1B1A' : '2px solid transparent', cursor: 'pointer' }} />
-                      <span style={{ fontSize: 9, color: 'rgba(31,27,26,0.4)', fontFamily: "'JetBrains Mono', monospace" }}>{color}</span>
+                <div style={{ marginBottom: 24 }}>
+                  <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.5)', marginBottom: 14 }}>Escolha a cor de acento principal do seu dashboard:</p>
+                  <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 16 }}>
+                    {['#F25BA5', '#F19877', '#EE3528', '#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#1F1B1A'].map(color => (
+                      <button
+                        key={color}
+                        onClick={() => setAccentColor(color)}
+                        title={color}
+                        style={{
+                          width: 40, height: 40, borderRadius: '50%', background: color, border: 'none',
+                          cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                          boxShadow: accentColor === color ? `0 0 0 3px #FFFFFF, 0 0 0 5px ${color}` : 'none',
+                          transition: 'box-shadow 0.15s',
+                        }}
+                      >
+                        {accentColor === color && <Check size={16} color={color === '#F2F4A4' || color === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF'} />}
+                      </button>
+                    ))}
+
+                    {/* Custom color input */}
+                    <label title="Cor personalizada" style={{ width: 40, height: 40, borderRadius: '50%', border: '2px dashed rgba(31,27,26,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', overflow: 'hidden', position: 'relative' }}>
+                      <Palette size={16} style={{ color: 'rgba(31,27,26,0.4)', pointerEvents: 'none' }} />
+                      <input
+                        type="color"
+                        value={accentColor}
+                        onChange={e => setAccentColor(e.target.value)}
+                        style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', width: '100%', height: '100%' }}
+                      />
+                    </label>
+                  </div>
+
+                  {/* Preview */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, background: '#F5F4F2', borderRadius: 12, padding: '12px 16px' }}>
+                    <div style={{ width: 28, height: 28, borderRadius: '50%', background: accentColor, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Palette size={14} color="#FFFFFF" />
                     </div>
-                  ))}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 12, color: 'rgba(31,27,26,0.5)', marginLeft: 8 }}>
-                    <Palette size={14} />
-                    Cor de acento principal: <strong style={{ color: '#F25BA5' }}>#F25BA5</strong>
+                    <div>
+                      <p style={{ fontSize: 12, fontWeight: 700, color: '#1F1B1A' }}>Cor selecionada</p>
+                      <p style={{ fontSize: 11, color: 'rgba(31,27,26,0.5)', fontFamily: "'JetBrains Mono', monospace" }}>{accentColor.toUpperCase()}</p>
+                    </div>
+                    <div style={{ marginLeft: 'auto', fontSize: 12, color: 'rgba(31,27,26,0.4)' }}>
+                      Salve para aplicar
+                    </div>
                   </div>
                 </div>
 

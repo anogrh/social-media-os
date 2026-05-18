@@ -153,7 +153,7 @@ export default function CalendarioPage() {
             </div>
 
             {/* Weekday headers */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', borderBottom: '1px solid rgba(31,27,26,0.08)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', borderBottom: '1px solid rgba(31,27,26,0.08)', minWidth: 560 }}>
               {WEEKDAYS.map(d => (
                 <div key={d} style={{ padding: '10px 0', textAlign: 'center', fontSize: 11, fontWeight: 700, color: 'rgba(31,27,26,0.4)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                   {d}
@@ -162,7 +162,7 @@ export default function CalendarioPage() {
             </div>
 
             {/* Days grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', minWidth: 560 }}>
               {/* Empty cells */}
               {Array.from({ length: firstDay }).map((_, i) => (
                 <div key={`empty-${i}`} style={{ minHeight: 100, borderRight: '1px solid rgba(31,27,26,0.05)', borderBottom: '1px solid rgba(31,27,26,0.05)' }} />

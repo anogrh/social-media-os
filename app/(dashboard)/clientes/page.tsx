@@ -42,7 +42,7 @@ export default function ClientesPage() {
 
       <div className="page-pad">
         {/* Stats bar */}
-        <div style={{ display: 'flex', gap: 12, marginBottom: 24 }}>
+        <div style={{ display: 'flex', gap: 12, marginBottom: 24, flexWrap: 'wrap' }}>
           {[
             { label: 'Total', value: stats.total, color: '#1F1B1A' },
             { label: 'Ativos', value: stats.ativos, color: '#10B981' },
@@ -69,7 +69,7 @@ export default function ClientesPage() {
         </div>
 
         {/* Filters */}
-        <div style={{ display: 'flex', gap: 12, marginBottom: 20, alignItems: 'center', fontFamily: "'Inter', system-ui, sans-serif" }}>
+        <div style={{ display: 'flex', gap: 12, marginBottom: 20, alignItems: 'center', fontFamily: "'Inter', system-ui, sans-serif", flexWrap: 'wrap' }}>
           {/* Search */}
           <div style={{ position: 'relative', flex: 1, maxWidth: 320 }}>
             <Search size={14} style={{ position: 'absolute', left: 12, top: '50%', transform: 'translateY(-50%)', color: 'rgba(31,27,26,0.4)' }} />

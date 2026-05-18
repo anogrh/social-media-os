@@ -65,7 +65,7 @@ export default function NovoClientePage() {
       website: website || undefined,
       status,
       initials: name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase() || 'XX',
-      color: '#F25BA5',
+      color: '#FC75A0',
       instagramHandle: instagramHandle || undefined,
       monthlyValue: Number(monthlyValue) || 0,
       contractStart: contractStart || today,
@@ -91,7 +91,7 @@ export default function NovoClientePage() {
 
       <div style={{ padding: '24px 28px', maxWidth: 860, fontFamily: "'Inter', system-ui, sans-serif" }}>
         <Link href="/clientes" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-2)', marginBottom: 24, textDecoration: 'none' }}
-          className="hover:text-[#F25BA5]">
+          className="hover:text-[#FC75A0]">
           <ArrowLeft size={14} /> Voltar para clientes
         </Link>
 
@@ -232,7 +232,7 @@ export default function NovoClientePage() {
               type="submit"
               disabled={loading}
               style={{
-                background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '11px 28px',
+                background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '11px 28px',
                 border: 'none', fontSize: 13, fontWeight: 700, cursor: loading ? 'wait' : 'pointer',
                 display: 'inline-flex', alignItems: 'center', gap: 8, opacity: loading ? 0.7 : 1,
                 fontFamily: "'Inter', system-ui, sans-serif",

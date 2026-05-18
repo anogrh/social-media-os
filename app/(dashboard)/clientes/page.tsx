@@ -58,7 +58,7 @@ export default function ClientesPage() {
           <Link
             href="/clientes/novo"
             style={{
-              background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '10px 20px',
+              background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '10px 20px',
               fontSize: 13, fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: 7, textDecoration: 'none',
               fontFamily: "'Inter', system-ui, sans-serif",
             }}
@@ -89,9 +89,9 @@ export default function ClientesPage() {
                 key={f.value}
                 onClick={() => setStatusFilter(f.value)}
                 style={{
-                  background: statusFilter === f.value ? '#F25BA5' : '#F5F4F2',
-                  color: statusFilter === f.value ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${statusFilter === f.value ? '#F25BA5' : 'var(--border)'}`,
+                  background: statusFilter === f.value ? '#FC75A0' : '#F5F4F2',
+                  color: statusFilter === f.value ? '#FFFFFF' : '#292929',
+                  border: `1px solid ${statusFilter === f.value ? '#FC75A0' : 'var(--border)'}`,
                   borderRadius: 999,
                   padding: '7px 14px',
                   fontSize: 12,
@@ -131,7 +131,7 @@ export default function ClientesPage() {
                 <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 14 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                     <div
-                      style={{ width: 44, height: 44, borderRadius: '50%', background: client.color, color: client.color === '#F2F4A4' || client.color === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF', fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
+                      style={{ width: 44, height: 44, borderRadius: '50%', background: client.color, color: client.color === '#F2F4A4' || client.color === '#FBD0DA' ? '#292929' : '#FFFFFF', fontSize: 15, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}
                     >
                       {client.initials}
                     </div>
@@ -160,7 +160,7 @@ export default function ClientesPage() {
                     </div>
                     <div style={{ textAlign: 'right' }}>
                       <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Próx. pgto.</p>
-                      <p style={{ fontSize: 13, fontWeight: 600, color: client.paymentStatus === 'atrasado' ? '#EE3528' : '#1F1B1A', marginTop: 3 }}>
+                      <p style={{ fontSize: 13, fontWeight: 600, color: client.paymentStatus === 'atrasado' ? '#EE3528' : '#292929', marginTop: 3 }}>
                         {formatDate(client.nextPaymentDate)}
                       </p>
                     </div>

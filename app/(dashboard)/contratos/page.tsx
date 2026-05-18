@@ -49,12 +49,12 @@ export default function ContratosPage() {
           marginBottom: 28,
           cursor: 'pointer',
         }}
-          className="hover:border-[#F25BA5] transition-colors"
+          className="hover:border-[#FC75A0] transition-colors"
         >
-          <Upload size={28} style={{ color: '#F25BA5', margin: '0 auto 10px' }} />
+          <Upload size={28} style={{ color: '#FC75A0', margin: '0 auto 10px' }} />
           <p style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 14, fontWeight: 600, color: 'var(--text)', marginBottom: 4 }}>Arraste e solte arquivos aqui</p>
           <p style={{ fontSize: 12, color: 'var(--text-2)', marginBottom: 14 }}>PDF, PNG, JPG, DOCX — máximo 50MB</p>
-          <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '8px 20px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+          <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '8px 20px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
             Ou escolher arquivo
           </button>
         </div>
@@ -79,7 +79,7 @@ export default function ContratosPage() {
                   <td style={{ padding: '12px 16px' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                       <div style={{ width: 30, height: 30, background: '#FBD0DA', borderRadius: 6, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <FileCheck size={14} style={{ color: '#F25BA5' }} />
+                        <FileCheck size={14} style={{ color: '#FC75A0' }} />
                       </div>
                       <div>
                         <p style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)' }}>{c.fileName}</p>
@@ -116,7 +116,7 @@ export default function ContratosPage() {
                 {groupDocs.map(doc => (
                   <div key={doc.id} style={{ display: 'flex', alignItems: 'center', gap: 12, background: 'var(--bg)', border: '1px solid var(--border-3)', borderRadius: 10, padding: '12px 16px' }}>
                     <div style={{ width: 36, height: 36, background: 'var(--bg-2)', borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <Icon size={16} style={{ color: '#F25BA5' }} />
+                      <Icon size={16} style={{ color: '#FC75A0' }} />
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{doc.name}</p>

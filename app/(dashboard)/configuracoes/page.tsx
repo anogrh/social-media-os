@@ -62,7 +62,7 @@ export default function ConfiguracoesPage() {
 
   // ── Agency profile ───────────────────────────────────────────────────────────
   const [agency, setAgency] = useState(DEFAULT_AGENCY)
-  const [accentColor, setAccentColor] = useState('#F25BA5')
+  const [accentColor, setAccentColor] = useState('#FC75A0')
 
   useEffect(() => {
     const stored = localStorage.getItem('sm_agency_profile')
@@ -184,7 +184,7 @@ export default function ConfiguracoesPage() {
               return (
                 <button key={tab} onClick={() => setActiveTab(tab)} style={{
                   width: '100%', display: 'flex', alignItems: 'center', gap: 10,
-                  background: active ? '#F25BA5' : 'none',
+                  background: active ? '#FC75A0' : 'none',
                   color: active ? '#FFFFFF' : 'var(--text-2)',
                   borderRadius: 10, border: 'none', padding: '10px 14px',
                   fontSize: 13, fontWeight: active ? 700 : 500,
@@ -245,7 +245,7 @@ export default function ConfiguracoesPage() {
                 <div style={{ marginBottom: 24 }}>
                   <p style={{ fontSize: 12, color: 'var(--text-2)', marginBottom: 14 }}>Escolha a cor de acento principal do seu dashboard:</p>
                   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', marginBottom: 16 }}>
-                    {['#F25BA5', '#F19877', '#EE3528', '#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#1F1B1A'].map(color => (
+                    {['#FC75A0', '#F19877', '#EE3528', '#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#292929'].map(color => (
                       <button
                         key={color}
                         onClick={() => setAccentColor(color)}
@@ -257,7 +257,7 @@ export default function ConfiguracoesPage() {
                           transition: 'box-shadow 0.15s',
                         }}
                       >
-                        {accentColor === color && <Check size={16} color={color === '#F2F4A4' || color === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF'} />}
+                        {accentColor === color && <Check size={16} color={color === '#F2F4A4' || color === '#FBD0DA' ? '#292929' : '#FFFFFF'} />}
                       </button>
                     ))}
 
@@ -289,7 +289,7 @@ export default function ConfiguracoesPage() {
                 </div>
 
                 <button onClick={handleSaveAgency} style={{
-                  background: '#F25BA5', color: '#FFFFFF', borderRadius: 999,
+                  background: '#FC75A0', color: '#FFFFFF', borderRadius: 999,
                   border: 'none', padding: '11px 28px', fontSize: 13, fontWeight: 700,
                   cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font,
                 }}>
@@ -307,7 +307,7 @@ export default function ConfiguracoesPage() {
                     <div key={member.id}>
                       {editingId === member.id ? (
                         /* ── Edit mode ── */
-                        <div style={{ background: '#FBD0DA22', border: '1.5px solid rgba(242,91,165,0.3)', borderRadius: 12, padding: '16px 18px' }}>
+                        <div style={{ background: '#FBD0DA22', border: '1.5px solid rgba(252,117,160,0.3)', borderRadius: 12, padding: '16px 18px' }}>
                           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
                             <div>
                               <label style={labelStyle}>Nome</label>
@@ -330,13 +330,13 @@ export default function ConfiguracoesPage() {
                             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 8 }}>
                               <label style={{ display: 'flex', alignItems: 'center', gap: 8, cursor: 'pointer', fontSize: 13, color: 'var(--text)' }}>
                                 <input type="checkbox" checked={editForm.active ?? true} onChange={e => setEditForm(f => ({ ...f, active: e.target.checked }))}
-                                  style={{ accentColor: '#F25BA5', width: 16, height: 16 }} />
+                                  style={{ accentColor: '#FC75A0', width: 16, height: 16 }} />
                                 Ativo
                               </label>
                             </div>
                           </div>
                           <div style={{ display: 'flex', gap: 8 }}>
-                            <button onClick={commitEdit} style={{ background: '#F25BA5', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '8px 18px', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
+                            <button onClick={commitEdit} style={{ background: '#FC75A0', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '8px 18px', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
                               <Check size={13} /> Salvar
                             </button>
                             <button onClick={cancelEdit} style={{ background: 'var(--bg-2)', color: 'var(--text)', border: '1px solid var(--border)', borderRadius: 999, padding: '8px 18px', fontSize: 12, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
@@ -356,7 +356,7 @@ export default function ConfiguracoesPage() {
                           </div>
                           <span style={{
                             fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999,
-                            background: member.role === 'Admin' ? '#F25BA5' : '#F5F4F2',
+                            background: member.role === 'Admin' ? '#FC75A0' : '#F5F4F2',
                             color: member.role === 'Admin' ? '#FFFFFF' : 'var(--text-2)',
                             border: member.role === 'Admin' ? 'none' : '1px solid var(--border)',
                           }}>
@@ -402,7 +402,7 @@ export default function ConfiguracoesPage() {
                       </div>
                     </div>
                     <div style={{ display: 'flex', gap: 8 }}>
-                      <button onClick={addMember} style={{ background: '#F25BA5', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '9px 20px', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
+                      <button onClick={addMember} style={{ background: '#FC75A0', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '9px 20px', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
                         <Plus size={13} /> Adicionar membro
                       </button>
                       <button onClick={() => { setShowAddForm(false); setNewMember({ name: '', email: '', role: 'Equipe' }) }} style={{ background: 'transparent', color: 'var(--text-2)', border: '1px solid var(--border)', borderRadius: 999, padding: '9px 18px', fontSize: 12, cursor: 'pointer', fontFamily: font }}>
@@ -420,7 +420,7 @@ export default function ConfiguracoesPage() {
                   </button>
                 )}
 
-                <div style={{ marginTop: 24, background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', border: '1px solid rgba(242,91,165,0.2)' }}>
+                <div style={{ marginTop: 24, background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', border: '1px solid rgba(252,117,160,0.2)' }}>
                   <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', marginBottom: 6 }}>Plano atual</p>
                   <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.6 }}>
                     Você está no plano <strong>Pro</strong> — até 5 membros, acesso completo a todas as funcionalidades.
@@ -456,7 +456,7 @@ export default function ConfiguracoesPage() {
                             {showKey[intg.id] ? <EyeOff size={13} /> : <Eye size={13} />}
                           </button>
                           <button style={{
-                            background: intg.status === 'not_connected' ? '#F25BA5' : '#F5F4F2',
+                            background: intg.status === 'not_connected' ? '#FC75A0' : '#F5F4F2',
                             color: intg.status === 'not_connected' ? '#FFFFFF' : 'var(--text-2)',
                             border: intg.status === 'not_connected' ? 'none' : '1px solid var(--border)',
                             borderRadius: 999, padding: '7px 16px', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: font,
@@ -498,7 +498,7 @@ export default function ConfiguracoesPage() {
                         onClick={() => setNotifications(prev => ({ ...prev, [n.key]: !prev[n.key as keyof typeof prev] }))}
                         style={{
                           width: 44, height: 24, borderRadius: 999, border: 'none', cursor: 'pointer',
-                          background: notifications[n.key as keyof typeof notifications] ? '#F25BA5' : 'var(--border)',
+                          background: notifications[n.key as keyof typeof notifications] ? '#FC75A0' : 'var(--border)',
                           position: 'relative', transition: 'background 0.2s', flexShrink: 0,
                         }}
                       >
@@ -515,7 +515,7 @@ export default function ConfiguracoesPage() {
                 </div>
 
                 <button onClick={() => { setSaved(true); setTimeout(() => setSaved(false), 2500) }} style={{
-                  background: '#F25BA5', color: '#FFFFFF', borderRadius: 999,
+                  background: '#FC75A0', color: '#FFFFFF', borderRadius: 999,
                   border: 'none', padding: '11px 28px', fontSize: 13, fontWeight: 700,
                   cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font, marginTop: 24,
                 }}>
@@ -535,7 +535,7 @@ export default function ConfiguracoesPage() {
                       <input type="password" placeholder="••••••••" style={inputStyle} />
                     </div>
                   ))}
-                  <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, border: 'none', padding: '11px 28px', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: font, alignSelf: 'flex-start' }}>
+                  <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, border: 'none', padding: '11px 28px', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: font, alignSelf: 'flex-start' }}>
                     Atualizar senha
                   </button>
                 </div>
@@ -547,7 +547,7 @@ export default function ConfiguracoesPage() {
                     { device: 'Safari · iPhone 15', location: 'São Paulo, BR', current: false, time: 'Há 2 horas' },
                   ].map((s, i) => (
                     <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, background: 'var(--bg-2)', borderRadius: 10, padding: '12px 16px' }}>
-                      <Shield size={16} style={{ color: s.current ? '#F25BA5' : 'var(--text-4)', flexShrink: 0 }} />
+                      <Shield size={16} style={{ color: s.current ? '#FC75A0' : 'var(--text-4)', flexShrink: 0 }} />
                       <div style={{ flex: 1 }}>
                         <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{s.device}</p>
                         <p style={{ fontSize: 11, color: 'var(--text-2)' }}>{s.location} · {s.time}</p>
@@ -564,7 +564,7 @@ export default function ConfiguracoesPage() {
                 </div>
 
                 {sectionTitle('LGPD e privacidade')}
-                <div style={{ background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', fontSize: 13, color: 'var(--text-2)', lineHeight: 1.7, border: '1px solid rgba(242,91,165,0.2)' }}>
+                <div style={{ background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', fontSize: 13, color: 'var(--text-2)', lineHeight: 1.7, border: '1px solid rgba(252,117,160,0.2)' }}>
                   <strong style={{ color: 'var(--text)' }}>Conformidade com a LGPD.</strong> Todos os dados dos clientes são
                   armazenados com segurança e criptografados. Tokens do Instagram são salvos em variáveis de ambiente
                   seguras e nunca expostos no frontend. Para solicitar exclusão de dados, entre em contato com o suporte.

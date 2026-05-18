@@ -51,9 +51,9 @@ export default function BibliotecaPage() {
                 key={f}
                 onClick={() => setFilterType(f)}
                 style={{
-                  background: filterType === f ? '#F25BA5' : '#F5F4F2',
-                  color: filterType === f ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${filterType === f ? '#F25BA5' : 'var(--border)'}`,
+                  background: filterType === f ? '#FC75A0' : '#F5F4F2',
+                  color: filterType === f ? '#FFFFFF' : '#292929',
+                  border: `1px solid ${filterType === f ? '#FC75A0' : 'var(--border)'}`,
                   borderRadius: 999, padding: '7px 14px', fontSize: 12, fontWeight: 600,
                   cursor: 'pointer', textTransform: 'capitalize', transition: 'all 0.15s',
                 }}
@@ -64,7 +64,7 @@ export default function BibliotecaPage() {
           </div>
 
           <div style={{ flex: 1 }} />
-          <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '9px 18px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '9px 18px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
             <Plus size={14} /> Adicionar referência
           </button>
         </div>
@@ -116,7 +116,7 @@ export default function BibliotecaPage() {
                       href={ref.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 600, color: '#F25BA5', textDecoration: 'none' }}
+                      style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 12, fontWeight: 600, color: '#FC75A0', textDecoration: 'none' }}
                       className="hover:underline"
                     >
                       Abrir <ExternalLink size={11} />

@@ -35,7 +35,7 @@ const chartStyle = {
 
 function FormatPill({ format }: { format: string }) {
   const map: Record<string, { background: string; color: string }> = {
-    reels:    { background: '#F25BA5', color: '#fff' },
+    reels:    { background: '#FC75A0', color: '#fff' },
     carrossel: { background: '#F19877', color: '#fff' },
     story:    { background: '#FBD0DA', color: 'var(--text)' },
     feed:     { background: '#F2F4A4', color: 'var(--text)' },
@@ -58,7 +58,7 @@ export default function DashboardPage() {
 
         {/* ── 1. KPI CARDS ────────────────────────────────────────────── */}
         <div className="rg-kpi" style={{ marginBottom: 24 }}>
-          <MetricCard icon={Users}       label="Clientes ativos"   value={String(activeClients.length)} change={20}  changeLabel="vs. mês anterior"     iconBg="#FBD0DA" accent="#F25BA5" />
+          <MetricCard icon={Users}       label="Clientes ativos"   value={String(activeClients.length)} change={20}  changeLabel="vs. mês anterior"     iconBg="#FBD0DA" accent="#FC75A0" />
           <MetricCard icon={DollarSign}  label="Receita prevista"  value={formatCurrency(totalPrevisto)} change={13}  changeLabel="jun/2025"              iconBg="#d1fae5" accent="#10B981" />
           <MetricCard icon={DollarSign}  label="Recebido"          value={formatCurrency(totalRecebido)} change={-8}  changeLabel="jun/2025 (parcial)"    iconBg="#dbeafe" accent="#3B82F6" />
           <MetricCard icon={CheckSquare} label="Tarefas atrasadas" value={String(overdueTasks.length)}   change={-15} changeLabel="vs. semana passada"    iconBg="#fee2e2" accent="#EE3528" />
@@ -72,10 +72,10 @@ export default function DashboardPage() {
           <div style={{ ...card, padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <h3 style={sectionH}>
-                <Clock size={14} style={{ display: 'inline', marginRight: 6, color: '#F25BA5', verticalAlign: 'middle' }} />
+                <Clock size={14} style={{ display: 'inline', marginRight: 6, color: '#FC75A0', verticalAlign: 'middle' }} />
                 O que fazer hoje
               </h3>
-              <Link href="/tarefas" style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>
+              <Link href="/tarefas" style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>
                 Ver todas <ArrowRight size={12} />
               </Link>
             </div>
@@ -106,7 +106,7 @@ export default function DashboardPage() {
           <div style={{ ...card, padding: '20px 20px 10px' }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
               <h3 style={{ ...sectionH, marginBottom: 0 }}>Receita — últimos 6 meses</h3>
-              <Link href="/financeiro" style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Ver tudo <ArrowRight size={12} /></Link>
+              <Link href="/financeiro" style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Ver tudo <ArrowRight size={12} /></Link>
             </div>
             <ResponsiveContainer width="100%" height={220}>
               <BarChart data={revenueByMonth} barSize={16} barGap={4}>
@@ -115,7 +115,7 @@ export default function DashboardPage() {
                 <YAxis tick={{ fontSize: 11, fill: 'var(--text-4)', fontFamily: 'Inter' }} axisLine={false} tickLine={false} tickFormatter={v => `${(v / 1000).toFixed(0)}k`} />
                 <Tooltip contentStyle={chartStyle.content} formatter={(v: unknown) => formatCurrency(v as number)} />
                 <Legend wrapperStyle={{ fontSize: 12, fontFamily: 'Inter' }} />
-                <Bar dataKey="recebido" name="Recebido" fill="#F25BA5" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="recebido" name="Recebido" fill="#FC75A0" radius={[4, 4, 0, 0]} />
                 <Bar dataKey="pendente" name="Pendente" fill="#FBD0DA" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -145,13 +145,13 @@ export default function DashboardPage() {
           <div style={{ ...card, padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <h3 style={{ ...sectionH, marginBottom: 0 }}>Clientes</h3>
-              <Link href="/clientes" style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Ver todos <ArrowRight size={12} /></Link>
+              <Link href="/clientes" style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Ver todos <ArrowRight size={12} /></Link>
             </div>
             {clients.slice(0, 5).map((c, i) => {
               const isLast = i === 4
               return (
                 <Link key={c.id} href={`/clientes/${c.id}`} style={{ ...rowItem, textDecoration: 'none', paddingBottom: isLast ? 0 : 11, marginBottom: isLast ? 0 : 11, borderBottom: isLast ? 'none' : '1px solid var(--border-3)' }}>
-                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: c.color, fontSize: 10, fontWeight: 700, color: c.color === '#F2F4A4' || c.color === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <div style={{ width: 28, height: 28, borderRadius: '50%', background: c.color, fontSize: 10, fontWeight: 700, color: c.color === '#F2F4A4' || c.color === '#FBD0DA' ? '#292929' : '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     {c.initials}
                   </div>
                   <span style={{ flex: 1, fontSize: 13, fontWeight: 500, color: 'var(--text)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{c.name}</span>
@@ -165,10 +165,10 @@ export default function DashboardPage() {
           <div style={{ ...card, padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <h3 style={{ ...sectionH, marginBottom: 0 }}>
-                <Camera size={14} style={{ display: 'inline', marginRight: 6, verticalAlign: 'middle', color: '#F25BA5' }} />
+                <Camera size={14} style={{ display: 'inline', marginRight: 6, verticalAlign: 'middle', color: '#FC75A0' }} />
                 Instagram
               </h3>
-              <Link href="/instagram" style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Analytics <ArrowRight size={12} /></Link>
+              <Link href="/instagram" style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Analytics <ArrowRight size={12} /></Link>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {instagramAccounts.filter(ig => ig.connected).slice(0, 5).map((ig, i) => {
@@ -176,7 +176,7 @@ export default function DashboardPage() {
                 const isLast = i === 4
                 return (
                   <div key={ig.id} style={{ display: 'flex', alignItems: 'center', gap: 8, paddingBottom: isLast ? 0 : 10, marginBottom: isLast ? 0 : 10, borderBottom: isLast ? 'none' : '1px solid var(--border-3)' }}>
-                    <div style={{ width: 28, height: 28, borderRadius: '50%', background: cl.color, fontSize: 9, fontWeight: 700, color: cl.color === '#F2F4A4' || cl.color === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <div style={{ width: 28, height: 28, borderRadius: '50%', background: cl.color, fontSize: 9, fontWeight: 700, color: cl.color === '#F2F4A4' || cl.color === '#FBD0DA' ? '#292929' : '#FFFFFF', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                       {cl.initials}
                     </div>
                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -229,7 +229,7 @@ export default function DashboardPage() {
               })}
             </div>
 
-            <Link href="/financeiro" style={{ display: 'block', marginTop: 14, fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none', textAlign: 'center' }}>
+            <Link href="/financeiro" style={{ display: 'block', marginTop: 14, fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none', textAlign: 'center' }}>
               Ver financeiro completo →
             </Link>
           </div>
@@ -242,7 +242,7 @@ export default function DashboardPage() {
           <div style={{ ...card, padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <h3 style={{ ...sectionH, marginBottom: 0 }}>Posts esta semana</h3>
-              <Link href="/calendario" style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Calendário <ArrowRight size={12} /></Link>
+              <Link href="/calendario" style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Calendário <ArrowRight size={12} /></Link>
             </div>
             {thisWeekPosts.length === 0 && (
               <p style={{ fontSize: 13, color: 'var(--text-4)' }}>Nenhum post esta semana.</p>
@@ -251,7 +251,7 @@ export default function DashboardPage() {
               const isLast = i === thisWeekPosts.length - 1
               return (
                 <div key={item.id} style={{ ...rowItem, paddingBottom: isLast ? 0 : 11, marginBottom: isLast ? 0 : 11, borderBottom: isLast ? 'none' : '1px solid var(--border-3)' }}>
-                  <div style={{ width: 30, height: 30, borderRadius: '50%', background: item.clientColor, color: item.clientColor === '#F2F4A4' || item.clientColor === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <div style={{ width: 30, height: 30, borderRadius: '50%', background: item.clientColor, color: item.clientColor === '#F2F4A4' || item.clientColor === '#FBD0DA' ? '#292929' : '#FFFFFF', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     {item.clientName.split(' ').map(w => w[0]).join('').slice(0, 2)}
                   </div>
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -271,7 +271,7 @@ export default function DashboardPage() {
           <div style={{ ...card, padding: 20 }}>
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
               <h3 style={{ ...sectionH, marginBottom: 0 }}>Pagamentos recentes</h3>
-              <Link href="/financeiro" style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Ver tudo <ArrowRight size={12} /></Link>
+              <Link href="/financeiro" style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 4 }}>Ver tudo <ArrowRight size={12} /></Link>
             </div>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>

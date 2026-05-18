@@ -321,13 +321,13 @@ export default function EstrategiaPage() {
               style={{
                 background: 'transparent', border: 'none', cursor: 'pointer', padding: '10px 18px',
                 fontFamily: font, fontSize: 13, fontWeight: tab === i ? 700 : 400,
-                color: tab === i ? '#F25BA5' : 'rgba(31,27,26,0.5)',
-                borderBottom: tab === i ? '2px solid #F25BA5' : '2px solid transparent',
+                color: tab === i ? '#FC75A0' : 'rgba(31,27,26,0.5)',
+                borderBottom: tab === i ? '2px solid #FC75A0' : '2px solid transparent',
                 marginBottom: -1, transition: 'all 0.15s',
               }}>
               {t}
               {t === 'Briefing do Mês' && filledCount > 0 && (
-                <span style={{ marginLeft: 6, background: '#F25BA5', color: '#fff', borderRadius: 999, fontSize: 10, fontWeight: 700, padding: '1px 6px' }}>
+                <span style={{ marginLeft: 6, background: '#FC75A0', color: '#fff', borderRadius: 999, fontSize: 10, fontWeight: 700, padding: '1px 6px' }}>
                   {filledCount}/5
                 </span>
               )}
@@ -342,15 +342,15 @@ export default function EstrategiaPage() {
           <div>
             {/* Hero editorial header */}
             <div style={{ marginBottom: 36 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#1F1B1A', borderRadius: 999, padding: '6px 14px', marginBottom: 20 }}>
-                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#F25BA5' }} />
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#292929', borderRadius: 999, padding: '6px 14px', marginBottom: 20 }}>
+                <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#FC75A0' }} />
                 <span style={{ color: '#FFFFFF', fontSize: 11, fontWeight: 600, letterSpacing: '0.06em' }}>
                   BRIEFING MENSAL · {filledCount} DE 5 RESPONDIDAS
                 </span>
               </div>
               <h2 style={{ fontFamily: serif, fontSize: 42, fontWeight: 700, color: 'var(--text)', lineHeight: 1.15, marginBottom: 12 }}>
                 Briefing de{' '}
-                <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>
+                <span style={{ color: '#FC75A0' }}>{client.name.split(' ')[0]}</span>
                 {' '}para {mes}.
               </h2>
               <p style={{ fontSize: 15, color: 'var(--text-2)', maxWidth: 540, lineHeight: 1.7 }}>
@@ -367,14 +367,14 @@ export default function EstrategiaPage() {
                   <div key={q.id}
                     style={{
                       background: done ? '#F5F4F2' : '#FFFFFF',
-                      border: `1.5px solid ${done ? 'rgba(242,91,165,0.25)' : 'var(--border)'}`,
+                      border: `1.5px solid ${done ? 'rgba(252,117,160,0.25)' : 'var(--border)'}`,
                       borderRadius: 16, padding: '28px 32px',
                       transition: 'border-color 0.2s, background 0.2s',
                     }}>
                     {/* Question header */}
                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, marginBottom: 18 }}>
                       <div style={{
-                        fontFamily: serif, fontSize: 36, fontWeight: 700, color: done ? '#F25BA5' : 'var(--border)',
+                        fontFamily: serif, fontSize: 36, fontWeight: 700, color: done ? '#FC75A0' : 'var(--border)',
                         lineHeight: 1, flexShrink: 0, transition: 'color 0.2s', minWidth: 48,
                       }}>
                         {q.n}
@@ -384,7 +384,7 @@ export default function EstrategiaPage() {
                           <span style={{ fontSize: 10, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                             {q.label}
                           </span>
-                          {done && <Check size={12} color="#F25BA5" />}
+                          {done && <Check size={12} color="#FC75A0" />}
                         </div>
                         <p style={{ fontFamily: serif, fontSize: 20, fontWeight: 600, color: 'var(--text)', lineHeight: 1.35 }}>
                           {q.q(client.name, mes)}
@@ -403,13 +403,13 @@ export default function EstrategiaPage() {
                       rows={3}
                       style={{
                         width: '100%', background: 'var(--bg)',
-                        border: `1px solid ${done ? 'rgba(242,91,165,0.2)' : 'var(--border)'}`,
+                        border: `1px solid ${done ? 'rgba(252,117,160,0.2)' : 'var(--border)'}`,
                         borderRadius: 12, padding: '14px 16px', fontSize: 14, color: 'var(--text)',
                         lineHeight: 1.7, resize: 'vertical', outline: 'none', fontFamily: font,
                         boxSizing: 'border-box',
                       }}
-                      onFocus={e => (e.target.style.borderColor = '#F25BA5')}
-                      onBlur={e => (e.target.style.borderColor = done ? 'rgba(242,91,165,0.2)' : 'var(--border)')}
+                      onFocus={e => (e.target.style.borderColor = '#FC75A0')}
+                      onBlur={e => (e.target.style.borderColor = done ? 'rgba(252,117,160,0.2)' : 'var(--border)')}
                     />
                   </div>
                 )
@@ -422,7 +422,7 @@ export default function EstrategiaPage() {
                 onClick={handleGenStrategy}
                 disabled={stratLoading || filledCount < 3}
                 style={{
-                  background: filledCount < 3 ? 'var(--border-2)' : stratLoading ? 'rgba(31,27,26,0.7)' : '#1F1B1A',
+                  background: filledCount < 3 ? 'var(--border-2)' : stratLoading ? 'rgba(31,27,26,0.7)' : '#292929',
                   color: filledCount < 3 ? 'rgba(31,27,26,0.4)' : '#FFFFFF',
                   border: 'none', borderRadius: 999, padding: '14px 32px',
                   fontSize: 15, fontWeight: 700, cursor: filledCount < 3 || stratLoading ? 'not-allowed' : 'pointer',
@@ -454,13 +454,13 @@ export default function EstrategiaPage() {
                 {/* Strategy header */}
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
                   <div>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#F25BA5', borderRadius: 999, padding: '5px 14px', marginBottom: 12 }}>
+                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#FC75A0', borderRadius: 999, padding: '5px 14px', marginBottom: 12 }}>
                       <Sparkles size={12} color="#fff" />
                       <span style={{ color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.06em' }}>ESTRATÉGIA GERADA</span>
                     </div>
                     <h3 style={{ fontFamily: serif, fontSize: 32, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2 }}>
                       Estratégia de {client.name} —{' '}
-                      <span style={{ color: '#F25BA5' }}>{mes}</span>
+                      <span style={{ color: '#FC75A0' }}>{mes}</span>
                     </h3>
                   </div>
                   <button onClick={handleGenStrategy}
@@ -472,7 +472,7 @@ export default function EstrategiaPage() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
                   {/* 1. Posicionamento */}
-                  <StratSection label="01 — Posicionamento do mês" accent="#F25BA5">
+                  <StratSection label="01 — Posicionamento do mês" accent="#FC75A0">
                     <p style={{ fontSize: 15, color: 'var(--text)', lineHeight: 1.8 }}>{strategy.posicionamento}</p>
                   </StratSection>
 
@@ -499,7 +499,7 @@ export default function EstrategiaPage() {
                           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                             {sem.pautas.map((pauta, pi) => (
                               <div key={pi} style={{ display: 'grid', gridTemplateColumns: '90px 1fr 160px', gap: 12, alignItems: 'center', background: 'var(--bg)', borderRadius: 10, padding: '12px 14px' }}>
-                                <span style={{ background: '#1F1B1A', color: '#FFFFFF', fontSize: 10, fontWeight: 700, padding: '4px 10px', borderRadius: 999, textAlign: 'center' }}>
+                                <span style={{ background: '#292929', color: '#FFFFFF', fontSize: 10, fontWeight: 700, padding: '4px 10px', borderRadius: 999, textAlign: 'center' }}>
                                   {pauta.formato}
                                 </span>
                                 <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }}>{pauta.titulo}</p>
@@ -534,15 +534,15 @@ export default function EstrategiaPage() {
                         </div>
                       ))}
                     </div>
-                    <div style={{ background: '#1F1B1A', borderRadius: 10, padding: '14px 18px' }}>
+                    <div style={{ background: '#292929', borderRadius: 10, padding: '14px 18px' }}>
                       <p style={{ fontSize: 13, color: '#F5F4F2', fontStyle: 'italic', lineHeight: 1.7 }}>{strategy.tom.voz}</p>
                     </div>
                   </StratSection>
 
                   {/* 5. CTA */}
-                  <StratSection label="05 — CTA do mês" accent="#F25BA5">
+                  <StratSection label="05 — CTA do mês" accent="#FC75A0">
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 14 }}>
-                      <div style={{ fontFamily: serif, fontSize: 24, fontWeight: 700, color: '#F25BA5' }}>
+                      <div style={{ fontFamily: serif, fontSize: 24, fontWeight: 700, color: '#FC75A0' }}>
                         {strategy.cta.chamada}
                       </div>
                     </div>
@@ -591,7 +591,7 @@ export default function EstrategiaPage() {
               </div>
             </div>
             <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-              <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '11px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font }}>
+              <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '11px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font }}>
                 <Save size={14} /> Salvar
               </button>
             </div>
@@ -606,7 +606,7 @@ export default function EstrategiaPage() {
             <div style={{ marginBottom: 28 }}>
               <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2, marginBottom: 8 }}>
                 Quem compra de{' '}
-                <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>?
+                <span style={{ color: '#FC75A0' }}>{client.name.split(' ')[0]}</span>?
               </h2>
               <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.7 }}>
                 Crie a persona ideal baseada no segmento e perfil do cliente. Personalize os campos ou deixe em branco para gerar automaticamente.
@@ -630,7 +630,7 @@ export default function EstrategiaPage() {
                 ))}
               </div>
               <button onClick={handleGenPersona} disabled={personaLoading}
-                style={{ background: personaLoading ? 'rgba(31,27,26,0.5)' : '#1F1B1A', color: '#FFFFFF', borderRadius: 999, padding: '12px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: personaLoading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font }}>
+                style={{ background: personaLoading ? 'rgba(31,27,26,0.5)' : '#292929', color: '#FFFFFF', borderRadius: 999, padding: '12px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: personaLoading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font }}>
                 {personaLoading
                   ? <><span style={{ width: 14, height: 14, border: '2px solid rgba(255,255,255,0.3)', borderTop: '2px solid #fff', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.7s linear infinite' }} /> Gerando...</>
                   : <><Sparkles size={14} /> Gerar persona <ArrowRight size={14} /></>}
@@ -638,10 +638,10 @@ export default function EstrategiaPage() {
             </div>
 
             {persona && (
-              <div className="rg-2" style={{ background: 'linear-gradient(135deg, #F5F4F2 0%, rgba(251,208,218,0.15) 100%)', border: '1px solid rgba(242,91,165,0.2)', borderRadius: 16, padding: 28, gap: 24 }}>
+              <div className="rg-2" style={{ background: 'linear-gradient(135deg, #F5F4F2 0%, rgba(251,208,218,0.15) 100%)', border: '1px solid rgba(252,117,160,0.2)', borderRadius: 16, padding: 28, gap: 24 }}>
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
-                    <div style={{ background: '#F25BA5', color: '#fff', width: 52, height: 52, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: serif, fontSize: 20, fontWeight: 700 }}>
+                    <div style={{ background: '#FC75A0', color: '#fff', width: 52, height: 52, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: serif, fontSize: 20, fontWeight: 700 }}>
                       {persona.name.charAt(0)}
                     </div>
                     <div>
@@ -655,12 +655,12 @@ export default function EstrategiaPage() {
                       <span style={{ fontSize: 13, color: 'var(--text)' }}>{row.v}</span>
                     </div>
                   ))}
-                  <div style={{ background: '#1F1B1A', borderRadius: 10, padding: '14px 16px', marginTop: 16 }}>
+                  <div style={{ background: '#292929', borderRadius: 10, padding: '14px 16px', marginTop: 16 }}>
                     <p style={{ fontSize: 13, color: '#F5F4F2', fontStyle: 'italic', lineHeight: 1.7 }}>{persona.quote}</p>
                   </div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                  {[{ label: 'Objetivos', items: persona.goals, dot: '#22c55e' }, { label: 'Dores', items: persona.pains, dot: '#F25BA5' }, { label: 'Comportamentos', items: persona.behaviors, dot: '#F19877' }].map(sec => (
+                  {[{ label: 'Objetivos', items: persona.goals, dot: '#22c55e' }, { label: 'Dores', items: persona.pains, dot: '#FC75A0' }, { label: 'Comportamentos', items: persona.behaviors, dot: '#F19877' }].map(sec => (
                     <div key={sec.label}>
                       <p style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-4)', textTransform: 'uppercase', letterSpacing: '0.07em', marginBottom: 8 }}>{sec.label}</p>
                       {sec.items.map((item, i) => (
@@ -685,7 +685,7 @@ export default function EstrategiaPage() {
             <div style={{ marginBottom: 28 }}>
               <h2 style={{ fontFamily: serif, fontSize: 36, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2, marginBottom: 8 }}>
                 Referências para{' '}
-                <span style={{ color: '#F25BA5' }}>{client.name.split(' ')[0]}</span>.
+                <span style={{ color: '#FC75A0' }}>{client.name.split(' ')[0]}</span>.
               </h2>
               <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.7 }}>
                 Sugestões de conteúdo baseadas no segmento <strong>{client.segment}</strong>. Filtre por formato ou busque por tema.
@@ -698,7 +698,7 @@ export default function EstrategiaPage() {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
                 {comercialDates.map(d => (
                   <div key={d.date + d.event} style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, padding: '6px 12px', display: 'flex', alignItems: 'center', gap: 8 }}>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: '#F25BA5' }}>{d.date}</span>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: '#FC75A0' }}>{d.date}</span>
                     <span style={{ fontSize: 12, color: 'var(--text)' }}>{d.event}</span>
                   </div>
                 ))}
@@ -738,7 +738,7 @@ export default function EstrategiaPage() {
                   </div>
                   <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.65)', lineHeight: 1.6, fontStyle: 'italic' }}>"{ref.caption}"</p>
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                    {ref.hashtags.map(h => <span key={h} style={{ fontSize: 11, color: '#F25BA5', fontWeight: 600 }}>{h}</span>)}
+                    {ref.hashtags.map(h => <span key={h} style={{ fontSize: 11, color: '#FC75A0', fontWeight: 600 }}>{h}</span>)}
                   </div>
                 </div>
               ))}

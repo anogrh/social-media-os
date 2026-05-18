@@ -48,9 +48,9 @@ export default function PromptsPage() {
                 key={cat}
                 onClick={() => setFilterCategory(cat)}
                 style={{
-                  background: filterCategory === cat ? '#F25BA5' : '#F5F4F2',
-                  color: filterCategory === cat ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${filterCategory === cat ? '#F25BA5' : 'var(--border)'}`,
+                  background: filterCategory === cat ? '#FC75A0' : '#F5F4F2',
+                  color: filterCategory === cat ? '#FFFFFF' : '#292929',
+                  border: `1px solid ${filterCategory === cat ? '#FC75A0' : 'var(--border)'}`,
                   borderRadius: 999, padding: '7px 14px', fontSize: 12, fontWeight: 600,
                   cursor: 'pointer', transition: 'all 0.15s',
                 }}
@@ -60,7 +60,7 @@ export default function PromptsPage() {
             ))}
           </div>
           <div style={{ flex: 1 }} />
-          <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '9px 18px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
+          <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '9px 18px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}>
             <Plus size={14} /> Novo prompt
           </button>
         </div>
@@ -118,7 +118,7 @@ export default function PromptsPage() {
                         onClick={() => copyPrompt(prompt.id, prompt.content)}
                         style={{
                           background: copiedId === prompt.id ? '#d1fae5' : '#F5F4F2',
-                          color: copiedId === prompt.id ? '#10B981' : '#1F1B1A',
+                          color: copiedId === prompt.id ? '#10B981' : '#292929',
                           border: `1px solid ${copiedId === prompt.id ? '#10B981' : 'var(--border)'}`,
                           borderRadius: 999,
                           padding: '8px 16px',

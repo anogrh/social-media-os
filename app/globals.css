@@ -4,41 +4,43 @@
 
 /* ── Theme tokens ── */
 :root {
-  --bg:       #FFFFFF;
-  --bg-2:     #F5F4F2;
-  --bg-3:     rgba(31,27,26,0.04);
-  --text:     #1F1B1A;
-  --text-2:   rgba(31,27,26,0.6);
-  --text-3:   rgba(31,27,26,0.45);
-  --text-4:   rgba(31,27,26,0.3);
-  --border:   rgba(31,27,26,0.10);
-  --border-2: rgba(31,27,26,0.15);
-  --border-3: rgba(31,27,26,0.06);
-  --shadow:   rgba(31,27,26,0.12);
-  --overlay:  rgba(31,27,26,0.45);
+  --bg:       #FEFFF1;
+  --bg-2:     #EEEEE4;
+  --bg-3:     rgba(41,41,41,0.04);
+  --text:     #292929;
+  --text-2:   rgba(41,41,41,0.6);
+  --text-3:   rgba(41,41,41,0.45);
+  --text-4:   rgba(41,41,41,0.3);
+  --border:   rgba(41,41,41,0.10);
+  --border-2: rgba(41,41,41,0.15);
+  --border-3: rgba(41,41,41,0.06);
+  --shadow:   rgba(41,41,41,0.12);
+  --overlay:  rgba(41,41,41,0.5);
+  --accent:   #FC75A0;
 }
 
 [data-theme="dark"] {
-  --bg:       #111117;
-  --bg-2:     #1E1E27;
-  --bg-3:     rgba(255,255,255,0.04);
-  --text:     #F0EBE5;
-  --text-2:   rgba(240,235,229,0.65);
-  --text-3:   rgba(240,235,229,0.45);
-  --text-4:   rgba(240,235,229,0.3);
-  --border:   rgba(255,255,255,0.08);
-  --border-2: rgba(255,255,255,0.13);
-  --border-3: rgba(255,255,255,0.05);
-  --shadow:   rgba(0,0,0,0.35);
-  --overlay:  rgba(0,0,0,0.6);
+  --bg:       #292929;
+  --bg-2:     #353535;
+  --bg-3:     rgba(254,255,241,0.04);
+  --text:     #FEFFF1;
+  --text-2:   rgba(254,255,241,0.65);
+  --text-3:   rgba(254,255,241,0.45);
+  --text-4:   rgba(254,255,241,0.3);
+  --border:   rgba(254,255,241,0.10);
+  --border-2: rgba(254,255,241,0.15);
+  --border-3: rgba(254,255,241,0.06);
+  --shadow:   rgba(0,0,0,0.4);
+  --overlay:  rgba(0,0,0,0.65);
+  --accent:   #FC75A0;
 }
 
 :root {
   /* Rhania Brand Colors */
   --ivory: #FFFFFF;
   --ivory-2: #F5F4F2;
-  --ink: #1F1B1A;
-  --pink: #F25BA5;
+  --ink: #292929;
+  --pink: #FC75A0;
   --red: #EE3528;
   --peach: #F19877;
   --blush: #FBD0DA;
@@ -58,8 +60,8 @@
 @theme inline {
   --color-ivory: #FFFFFF;
   --color-ivory-2: #F5F4F2;
-  --color-ink: #1F1B1A;
-  --color-pink: #F25BA5;
+  --color-ink: #292929;
+  --color-pink: #FC75A0;
   --color-red-brand: #EE3528;
   --color-peach: #F19877;
   --color-blush: #FBD0DA;
@@ -124,7 +126,7 @@ body {
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid #F25BA5;
+  outline: 2px solid #FC75A0;
   outline-offset: 2px;
 }
 

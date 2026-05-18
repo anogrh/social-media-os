@@ -8,14 +8,14 @@ export default function DailySummary() {
       style={{
         background: 'var(--bg)',
         border: '1px solid var(--border)',
-        borderLeft: '4px solid #F25BA5',
+        borderLeft: '4px solid #FC75A0',
         fontFamily: "'Inter', system-ui, sans-serif",
       }}
       className="rounded-xl p-5"
     >
       <div className="flex items-center gap-2 mb-3">
-        <Sparkles size={15} style={{ color: '#F25BA5' }} />
-        <span style={{ fontSize: 12, fontWeight: 700, color: '#F25BA5', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+        <Sparkles size={15} style={{ color: '#FC75A0' }} />
+        <span style={{ fontSize: 12, fontWeight: 700, color: '#FC75A0', letterSpacing: '0.06em', textTransform: 'uppercase' }}>
           Resumo do dia
         </span>
         <span style={{ fontSize: 12, color: 'var(--text-4)', marginLeft: 'auto' }}>
@@ -38,7 +38,7 @@ export default function DailySummary() {
         "Hoje você tem <strong>3 tarefas urgentes</strong> para resolver: cobrar o pagamento do Café Maison (12 dias em atraso), finalizar o briefing da Clínica Dra. Ana Lima, e entregar o relatório do LOF Studio até amanhã.
         <br /><br />
         Em destaque, a Terra Viva teve seu{' '}
-        <span style={{ color: '#F25BA5' }}>melhor mês histórico</span> com +640 seguidores e engajamento de 5,6% — excelente resultado para compartilhar com a cliente.
+        <span style={{ color: '#FC75A0' }}>melhor mês histórico</span> com +640 seguidores e engajamento de 5,6% — excelente resultado para compartilhar com a cliente.
         A Sinta Gummies também está em alta, com 52k visualizações de Reels em 30 dias."
       </blockquote>
 

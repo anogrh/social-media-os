@@ -117,7 +117,7 @@ export default function InstagramPage() {
               Conectado · {ig.handle}
             </div>
           ) : (
-            <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '10px 20px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
+            <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '10px 20px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8 }}>
               <Camera size={15} /> Conectar Instagram
             </button>
           )}
@@ -128,7 +128,7 @@ export default function InstagramPage() {
           <div style={{ display: 'flex', gap: 4, background: 'var(--bg-2)', borderRadius: 999, padding: 4 }}>
             {['7d', '30d', '90d'].map(p => (
               <button key={p} style={{
-                background: p === '30d' ? '#F25BA5' : 'transparent',
+                background: p === '30d' ? '#FC75A0' : 'transparent',
                 color: p === '30d' ? '#FFFFFF' : 'var(--text-2)',
                 borderRadius: 999, border: 'none', padding: '5px 14px', fontSize: 12, fontWeight: 700, cursor: 'pointer',
               }}>
@@ -145,7 +145,7 @@ export default function InstagramPage() {
             <p style={{ fontSize: 14, color: 'var(--text-2)', maxWidth: 340, margin: '0 auto 24px' }}>
               Conecte a conta do Instagram de <strong>{client?.name}</strong> para ver os dados reais de performance.
             </p>
-            <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '12px 28px', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+            <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '12px 28px', border: 'none', fontSize: 14, fontWeight: 700, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: 10 }}>
               <Camera size={16} /> Conectar conta do Instagram
             </button>
           </div>
@@ -156,8 +156,8 @@ export default function InstagramPage() {
               {METRIC_TABS.map(tab => (
                 <button key={tab} onClick={() => setActiveTab(tab)} style={{
                   background: 'none', border: 'none',
-                  borderBottom: activeTab === tab ? '2px solid #F25BA5' : '2px solid transparent',
-                  color: activeTab === tab ? '#F25BA5' : 'var(--text-2)',
+                  borderBottom: activeTab === tab ? '2px solid #FC75A0' : '2px solid transparent',
+                  color: activeTab === tab ? '#FC75A0' : 'var(--text-2)',
                   padding: '10px 18px', fontSize: 13,
                   fontWeight: activeTab === tab ? 700 : 500,
                   cursor: 'pointer', marginBottom: -1,
@@ -174,7 +174,7 @@ export default function InstagramPage() {
                 {/* KPI row */}
                 <div className="rg-4" style={{ gap: 14, marginBottom: 20 }}>
                   {[
-                    { icon: Users, label: 'Seguidores', value: formatNumber(ig.followers), sub: `${ig.newFollowers30d >= 0 ? '+' : ''}${ig.newFollowers30d} este mês`, color: '#F25BA5', bg: '#FBD0DA', up: ig.newFollowers30d >= 0 },
+                    { icon: Users, label: 'Seguidores', value: formatNumber(ig.followers), sub: `${ig.newFollowers30d >= 0 ? '+' : ''}${ig.newFollowers30d} este mês`, color: '#FC75A0', bg: '#FBD0DA', up: ig.newFollowers30d >= 0 },
                     { icon: Eye, label: 'Alcance 30d', value: formatNumber(ig.reach30d), sub: 'contas únicas', color: '#3B82F6', bg: '#dbeafe', up: true },
                     { icon: Heart, label: 'Engajamento', value: `${ig.engagementRate}%`, sub: ig.engagementRate >= 4 ? 'Acima da média ✓' : 'Abaixo da média ↓', color: ig.engagementRate >= 4 ? '#10B981' : '#EE3528', bg: ig.engagementRate >= 4 ? '#d1fae5' : '#fee2e2', up: ig.engagementRate >= 4 },
                     { icon: Play, label: 'Views Reels', value: formatNumber(ig.reelsViews30d), sub: '30 dias', color: '#F19877', bg: '#F5F4F2', up: true },
@@ -206,7 +206,7 @@ export default function InstagramPage() {
                         <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'var(--text-4)' }} tickFormatter={d => d.slice(8)} {...chartStyle.axisProps} interval={4} />
                         <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} tickFormatter={v => formatNumber(v)} domain={['auto', 'auto']} />
                         <Tooltip contentStyle={chartStyle.contentStyle} />
-                        <Line type="monotone" dataKey="followers" stroke="#F25BA5" strokeWidth={2.5} dot={false} name="Seguidores" />
+                        <Line type="monotone" dataKey="followers" stroke="#FC75A0" strokeWidth={2.5} dot={false} name="Seguidores" />
                       </LineChart>
                     </ResponsiveContainer>
                   </div>
@@ -242,7 +242,7 @@ export default function InstagramPage() {
                       <Tooltip contentStyle={chartStyle.contentStyle} />
                       <Legend wrapperStyle={{ fontSize: 12 }} />
                       <Line type="monotone" dataKey="reach" stroke="#F19877" strokeWidth={2} dot={false} name="Alcance" />
-                      <Line type="monotone" dataKey="engagement" stroke="#F25BA5" strokeWidth={2} dot={false} name="Engajamento" />
+                      <Line type="monotone" dataKey="engagement" stroke="#FC75A0" strokeWidth={2} dot={false} name="Engajamento" />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -254,7 +254,7 @@ export default function InstagramPage() {
               <div>
                 <div className="rg-kpi" style={{ marginBottom: 20 }}>
                   {[
-                    { label: 'Alcance total 14d', value: formatNumber(storyData.reduce((a, s) => a + s.alcance, 0)), icon: Eye, color: '#F25BA5', bg: '#FBD0DA' },
+                    { label: 'Alcance total 14d', value: formatNumber(storyData.reduce((a, s) => a + s.alcance, 0)), icon: Eye, color: '#FC75A0', bg: '#FBD0DA' },
                     { label: 'Impressões 14d', value: formatNumber(storyData.reduce((a, s) => a + s.impressoes, 0)), icon: BarChart2, color: '#3B82F6', bg: '#dbeafe' },
                     { label: 'Respostas 14d', value: formatNumber(storyData.reduce((a, s) => a + s.respostas, 0)), icon: MessageCircle, color: '#10B981', bg: '#d1fae5' },
                     { label: 'Saídas (exit)', value: formatNumber(storyData.reduce((a, s) => a + s.saidas, 0)), icon: TrendingDown, color: '#EE3528', bg: '#fee2e2' },
@@ -280,7 +280,7 @@ export default function InstagramPage() {
                       <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} />
                       <Tooltip contentStyle={chartStyle.contentStyle} />
                       <Legend wrapperStyle={{ fontSize: 12 }} />
-                      <Bar dataKey="alcance" name="Alcance" fill="#F25BA5" radius={[3, 3, 0, 0]} />
+                      <Bar dataKey="alcance" name="Alcance" fill="#FC75A0" radius={[3, 3, 0, 0]} />
                       <Bar dataKey="respostas" name="Respostas" fill="#FBD0DA" radius={[3, 3, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
@@ -291,7 +291,7 @@ export default function InstagramPage() {
                   {[
                     { title: 'Melhor dia de Stories', desc: 'Stories de 12/jun tiveram 2.340 de alcance — acima 40% da média. Tema: rotina de sono.', color: '#d1fae5', border: '#10B981' },
                     { title: 'Pior sequência', desc: 'Stories de 09/jun registraram 38% de taxa de saída — avaliar se a sequência ficou longa demais.', color: '#fee2e2', border: '#EE3528' },
-                    { title: 'Dica estratégica', desc: 'Stories com enquetes tiveram 3× mais respostas. Recomendação: aumentar para 3 enquetes por semana.', color: '#FBD0DA', border: '#F25BA5' },
+                    { title: 'Dica estratégica', desc: 'Stories com enquetes tiveram 3× mais respostas. Recomendação: aumentar para 3 enquetes por semana.', color: '#FBD0DA', border: '#FC75A0' },
                   ].map(box => (
                     <div key={box.title} style={{ background: box.color, borderRadius: 12, borderLeft: `3px solid ${box.border}`, padding: '16px 18px' }}>
                       <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', marginBottom: 8 }}>{box.title}</p>
@@ -308,7 +308,7 @@ export default function InstagramPage() {
                 {/* KPIs */}
                 <div className="rg-4" style={{ gap: 12, marginBottom: 20 }}>
                   {[
-                    { label: 'Reproduções totais', value: formatNumber(reelsData.reduce((a, r) => a + r.reproducoes, 0)), icon: Play, color: '#F25BA5', bg: '#FBD0DA' },
+                    { label: 'Reproduções totais', value: formatNumber(reelsData.reduce((a, r) => a + r.reproducoes, 0)), icon: Play, color: '#FC75A0', bg: '#FBD0DA' },
                     { label: 'Compartilhamentos', value: formatNumber(reelsData.reduce((a, r) => a + r.compartilhamentos, 0)), icon: Share2, color: '#3B82F6', bg: '#dbeafe' },
                     { label: 'Salvamentos', value: formatNumber(reelsData.reduce((a, r) => a + r.salvamentos, 0)), icon: BookMarked, color: '#10B981', bg: '#d1fae5' },
                     { label: 'Alcance total', value: formatNumber(reelsData.reduce((a, r) => a + r.alcance, 0)), icon: Eye, color: '#F19877', bg: '#F5F4F2' },
@@ -341,11 +341,11 @@ export default function InstagramPage() {
                       {[...reelsData].sort((a, b) => b.reproducoes - a.reproducoes).map((r, i) => (
                         <tr key={r.id} style={{ borderTop: '1px solid var(--border-3)', background: i === 0 ? '#FBD0DA22' : undefined }}>
                           <td style={{ padding: '12px 14px', display: 'flex', alignItems: 'center', gap: 8 }}>
-                            {i === 0 && <Zap size={12} style={{ color: '#F25BA5', flexShrink: 0 }} />}
+                            {i === 0 && <Zap size={12} style={{ color: '#FC75A0', flexShrink: 0 }} />}
                             <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)', maxWidth: 180, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.titulo}</span>
                           </td>
                           <td style={{ fontSize: 12, color: 'var(--text-2)', padding: '12px 14px' }}>{r.data}</td>
-                          <td style={{ fontSize: 13, fontWeight: 700, color: '#F25BA5', padding: '12px 14px' }}>{formatNumber(r.reproducoes)}</td>
+                          <td style={{ fontSize: 13, fontWeight: 700, color: '#FC75A0', padding: '12px 14px' }}>{formatNumber(r.reproducoes)}</td>
                           <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{formatNumber(r.alcance)}</td>
                           <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{formatNumber(r.curtidas)}</td>
                           <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{r.comentarios}</td>
@@ -367,7 +367,7 @@ export default function InstagramPage() {
                       <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} {...chartStyle.axisProps} tickFormatter={v => `${(v / 1000).toFixed(0)}k`} />
                       <Tooltip contentStyle={chartStyle.contentStyle} />
                       <Legend wrapperStyle={{ fontSize: 12 }} />
-                      <Bar dataKey="reproducoes" name="Reproduções" fill="#F25BA5" radius={[3, 3, 0, 0]} />
+                      <Bar dataKey="reproducoes" name="Reproduções" fill="#FC75A0" radius={[3, 3, 0, 0]} />
                       <Bar dataKey="alcance" name="Alcance" fill="#FBD0DA" radius={[3, 3, 0, 0]} />
                     </BarChart>
                   </ResponsiveContainer>
@@ -381,7 +381,7 @@ export default function InstagramPage() {
                 {/* KPIs */}
                 <div className="rg-4" style={{ gap: 12, marginBottom: 20 }}>
                   {[
-                    { label: 'Alcance total', value: formatNumber(feedData.reduce((a, f) => a + f.alcance, 0)), icon: Eye, color: '#F25BA5', bg: '#FBD0DA' },
+                    { label: 'Alcance total', value: formatNumber(feedData.reduce((a, f) => a + f.alcance, 0)), icon: Eye, color: '#FC75A0', bg: '#FBD0DA' },
                     { label: 'Salvamentos', value: formatNumber(feedData.reduce((a, f) => a + f.salvamentos, 0)), icon: BookMarked, color: '#10B981', bg: '#d1fae5' },
                     { label: 'Compartilhamentos', value: formatNumber(feedData.reduce((a, f) => a + f.compartilhamentos, 0)), icon: Share2, color: '#3B82F6', bg: '#dbeafe' },
                     { label: 'Impressões', value: formatNumber(feedData.reduce((a, f) => a + f.impressoes, 0)), icon: Repeat2, color: '#F19877', bg: '#F5F4F2' },
@@ -417,7 +417,7 @@ export default function InstagramPage() {
                             <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 8px', borderRadius: 999, background: f.tipo === 'Carrossel' ? '#F2F4A4' : '#FBD0DA', color: 'var(--text)' }}>{f.tipo}</span>
                           </td>
                           <td style={{ fontSize: 12, color: 'var(--text-2)', padding: '12px 14px' }}>{f.data}</td>
-                          <td style={{ fontSize: 13, fontWeight: 700, color: '#F25BA5', padding: '12px 14px' }}>{formatNumber(f.alcance)}</td>
+                          <td style={{ fontSize: 13, fontWeight: 700, color: '#FC75A0', padding: '12px 14px' }}>{formatNumber(f.alcance)}</td>
                           <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{formatNumber(f.curtidas)}</td>
                           <td style={{ fontSize: 13, color: '#10B981', fontWeight: 600, padding: '12px 14px' }}>{f.salvamentos}</td>
                           <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 14px' }}>{f.compartilhamentos}</td>

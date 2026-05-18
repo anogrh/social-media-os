@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
-import { Search, Bell, ChevronDown, Menu, Settings, LogOut, X, Check } from 'lucide-react'
+import { Search, Bell, ChevronDown, Menu, Settings, LogOut, X, Check, Sun, Moon } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { alerts } from '@/lib/mock-data'
 import { useSidebar } from '@/context/SidebarContext'
+import { useTheme } from '@/context/ThemeContext'
 import { supabase } from '@/lib/supabase'
 
 interface HeaderProps {
@@ -28,6 +29,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
   const [readIds, setReadIds] = useState<Set<string>>(new Set())
 
   const { setMobileOpen } = useSidebar()
+  const { theme, toggleTheme } = useTheme()
   const router = useRouter()
 
   const profileRef = useRef<HTMLDivElement>(null)
@@ -94,7 +96,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
       <div className="flex items-center gap-2 flex-shrink-0">
         {/* Search — hidden on small screens */}
         <div
-          style={{ border: `1px solid ${searchFocused ? '#F25BA5' : 'var(--border-2)'}`, background: 'var(--bg-2)', transition: 'border-color 0.15s' }}
+          style={{ border: `1px solid ${searchFocused ? '#FC75A0' : 'var(--border-2)'}`, background: 'var(--bg-2)', transition: 'border-color 0.15s' }}
           className="relative hidden md:flex items-center rounded-2xl overflow-hidden"
         >
           <Search size={14} style={{ color: 'var(--text-4)', position: 'absolute', left: 10 }} />
@@ -106,6 +108,15 @@ export default function Header({ title, subtitle }: HeaderProps) {
             style={{ background: 'transparent', border: 'none', outline: 'none', paddingLeft: 32, paddingRight: 12, paddingTop: 7, paddingBottom: 7, fontSize: 13, color: 'var(--text)', width: 160 }}
           />
         </div>
+
+        {/* ── Theme toggle ── */}
+        <button
+          onClick={toggleTheme}
+          title={theme === 'light' ? 'Modo escuro' : 'Modo claro'}
+          style={{ background: 'var(--bg-2)', border: '1px solid var(--border)', borderRadius: 10, width: 36, height: 36, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: 'var(--text)', flexShrink: 0 }}
+        >
+          {theme === 'light' ? <Moon size={15} /> : <Sun size={15} />}
+        </button>
 
         {/* ── Notifications ──────────────────────────── */}
         <div ref={notifRef} style={{ position: 'relative' }}>
@@ -144,7 +155,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
                   )}
                 </span>
                 {unreadCount > 0 && (
-                  <button onClick={markAllRead} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 11, color: '#F25BA5', fontWeight: 600 }}>
+                  <button onClick={markAllRead} style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: 11, color: '#FC75A0', fontWeight: 600 }}>
                     Marcar tudo lido
                   </button>
                 )}
@@ -158,7 +169,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
                       onClick={() => setReadIds(prev => new Set([...prev, alert.id]))}
                       style={{
                         padding: '12px 16px', borderBottom: '1px solid var(--border-3)',
-                        background: isRead ? 'var(--bg)' : 'rgba(242,91,165,0.04)',
+                        background: isRead ? 'var(--bg)' : 'rgba(252,117,160,0.04)',
                         cursor: 'pointer', display: 'flex', gap: 10, alignItems: 'flex-start',
                       }}
                     >
@@ -170,7 +181,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
                         <p style={{ fontSize: 11, color: 'var(--text-4)', marginTop: 2 }}>{alert.clientName}</p>
                       </div>
                       {!isRead && (
-                        <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#F25BA5', flexShrink: 0, marginTop: 4 }} />
+                        <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#FC75A0', flexShrink: 0, marginTop: 4 }} />
                       )}
                     </div>
                   )
@@ -180,7 +191,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
                 )}
               </div>
               <div style={{ padding: '10px 16px', borderTop: '1px solid var(--border-3)' }}>
-                <Link href="/configuracoes" onClick={() => setNotifOpen(false)} style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, textDecoration: 'none' }}>
+                <Link href="/configuracoes" onClick={() => setNotifOpen(false)} style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, textDecoration: 'none' }}>
                   Configurar alertas →
                 </Link>
               </div>
@@ -199,7 +210,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
               fontSize: 13, color: 'var(--text)', cursor: 'pointer',
             }}
           >
-            <div style={{ background: '#F25BA5', color: '#FFFFFF', fontSize: 11, fontWeight: 700, width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ background: '#FC75A0', color: '#FFFFFF', fontSize: 11, fontWeight: 700, width: 24, height: 24, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               RN
             </div>
             <span style={{ fontWeight: 500 }} className="hidden sm:inline">Rhania</span>
@@ -216,7 +227,7 @@ export default function Header({ title, subtitle }: HeaderProps) {
               {/* User info */}
               <div style={{ padding: '14px 16px', borderBottom: '1px solid var(--border-3)', background: 'var(--bg-2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                  <div style={{ background: '#F25BA5', color: '#FFFFFF', fontSize: 13, fontWeight: 700, width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <div style={{ background: '#FC75A0', color: '#FFFFFF', fontSize: 13, fontWeight: 700, width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                     RN
                   </div>
                   <div>

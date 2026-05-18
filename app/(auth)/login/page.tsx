@@ -34,7 +34,7 @@ export default function LoginPage() {
         {/* ── Banner (esquerda no desktop / topo no mobile) ── */}
         <div className="login-banner">
           {/* Blobs decorativos */}
-          <div style={{ position: 'absolute', top: -80, right: -80, width: 300, height: 300, borderRadius: '50%', background: '#F25BA5', opacity: 0.15 }} />
+          <div style={{ position: 'absolute', top: -80, right: -80, width: 300, height: 300, borderRadius: '50%', background: '#FC75A0', opacity: 0.15 }} />
           <div style={{ position: 'absolute', bottom: 60, left: -60, width: 200, height: 200, borderRadius: '50%', background: '#F19877', opacity: 0.12 }} />
           <div style={{ position: 'absolute', top: '40%', left: '30%', width: 120, height: 120, borderRadius: '50%', background: '#FBD0DA', opacity: 0.08 }} />
           <div style={{ position: 'absolute', bottom: 200, right: 100, width: 80, height: 80, background: '#F2F4A4', opacity: 0.10, transform: 'rotate(20deg)' }} />
@@ -54,7 +54,7 @@ export default function LoginPage() {
           <div style={{ position: 'relative', zIndex: 1 }}>
             <h1 className="login-headline">
               Sua operação.{' '}
-              <span style={{ color: '#F25BA5', fontWeight: 700 }}>Centralizada.</span>
+              <span style={{ color: '#FC75A0', fontWeight: 700 }}>Centralizada.</span>
             </h1>
             <p className="login-sub">
               Gerencie todos os seus clientes, conteúdos, métricas e pagamentos em um único lugar.
@@ -74,7 +74,7 @@ export default function LoginPage() {
             <div style={{ marginBottom: 32 }}>
               <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 30, fontWeight: 700, color: 'var(--text)', lineHeight: 1.2, marginBottom: 8 }}>
                 Bem-vinda de{' '}
-                <span style={{ color: '#F25BA5', fontWeight: 700 }}>volta</span>
+                <span style={{ color: '#FC75A0', fontWeight: 700 }}>volta</span>
               </h2>
               <p style={{ color: 'var(--text-2)', fontSize: 14 }}>Entre na sua conta para continuar</p>
             </div>
@@ -99,7 +99,7 @@ export default function LoginPage() {
                     outline: 'none', transition: 'border-color 0.15s',
                     fontFamily: "'Inter', system-ui, sans-serif",
                   }}
-                  onFocus={e => (e.target.style.borderColor = '#F25BA5')}
+                  onFocus={e => (e.target.style.borderColor = '#FC75A0')}
                   onBlur={e => (e.target.style.borderColor = 'var(--border-2)')}
                 />
               </div>
@@ -123,7 +123,7 @@ export default function LoginPage() {
                       outline: 'none', transition: 'border-color 0.15s',
                       fontFamily: "'Inter', system-ui, sans-serif",
                     }}
-                    onFocus={e => (e.target.style.borderColor = '#F25BA5')}
+                    onFocus={e => (e.target.style.borderColor = '#FC75A0')}
                     onBlur={e => (e.target.style.borderColor = 'var(--border-2)')}
                   />
                   <button
@@ -146,7 +146,7 @@ export default function LoginPage() {
                 type="submit"
                 disabled={loading}
                 style={{
-                  background: loading ? 'rgba(242,91,165,0.6)' : '#F25BA5',
+                  background: loading ? 'rgba(252,117,160,0.6)' : '#FC75A0',
                   color: '#FFFFFF', border: 'none', borderRadius: 999,
                   padding: '15px 24px', fontSize: 15, fontWeight: 700,
                   cursor: loading ? 'wait' : 'pointer', marginTop: 4,
@@ -183,7 +183,7 @@ export default function LoginPage() {
         /* ── Banner ── */
         .login-banner {
           flex: 1;
-          background: #1F1B1A;
+          background: #292929;
           position: relative;
           overflow: hidden;
           display: flex;

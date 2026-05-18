@@ -15,7 +15,7 @@ const pieData = clients.filter(c => c.status !== 'encerrado').map(c => ({
   color: c.color,
 }))
 
-const PIE_COLORS = ['#F25BA5', '#F19877', '#FBD0DA', '#F2F4A4', '#1F1B1A', '#86efac']
+const PIE_COLORS = ['#FC75A0', '#F19877', '#FBD0DA', '#F2F4A4', '#292929', '#86efac']
 
 const totalPrevisto = clients.filter(c => c.status !== 'encerrado').reduce((a, c) => a + c.monthlyValue, 0)
 const totalRecebido = payments.filter(p => p.status === 'pago').reduce((a, p) => a + p.value, 0)
@@ -55,8 +55,8 @@ export default function FinanceiroPage() {
                 <YAxis tick={{ fontSize: 11, fill: 'var(--text-4)', fontFamily: 'Inter' }} axisLine={false} tickLine={false} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
                 <Tooltip contentStyle={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, fontFamily: 'Inter', fontSize: 12 }} formatter={(v: unknown) => formatCurrency(v as number)} />
                 <Legend wrapperStyle={{ fontSize: 12, fontFamily: 'Inter' }} />
-                <Bar dataKey="previsto" name="Previsto" fill="#F5F4F2" stroke="#F25BA5" strokeWidth={1} radius={[4,4,0,0]} />
-                <Bar dataKey="recebido" name="Recebido" fill="#F25BA5" radius={[4,4,0,0]} />
+                <Bar dataKey="previsto" name="Previsto" fill="#F5F4F2" stroke="#FC75A0" strokeWidth={1} radius={[4,4,0,0]} />
+                <Bar dataKey="recebido" name="Recebido" fill="#FC75A0" radius={[4,4,0,0]} />
                 <Bar dataKey="pendente" name="Pendente" fill="#FBD0DA" radius={[4,4,0,0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -93,7 +93,7 @@ export default function FinanceiroPage() {
         <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden' }}>
           <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-3)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>Todos os pagamentos</h3>
-            <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '7px 16px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
+            <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '7px 16px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer' }}>
               + Registrar pagamento
             </button>
           </div>
@@ -110,7 +110,7 @@ export default function FinanceiroPage() {
                 <tr key={p.id} style={{ borderTop: '1px solid var(--border-3)' }}>
                   <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px', fontWeight: 600 }}>{p.clientName}</td>
                   <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{p.reference}</td>
-                  <td style={{ fontSize: 13, color: p.status === 'atrasado' ? '#EE3528' : '#1F1B1A', padding: '12px 16px' }}>{formatDate(p.dueDate)}</td>
+                  <td style={{ fontSize: 13, color: p.status === 'atrasado' ? '#EE3528' : '#292929', padding: '12px 16px' }}>{formatDate(p.dueDate)}</td>
                   <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{p.paidDate ? formatDate(p.paidDate) : '—'}</td>
                   <td style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', padding: '12px 16px' }}>{formatCurrency(p.value)}</td>
                   <td style={{ fontSize: 13, color: 'var(--text-2)', padding: '12px 16px' }}>{p.method || '—'}</td>

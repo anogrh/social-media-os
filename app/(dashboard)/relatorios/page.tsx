@@ -65,15 +65,15 @@ export default function RelatoriosPage() {
                       onClick={() => setReportType(rt.id)}
                       style={{
                         display: 'flex', alignItems: 'center', gap: 10,
-                        background: reportType === rt.id ? 'rgba(242,91,165,0.08)' : '#FFFFFF',
-                        border: `1px solid ${reportType === rt.id ? '#F25BA5' : 'var(--border)'}`,
+                        background: reportType === rt.id ? 'rgba(252,117,160,0.08)' : '#FFFFFF',
+                        border: `1px solid ${reportType === rt.id ? '#FC75A0' : 'var(--border)'}`,
                         borderRadius: 10, padding: '10px 12px',
                         cursor: 'pointer', textAlign: 'left', width: '100%',
                       }}
                     >
-                      <rt.icon size={16} style={{ color: reportType === rt.id ? '#F25BA5' : 'var(--text-4)', flexShrink: 0 }} />
+                      <rt.icon size={16} style={{ color: reportType === rt.id ? '#FC75A0' : 'var(--text-4)', flexShrink: 0 }} />
                       <div>
-                        <p style={{ fontSize: 12, fontWeight: 700, color: reportType === rt.id ? '#F25BA5' : '#1F1B1A' }}>{rt.label}</p>
+                        <p style={{ fontSize: 12, fontWeight: 700, color: reportType === rt.id ? '#FC75A0' : '#292929' }}>{rt.label}</p>
                         <p style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 1 }}>{rt.description}</p>
                       </div>
                     </button>
@@ -83,7 +83,7 @@ export default function RelatoriosPage() {
 
               <button
                 onClick={() => setGenerated(true)}
-                style={{ width: '100%', background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '11px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}
+                style={{ width: '100%', background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '11px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}
               >
                 Gerar relatório
               </button>
@@ -101,14 +101,14 @@ export default function RelatoriosPage() {
             ) : (
               <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 14, overflow: 'hidden' }}>
                 {/* Report header */}
-                <div style={{ background: '#1F1B1A', padding: '32px 36px' }}>
+                <div style={{ background: '#292929', padding: '32px 36px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                     <div>
                       <p style={{ fontSize: 11, color: 'rgba(255,252,236,0.4)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 8 }}>Relatório {REPORT_TYPES.find(r => r.id === reportType)?.label}</p>
                       <h2 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 28, fontWeight: 700, color: '#FFFFFF' }}>{client?.name}</h2>
                       <p style={{ color: 'rgba(255,252,236,0.5)', fontSize: 14, marginTop: 4 }}>{MONTHS[parseInt(selectedMonth)]} 2025 · {client?.instagramHandle}</p>
                     </div>
-                    <div style={{ background: '#F25BA5', width: 48, height: 48, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ background: '#FC75A0', width: 48, height: 48, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       <span style={{ fontFamily: "'Playfair Display'", color: '#FFFFFF', fontWeight: 600, fontSize: 18 }}>i.</span>
                     </div>
                   </div>

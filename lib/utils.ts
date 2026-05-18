@@ -95,7 +95,7 @@ export function getTaskPriorityColor(priority: TaskPriority): string {
 
 export function getContentFormatColor(format: ContentFormat): string {
   switch (format) {
-    case 'reels': return 'bg-[#F25BA5] text-white'
+    case 'reels': return 'bg-[#FC75A0] text-white'
     case 'carrossel': return 'bg-[#F19877] text-white'
     case 'story': return 'bg-[#FBD0DA] text-[#1F1B1A]'
     case 'feed': return 'bg-[#F2F4A4] text-[#1F1B1A]'

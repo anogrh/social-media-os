@@ -18,7 +18,7 @@ export default function MetricCard({
   value,
   change,
   changeLabel,
-  accent = '#F25BA5',
+  accent = '#FC75A0',
   iconBg = '#FBD0DA',
   className,
 }: MetricCardProps) {

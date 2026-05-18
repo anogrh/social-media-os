@@ -14,12 +14,12 @@ const emptyPost = {
 }
 
 const FORMAT_STYLES: Record<string, { background: string; color: string }> = {
-  reels:     { background: '#F25BA5', color: '#fff' },
+  reels:     { background: '#FC75A0', color: '#fff' },
   carrossel: { background: '#F19877', color: '#fff' },
   story:     { background: '#FBD0DA', color: 'var(--text)' },
   feed:      { background: '#F2F4A4', color: 'var(--text)' },
   blog:      { background: '#dbeafe', color: '#1d4ed8' },
-  tiktok:    { background: '#1F1B1A', color: '#fff' },
+  tiktok:    { background: '#292929', color: '#fff' },
 }
 
 function getDaysInMonth(year: number, month: number) {
@@ -67,7 +67,7 @@ function CardDetailModal({
         {/* Header */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '24px 28px 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: post.clientColor, flexShrink: 0, color: post.clientColor === '#F2F4A4' || post.clientColor === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 32, height: 32, borderRadius: '50%', background: post.clientColor, flexShrink: 0, color: post.clientColor === '#F2F4A4' || post.clientColor === '#FBD0DA' ? '#292929' : '#FFFFFF', fontSize: 10, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               {post.clientName.split(' ').map((w: string) => w[0]).join('').slice(0, 2)}
             </div>
             <div>
@@ -191,7 +191,7 @@ function CardDetailModal({
               <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 10 }}>
                 {(draft.attachments || []).map((name, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'var(--bg-2)', borderRadius: 8, padding: '8px 12px' }}>
-                    <Paperclip size={12} color="#F25BA5" />
+                    <Paperclip size={12} color="#FC75A0" />
                     <span style={{ fontSize: 13, color: 'var(--text)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{name}</span>
                     <button onClick={() => removeAttachment(name)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex', flexShrink: 0 }}>
                       <X size={14} />
@@ -229,7 +229,7 @@ function CardDetailModal({
             </button>
             <button
               onClick={() => onSave(draft)}
-              style={{ flex: 2, background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}
+              style={{ flex: 2, background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}
             >
               Salvar alterações
             </button>
@@ -347,9 +347,9 @@ export default function CalendarioPage() {
                 key={f}
                 onClick={() => setFilterFormat(f)}
                 style={{
-                  background: filterFormat === f ? '#F25BA5' : '#F5F4F2',
-                  color: filterFormat === f ? '#FFFFFF' : '#1F1B1A',
-                  border: `1px solid ${filterFormat === f ? '#F25BA5' : 'var(--border)'}`,
+                  background: filterFormat === f ? '#FC75A0' : '#F5F4F2',
+                  color: filterFormat === f ? '#FFFFFF' : '#292929',
+                  border: `1px solid ${filterFormat === f ? '#FC75A0' : 'var(--border)'}`,
                   borderRadius: 999, padding: '7px 14px', fontSize: 12, fontWeight: 600,
                   cursor: 'pointer', transition: 'all 0.15s',
                 }}
@@ -363,7 +363,7 @@ export default function CalendarioPage() {
 
           <button
             onClick={() => setShowModal(true)}
-            style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '9px 18px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+            style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '9px 18px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
           >
             <Plus size={14} /> Nova pauta
           </button>
@@ -413,15 +413,15 @@ export default function CalendarioPage() {
                       minHeight: 100, padding: 8,
                       borderRight: '1px solid var(--border-3)',
                       borderBottom: '1px solid var(--border-3)',
-                      background: isSelected ? 'rgba(242,91,165,0.06)' : 'transparent',
+                      background: isSelected ? 'rgba(252,117,160,0.06)' : 'transparent',
                       cursor: 'pointer', transition: 'background 0.1s',
                     }}
-                    className="hover:bg-[rgba(242,91,165,0.04)]"
+                    className="hover:bg-[rgba(252,117,160,0.04)]"
                   >
                     <div style={{
                       width: 24, height: 24, borderRadius: '50%',
-                      background: isToday ? '#F25BA5' : 'transparent',
-                      color: isToday ? '#FFFFFF' : isSelected ? '#F25BA5' : '#1F1B1A',
+                      background: isToday ? '#FC75A0' : 'transparent',
+                      color: isToday ? '#FFFFFF' : isSelected ? '#FC75A0' : '#292929',
                       fontSize: 13, fontWeight: isToday || isSelected ? 700 : 400,
                       display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4,
                     }}>
@@ -463,7 +463,7 @@ export default function CalendarioPage() {
                   className="hover:shadow-md"
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 6 }}>
-                    <div style={{ width: 24, height: 24, borderRadius: '50%', background: post.clientColor, flexShrink: 0, color: post.clientColor === '#F2F4A4' || post.clientColor === '#FBD0DA' ? '#1F1B1A' : '#FFFFFF', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ width: 24, height: 24, borderRadius: '50%', background: post.clientColor, flexShrink: 0, color: post.clientColor === '#F2F4A4' || post.clientColor === '#FBD0DA' ? '#292929' : '#FFFFFF', fontSize: 9, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                       {post.clientName.split(' ').map((w: string) => w[0]).join('').slice(0, 2)}
                     </div>
                     <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{post.clientName}</span>
@@ -484,7 +484,7 @@ export default function CalendarioPage() {
                     </div>
                   </div>
                   {post.deliveryDate && (
-                    <div style={{ marginTop: 6, fontSize: 11, color: '#F25BA5', display: 'flex', alignItems: 'center', gap: 4 }}>
+                    <div style={{ marginTop: 6, fontSize: 11, color: '#FC75A0', display: 'flex', alignItems: 'center', gap: 4 }}>
                       <CalendarCheck size={11} /> Entrega: {post.deliveryDate}
                     </div>
                   )}
@@ -517,7 +517,7 @@ export default function CalendarioPage() {
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
               <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 600, color: 'var(--text)' }}>
-                Nova <span style={{ color: '#F25BA5' }}>pauta</span>
+                Nova <span style={{ color: '#FC75A0' }}>pauta</span>
               </h3>
               <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex' }}>
                 <X size={20} />
@@ -603,7 +603,7 @@ export default function CalendarioPage() {
                   Cancelar
                 </button>
                 <button onClick={handleAddPost} disabled={!newPost.clientId || !newPost.date}
-                  style={{ flex: 2, background: newPost.clientId && newPost.date ? '#F25BA5' : 'var(--border)', color: newPost.clientId && newPost.date ? '#FFFFFF' : 'var(--text-4)', borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700, cursor: newPost.clientId && newPost.date ? 'pointer' : 'not-allowed', fontFamily: "'Inter', system-ui, sans-serif" }}>
+                  style={{ flex: 2, background: newPost.clientId && newPost.date ? '#FC75A0' : 'var(--border)', color: newPost.clientId && newPost.date ? '#FFFFFF' : 'var(--text-4)', borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700, cursor: newPost.clientId && newPost.date ? 'pointer' : 'not-allowed', fontFamily: "'Inter', system-ui, sans-serif" }}>
                   Adicionar pauta
                 </button>
               </div>

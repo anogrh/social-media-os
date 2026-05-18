@@ -26,7 +26,7 @@ const SECTION_TITLE = { fontFamily: "'Playfair Display', Georgia, serif", fontSi
 
 function getFormatStyle(format: string) {
   const map: Record<string, { background: string; color: string }> = {
-    reels: { background: '#F25BA5', color: '#fff' },
+    reels: { background: '#FC75A0', color: '#fff' },
     carrossel: { background: '#F19877', color: '#fff' },
     story: { background: '#FBD0DA', color: 'var(--text)' },
     feed: { background: '#F2F4A4', color: 'var(--text)' },
@@ -68,7 +68,7 @@ function ClientDetailView({ client }: { client: Client }) {
   const [editMode, setEditMode] = useState(false)
   const [editData, setEditData] = useState<Partial<Client>>({ ...client })
 
-  const iconColor = client.color === '#F2F4A4' || client.color === '#FBD0DA' || client.color === '#C8B8E8' ? '#1F1B1A' : '#FFFFFF'
+  const iconColor = client.color === '#F2F4A4' || client.color === '#FBD0DA' || client.color === '#C8B8E8' ? '#292929' : '#FFFFFF'
 
   function handleSave() {
     updateClient(client.id, editData)
@@ -102,7 +102,7 @@ function ClientDetailView({ client }: { client: Client }) {
       <div style={{ padding: '24px 28px' }}>
         {/* Back */}
         <Link href="/clientes" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text-2)', marginBottom: 20, textDecoration: 'none', fontFamily: "'Inter', system-ui, sans-serif" }}
-          className="hover:text-[#F25BA5] transition-colors">
+          className="hover:text-[#FC75A0] transition-colors">
           <ArrowLeft size={14} /> Voltar para clientes
         </Link>
 
@@ -131,7 +131,7 @@ function ClientDetailView({ client }: { client: Client }) {
               </div>
               <div>
                 <p style={{ fontSize: 11, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Próx. pgto.</p>
-                <p style={{ fontSize: 16, fontWeight: 700, color: client.paymentStatus === 'atrasado' ? '#EE3528' : '#1F1B1A', marginTop: 4 }}>
+                <p style={{ fontSize: 16, fontWeight: 700, color: client.paymentStatus === 'atrasado' ? '#EE3528' : '#292929', marginTop: 4 }}>
                   {formatDate(client.nextPaymentDate)}
                 </p>
                 <StatusBadge status={client.paymentStatus} size="sm" />
@@ -190,7 +190,7 @@ function ClientDetailView({ client }: { client: Client }) {
                 </div>
                 <div>
                   <label style={LABEL_STYLE}>Cor da marca</label>
-                  <input style={INPUT_STYLE} value={editData.color || ''} onChange={e => setField('color', e.target.value)} placeholder="#F25BA5" />
+                  <input style={INPUT_STYLE} value={editData.color || ''} onChange={e => setField('color', e.target.value)} placeholder="#FC75A0" />
                 </div>
               </div>
             </div>
@@ -295,7 +295,7 @@ function ClientDetailView({ client }: { client: Client }) {
                 </button>
                 <button
                   onClick={handleSave}
-                  style={{ background: '#F25BA5', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '10px 24px', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}
+                  style={{ background: '#FC75A0', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '10px 24px', fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: "'Inter', system-ui, sans-serif" }}
                 >
                   Salvar
                 </button>
@@ -313,8 +313,8 @@ function ClientDetailView({ client }: { client: Client }) {
               style={{
                 background: 'none',
                 border: 'none',
-                borderBottom: activeTab === tab ? '2px solid #F25BA5' : '2px solid transparent',
-                color: activeTab === tab ? '#F25BA5' : 'var(--text-2)',
+                borderBottom: activeTab === tab ? '2px solid #FC75A0' : '2px solid transparent',
+                color: activeTab === tab ? '#FC75A0' : 'var(--text-2)',
                 padding: '10px 16px',
                 fontSize: 13,
                 fontWeight: activeTab === tab ? 700 : 500,
@@ -425,7 +425,7 @@ function ClientDetailView({ client }: { client: Client }) {
                       <XAxis dataKey="date" tick={{ fontSize: 10, fill: 'var(--text-4)' }} tickFormatter={d => d.slice(8)} axisLine={false} tickLine={false} interval={4} />
                       <YAxis tick={{ fontSize: 10, fill: 'var(--text-4)' }} axisLine={false} tickLine={false} tickFormatter={v => formatNumber(v)} domain={['auto', 'auto']} />
                       <Tooltip contentStyle={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 10, fontFamily: 'Inter', fontSize: 12 }} />
-                      <Line type="monotone" dataKey="followers" stroke="#F25BA5" strokeWidth={2} dot={false} name="Seguidores" />
+                      <Line type="monotone" dataKey="followers" stroke="#FC75A0" strokeWidth={2} dot={false} name="Seguidores" />
                     </LineChart>
                   </ResponsiveContainer>
                 </div>
@@ -451,7 +451,7 @@ function ClientDetailView({ client }: { client: Client }) {
                 <Camera size={40} style={{ color: 'var(--shadow)', margin: '0 auto 16px' }} />
                 <p style={{ fontSize: 15, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>Instagram não conectado</p>
                 <p style={{ fontSize: 13, color: 'var(--text-2)', marginBottom: 20 }}>Conecte a conta do Instagram para ver as métricas em tempo real.</p>
-                <button style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '10px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
+                <button style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '10px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
                   Conectar Instagram
                 </button>
               </div>
@@ -598,7 +598,7 @@ function ClientDetailView({ client }: { client: Client }) {
             />
             <button
               onClick={handleSaveNotes}
-              style={{ marginTop: 12, background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '10px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}
+              style={{ marginTop: 12, background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '10px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer' }}
             >
               Salvar anotações
             </button>

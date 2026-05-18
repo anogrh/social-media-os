@@ -84,7 +84,7 @@ export default function TarefasPage() {
           <div style={{ flex: 1 }} />
           <button
             onClick={() => setShowModal(true)}
-            style={{ background: '#F25BA5', color: '#FFFFFF', borderRadius: 999, padding: '10px 20px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 7 }}
+            style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '10px 20px', border: 'none', fontSize: 13, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 7 }}
           >
             <Plus size={15} /> Nova tarefa
           </button>
@@ -207,7 +207,7 @@ export default function TarefasPage() {
             {/* Modal header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
               <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 600, color: 'var(--text)' }}>
-                Nova <span style={{ color: '#F25BA5' }}>tarefa</span>
+                Nova <span style={{ color: '#FC75A0' }}>tarefa</span>
               </h3>
               <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex' }}>
                 <X size={20} />
@@ -327,7 +327,7 @@ export default function TarefasPage() {
                   onClick={handleAdd}
                   disabled={!form.title.trim()}
                   style={{
-                    flex: 2, background: form.title.trim() ? '#F25BA5' : 'var(--border)',
+                    flex: 2, background: form.title.trim() ? '#FC75A0' : 'var(--border)',
                     color: form.title.trim() ? '#FFFFFF' : 'var(--text-4)',
                     borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700,
                     cursor: form.title.trim() ? 'pointer' : 'not-allowed', fontFamily: font,

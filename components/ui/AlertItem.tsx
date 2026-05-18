@@ -58,7 +58,7 @@ export default function AlertItem({ alert }: AlertItemProps) {
           {alert.actionLabel && alert.actionHref && (
             <Link
               href={alert.actionHref}
-              style={{ color: '#F25BA5', fontSize: 12, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 3, marginTop: 6 }}
+              style={{ color: '#FC75A0', fontSize: 12, fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 3, marginTop: 6 }}
               className="hover:underline"
             >
               {alert.actionLabel} <ArrowRight size={11} />

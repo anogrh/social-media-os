@@ -17,7 +17,7 @@ export default function ClientsOverview() {
     >
       <div className="flex items-center justify-between mb-4">
         <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>Clientes ativos</h3>
-        <Link href="/clientes" style={{ fontSize: 12, color: '#F25BA5', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 3 }} className="hover:underline">
+        <Link href="/clientes" style={{ fontSize: 12, color: '#FC75A0', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 3 }} className="hover:underline">
           Ver todos <ArrowRight size={11} />
         </Link>
       </div>
@@ -43,7 +43,7 @@ export default function ClientsOverview() {
                   <span
                     style={{ width: 6, height: 6, borderRadius: '50%', background: client.status === 'ativo' ? '#10B981' : client.status === 'onboarding' ? '#3B82F6' : '#F59E0B', flexShrink: 0, display: 'inline-block' }}
                   />
-                  <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }} className="truncate group-hover:text-[#F25BA5] transition-colors">
+                  <p style={{ fontSize: 13, fontWeight: 600, color: 'var(--text)' }} className="truncate group-hover:text-[#FC75A0] transition-colors">
                     {client.name}
                   </p>
                 </div>

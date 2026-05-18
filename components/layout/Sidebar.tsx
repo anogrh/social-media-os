@@ -6,12 +6,11 @@ import { useState } from 'react'
 import {
   LayoutDashboard, Users, CalendarDays, CheckSquare,
   DollarSign, FileText, Lightbulb, BarChart, Library, MessageSquare,
-  ChevronLeft, ChevronRight, Camera, Settings, LogOut, X, Sun, Moon
+  ChevronLeft, ChevronRight, Camera, Settings, LogOut, X
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { supabase } from '@/lib/supabase'
 import { useSidebar } from '@/context/SidebarContext'
-import { useTheme } from '@/context/ThemeContext'
 
 const navGroups = [
   {
@@ -73,7 +72,6 @@ export default function Sidebar() {
   const router = useRouter()
   const [collapsed, setCollapsed] = useState(false)
   const { mobileOpen, setMobileOpen } = useSidebar()
-  const { theme, toggleTheme } = useTheme()
 
   async function handleLogout() {
     await supabase.auth.signOut()
@@ -183,9 +181,9 @@ export default function Sidebar() {
                     onClick={handleNavClick}
                     title={collapsed ? item.label : undefined}
                     style={{
-                      borderLeft: active ? '2px solid #F25BA5' : '2px solid transparent',
-                      color: active ? '#F25BA5' : 'var(--text)',
-                      background: active ? 'rgba(242,91,165,0.07)' : 'transparent',
+                      borderLeft: active ? '2px solid #FC75A0' : '2px solid transparent',
+                      color: active ? '#FC75A0' : 'var(--text)',
+                      background: active ? 'rgba(252,117,160,0.07)' : 'transparent',
                       fontFamily: "'Inter', system-ui, sans-serif",
                       fontSize: 14,
                       fontWeight: active ? 600 : 400,
@@ -204,31 +202,6 @@ export default function Sidebar() {
           ))}
         </nav>
 
-        {/* Theme toggle */}
-        <div style={{ borderTop: '1px solid var(--border)', padding: collapsed ? '10px 8px' : '10px 12px' }}>
-          <button
-            onClick={toggleTheme}
-            title={theme === 'light' ? 'Modo escuro' : 'Modo claro'}
-            style={{
-              display: 'flex', alignItems: 'center', gap: 10,
-              width: '100%', background: 'none', border: '1px solid var(--border)',
-              borderRadius: 10, padding: collapsed ? '8px' : '9px 12px',
-              cursor: 'pointer', color: 'var(--text)',
-              fontFamily: "'Inter', system-ui, sans-serif",
-              justifyContent: collapsed ? 'center' : 'flex-start',
-              transition: 'background 0.15s',
-            }}
-            className="hover:bg-black/5"
-          >
-            {theme === 'light' ? <Moon size={15} /> : <Sun size={15} color="#F25BA5" />}
-            {!collapsed && (
-              <span style={{ fontSize: 13, fontWeight: 500 }}>
-                {theme === 'light' ? 'Modo escuro' : 'Modo claro'}
-              </span>
-            )}
-          </button>
-        </div>
-
         {/* User */}
         {!collapsed && (
           <div
@@ -236,7 +209,7 @@ export default function Sidebar() {
             className="px-4 py-3 flex items-center gap-3"
           >
             <div
-              style={{ background: '#F25BA5', color: '#FFFFFF', fontSize: 12, fontWeight: 700 }}
+              style={{ background: '#FC75A0', color: '#FFFFFF', fontSize: 12, fontWeight: 700 }}
               className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
             >
               RN
@@ -249,7 +222,7 @@ export default function Sidebar() {
               onClick={handleLogout}
               title="Sair"
               style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', padding: 4, borderRadius: 6, flexShrink: 0 }}
-              className="hover:text-[#F25BA5] transition-colors"
+              className="hover:text-[#FC75A0] transition-colors"
             >
               <LogOut size={15} />
             </button>
@@ -260,7 +233,7 @@ export default function Sidebar() {
         <button
           onClick={() => setCollapsed(!collapsed)}
           style={{ background: 'var(--bg-2)', border: '1px solid var(--border)', color: 'var(--text)' }}
-          className="lg:flex hidden absolute -right-3 top-6 w-6 h-6 rounded-full items-center justify-center hover:bg-[#F25BA5] hover:text-white hover:border-[#F25BA5] transition-colors z-10"
+          className="lg:flex hidden absolute -right-3 top-6 w-6 h-6 rounded-full items-center justify-center hover:bg-[#FC75A0] hover:text-white hover:border-[#FC75A0] transition-colors z-10"
         >
           {collapsed ? <ChevronRight size={12} /> : <ChevronLeft size={12} />}
         </button>

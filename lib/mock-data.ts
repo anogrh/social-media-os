@@ -25,7 +25,7 @@ export const clients: Client[] = [
     phone: '(11) 99234-5678',
     website: 'sintagummies.com.br',
     initials: 'SG',
-    color: '#F25BA5',
+    color: '#FC75A0',
     instagramHandle: '@sintagummies',
     instagramAccountId: 'ig1',
     monthlyValue: 2800,
@@ -265,12 +265,12 @@ export const documents: Document[] = [
 // ─── Tasks ─────────────────────────────────────────────────────────────────
 
 export const tasks: Task[] = [
-  { id: 't1', title: 'Criar grid de maio para Sinta Gummies', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#F25BA5', status: 'concluido', priority: 'alta', assignee: 'Mariana S.', dueDate: '2025-05-28', createdAt: '2025-05-15', tags: ['grid', 'instagram'] },
+  { id: 't1', title: 'Criar grid de maio para Sinta Gummies', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#FC75A0', status: 'concluido', priority: 'alta', assignee: 'Mariana S.', dueDate: '2025-05-28', createdAt: '2025-05-15', tags: ['grid', 'instagram'] },
   { id: 't3', title: 'Relatório mensal LOF Professional — maio', clientId: 'c2', clientName: 'LOF Professional', clientColor: '#1F1B1A', status: 'em_andamento', priority: 'alta', assignee: 'Rhania N.', dueDate: '2025-06-03', createdAt: '2025-05-28', tags: ['relatorio'] },
   { id: 't4', title: 'Briefing e estratégia Marcelo Rezende', clientId: 'c4', clientName: 'Marcelo Rezende Arquiteto', clientColor: '#C4A882', status: 'em_revisao', priority: 'urgente', assignee: 'Rhania N.', dueDate: '2025-06-01', createdAt: '2025-05-25', tags: ['estrategia', 'onboarding'] },
   { id: 't5', title: 'Cobrar pagamento Madbucks', clientId: 'c3', clientName: 'Madbucks', clientColor: '#F19877', status: 'pendente', priority: 'urgente', assignee: 'Rhania N.', dueDate: '2025-06-02', createdAt: '2025-06-01', tags: ['financeiro'] },
   { id: 't6', title: 'Grid junho LOF Professional — aprovação', clientId: 'c2', clientName: 'LOF Professional', clientColor: '#1F1B1A', status: 'em_revisao', priority: 'alta', assignee: 'Mariana S.', dueDate: '2025-06-05', createdAt: '2025-05-30', tags: ['grid', 'aprovacao'] },
-  { id: 't7', title: 'Criar stories interativos Sinta Gummies', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#F25BA5', status: 'pendente', priority: 'media', assignee: 'Mariana S.', dueDate: '2025-06-12', createdAt: '2025-06-01', tags: ['stories'] },
+  { id: 't7', title: 'Criar stories interativos Sinta Gummies', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#FC75A0', status: 'pendente', priority: 'media', assignee: 'Mariana S.', dueDate: '2025-06-12', createdAt: '2025-06-01', tags: ['stories'] },
   { id: 't9', title: 'Renovar contrato Vera Valle — julho', clientId: 'c5', clientName: 'Vera Valle', clientColor: '#C8B8E8', status: 'pendente', priority: 'media', assignee: 'Rhania N.', dueDate: '2025-06-20', createdAt: '2025-06-01', tags: ['contrato'] },
   { id: 't10', title: 'Campanha Dia dos Namorados Madbucks', clientId: 'c3', clientName: 'Madbucks', clientColor: '#F19877', status: 'concluido', priority: 'alta', assignee: 'Mariana S.', dueDate: '2025-06-10', createdAt: '2025-05-25', tags: ['campanha'] },
 ]
@@ -278,15 +278,15 @@ export const tasks: Task[] = [
 // ─── Content Calendar ──────────────────────────────────────────────────────
 
 export const calendarItems: ContentCalendarItem[] = [
-  { id: 'cal1', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#F25BA5', date: '2025-06-02', format: 'reels', caption: 'Os 5 benefícios do magnésio que você precisa saber', status: 'publicado', assignee: 'Mariana S.', scheduledTime: '18:00', tags: ['saude', 'educacao'] },
+  { id: 'cal1', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#FC75A0', date: '2025-06-02', format: 'reels', caption: 'Os 5 benefícios do magnésio que você precisa saber', status: 'publicado', assignee: 'Mariana S.', scheduledTime: '18:00', tags: ['saude', 'educacao'] },
   { id: 'cal2', clientId: 'c2', clientName: 'LOF Professional', clientColor: '#1F1B1A', date: '2025-06-02', format: 'carrossel', caption: 'Projeto residencial SP — processo completo', status: 'publicado', assignee: 'Mariana S.', scheduledTime: '12:00' },
-  { id: 'cal4', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#F25BA5', date: '2025-06-04', format: 'story', caption: 'Enquete: qual é o seu horário favorito para suplementar?', status: 'publicado', scheduledTime: '09:00' },
+  { id: 'cal4', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#FC75A0', date: '2025-06-04', format: 'story', caption: 'Enquete: qual é o seu horário favorito para suplementar?', status: 'publicado', scheduledTime: '09:00' },
   { id: 'cal5', clientId: 'c3', clientName: 'Madbucks', clientColor: '#F19877', date: '2025-06-05', format: 'feed', caption: 'O blend artesanal que seu fim de semana merece', status: 'publicado', assignee: 'Mariana S.', scheduledTime: '10:00' },
   { id: 'cal6', clientId: 'c2', clientName: 'LOF Professional', clientColor: '#1F1B1A', date: '2025-06-06', format: 'reels', caption: 'Tour completo pelo escritório que projetamos para startup', status: 'aprovado', scheduledTime: '18:00' },
-  { id: 'cal8', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#F25BA5', date: '2025-06-09', format: 'carrossel', caption: 'Colágeno + vitamina C: a combinação que você não esperava', status: 'producao', assignee: 'Mariana S.' },
+  { id: 'cal8', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#FC75A0', date: '2025-06-09', format: 'carrossel', caption: 'Colágeno + vitamina C: a combinação que você não esperava', status: 'producao', assignee: 'Mariana S.' },
   { id: 'cal9', clientId: 'c3', clientName: 'Madbucks', clientColor: '#F19877', date: '2025-06-10', format: 'reels', caption: 'Dia dos Namorados no Madbucks — experiência completa', status: 'revisao', assignee: 'Mariana S.' },
   { id: 'cal10', clientId: 'c2', clientName: 'LOF Professional', clientColor: '#1F1B1A', date: '2025-06-11', format: 'feed', caption: 'Detalhes que fazem a diferença: metais escovados', status: 'rascunho', assignee: 'Mariana S.' },
-  { id: 'cal12', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#F25BA5', date: '2025-06-13', format: 'story', caption: 'Dica rápida: como armazenar seus suplementos', status: 'rascunho' },
+  { id: 'cal12', clientId: 'c1', clientName: 'Sinta Gummies', clientColor: '#FC75A0', date: '2025-06-13', format: 'story', caption: 'Dica rápida: como armazenar seus suplementos', status: 'rascunho' },
   { id: 'cal13', clientId: 'c4', clientName: 'Marcelo Rezende Arquiteto', clientColor: '#C4A882', date: '2025-06-16', format: 'carrossel', caption: 'O processo criativo por trás do projeto residencial', status: 'ideia' },
   { id: 'cal15', clientId: 'c2', clientName: 'LOF Professional', clientColor: '#1F1B1A', date: '2025-06-18', format: 'carrossel', caption: 'Paleta de materiais nobres para interiores 2025', status: 'ideia' },
 ]

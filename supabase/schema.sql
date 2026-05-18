@@ -324,14 +324,9 @@ CREATE INDEX idx_content_calendar_date ON content_calendar(scheduled_date);
 CREATE INDEX idx_instagram_metrics_account ON instagram_daily_metrics(account_id, date);
 CREATE INDEX idx_alerts_read ON alerts(read);
 
--- ─── Row Level Security ──────────────────────────────────────
-ALTER TABLE clients ENABLE ROW LEVEL SECURITY;
-ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
-ALTER TABLE tasks ENABLE ROW LEVEL SECURITY;
-ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
-ALTER TABLE contracts ENABLE ROW LEVEL SECURITY;
-
--- Example RLS policy (auth.uid() requires Supabase Auth)
--- CREATE POLICY "Authenticated users can read clients"
---   ON clients FOR SELECT
---   USING (auth.role() = 'authenticated');
+-- ─── Row Level Security (ativado após configurar autenticação) ───
+-- ALTER TABLE clients ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE payments ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE tasks ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE documents ENABLE ROW LEVEL SECURITY;
+-- ALTER TABLE contracts ENABLE ROW LEVEL SECURITY;

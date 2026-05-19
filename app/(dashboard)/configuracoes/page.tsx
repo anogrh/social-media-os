@@ -449,22 +449,24 @@ export default function ConfiguracoesPage() {
                     </div>
                   </div>
                 ) : (
-                  {inviteStatus && (
-                    <div style={{
-                      marginBottom: 12, padding: '10px 14px', borderRadius: 10, fontSize: 13,
-                      background: inviteStatus.type === 'success' ? '#d1fae5' : '#fee2e2',
-                      color: inviteStatus.type === 'success' ? '#065f46' : '#991b1b',
+                  <>
+                    {inviteStatus && (
+                      <div style={{
+                        marginBottom: 12, padding: '10px 14px', borderRadius: 10, fontSize: 13,
+                        background: inviteStatus.type === 'success' ? '#d1fae5' : '#fee2e2',
+                        color: inviteStatus.type === 'success' ? '#065f46' : '#991b1b',
+                      }}>
+                        {inviteStatus.message}
+                      </div>
+                    )}
+                    <button onClick={() => setShowAddForm(true)} style={{
+                      background: 'var(--bg-2)', color: 'var(--text)', border: '1px dashed var(--shadow)',
+                      borderRadius: 12, padding: '12px 20px', fontSize: 13, fontWeight: 600,
+                      cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center', fontFamily: font,
                     }}>
-                      {inviteStatus.message}
-                    </div>
-                  )}
-                  <button onClick={() => setShowAddForm(true)} style={{
-                    background: 'var(--bg-2)', color: 'var(--text)', border: '1px dashed var(--shadow)',
-                    borderRadius: 12, padding: '12px 20px', fontSize: 13, fontWeight: 600,
-                    cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center', fontFamily: font,
-                  }}>
-                    <Plus size={14} /> Convidar membro
-                  </button>
+                      <Plus size={14} /> Convidar membro
+                    </button>
+                  </>
                 )}
 
                 <div style={{ marginTop: 24, background: '#FBD0DA22', borderRadius: 12, padding: '16px 18px', border: '1px solid rgba(252,117,160,0.2)' }}>

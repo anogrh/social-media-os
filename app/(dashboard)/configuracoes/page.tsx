@@ -86,6 +86,8 @@ export default function ConfiguracoesPage() {
   const [editForm, setEditForm] = useState<Partial<TeamMember>>({})
   const [showAddForm, setShowAddForm] = useState(false)
   const [newMember, setNewMember] = useState({ name: '', email: '', role: 'Equipe' })
+  const [inviteLoading, setInviteLoading] = useState(false)
+  const [inviteStatus, setInviteStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   useEffect(() => {
     const stored = localStorage.getItem('sm_team_members')
@@ -125,19 +127,42 @@ export default function ConfiguracoesPage() {
     saveTeam(team.filter(m => m.id !== id))
   }
 
-  function addMember() {
+  async function addMember() {
     if (!newMember.name.trim() || !newMember.email.trim()) return
-    const member: TeamMember = {
-      id: Date.now().toString(),
-      name: newMember.name.trim(),
-      email: newMember.email.trim(),
-      role: newMember.role,
-      avatar: getInitials(newMember.name),
-      active: true,
+    setInviteLoading(true)
+    setInviteStatus(null)
+
+    try {
+      const res = await fetch('/api/invite-user', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: newMember.email.trim(), name: newMember.name.trim(), role: newMember.role }),
+      })
+      const data = await res.json()
+
+      if (!res.ok) {
+        setInviteStatus({ type: 'error', message: data.error || 'Erro ao enviar convite.' })
+        setInviteLoading(false)
+        return
+      }
+
+      const member: TeamMember = {
+        id: Date.now().toString(),
+        name: newMember.name.trim(),
+        email: newMember.email.trim(),
+        role: newMember.role,
+        avatar: getInitials(newMember.name),
+        active: true,
+      }
+      saveTeam([...team, member])
+      setNewMember({ name: '', email: '', role: 'Equipe' })
+      setShowAddForm(false)
+      setInviteStatus({ type: 'success', message: `Convite enviado para ${member.email}! ✓` })
+      setTimeout(() => setInviteStatus(null), 5000)
+    } catch {
+      setInviteStatus({ type: 'error', message: 'Erro de conexão. Tente novamente.' })
     }
-    saveTeam([...team, member])
-    setNewMember({ name: '', email: '', role: 'Equipe' })
-    setShowAddForm(false)
+    setInviteLoading(false)
   }
 
   // ── Notifications ─────────────────────────────────────────────────────────────
@@ -401,22 +426,44 @@ export default function ConfiguracoesPage() {
                         </select>
                       </div>
                     </div>
+                    {inviteStatus && (
+                      <div style={{
+                        marginBottom: 12, padding: '10px 14px', borderRadius: 10, fontSize: 13,
+                        background: inviteStatus.type === 'success' ? '#d1fae5' : '#fee2e2',
+                        color: inviteStatus.type === 'success' ? '#065f46' : '#991b1b',
+                      }}>
+                        {inviteStatus.message}
+                      </div>
+                    )}
                     <div style={{ display: 'flex', gap: 8 }}>
-                      <button onClick={addMember} style={{ background: '#FC75A0', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '9px 20px', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
-                        <Plus size={13} /> Adicionar membro
+                      <button onClick={addMember} disabled={inviteLoading} style={{ background: inviteLoading ? 'rgba(252,117,160,0.6)' : '#FC75A0', color: '#FFFFFF', border: 'none', borderRadius: 999, padding: '9px 20px', fontSize: 12, fontWeight: 700, cursor: inviteLoading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontFamily: font }}>
+                        {inviteLoading ? (
+                          <><span style={{ width: 12, height: 12, border: '2px solid rgba(255,255,255,0.4)', borderTop: '2px solid #fff', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.7s linear infinite' }} /> Enviando convite...</>
+                        ) : (
+                          <><Plus size={13} /> Convidar membro</>
+                        )}
                       </button>
-                      <button onClick={() => { setShowAddForm(false); setNewMember({ name: '', email: '', role: 'Equipe' }) }} style={{ background: 'transparent', color: 'var(--text-2)', border: '1px solid var(--border)', borderRadius: 999, padding: '9px 18px', fontSize: 12, cursor: 'pointer', fontFamily: font }}>
+                      <button onClick={() => { setShowAddForm(false); setNewMember({ name: '', email: '', role: 'Equipe' }); setInviteStatus(null) }} style={{ background: 'transparent', color: 'var(--text-2)', border: '1px solid var(--border)', borderRadius: 999, padding: '9px 18px', fontSize: 12, cursor: 'pointer', fontFamily: font }}>
                         Cancelar
                       </button>
                     </div>
                   </div>
                 ) : (
+                  {inviteStatus && (
+                    <div style={{
+                      marginBottom: 12, padding: '10px 14px', borderRadius: 10, fontSize: 13,
+                      background: inviteStatus.type === 'success' ? '#d1fae5' : '#fee2e2',
+                      color: inviteStatus.type === 'success' ? '#065f46' : '#991b1b',
+                    }}>
+                      {inviteStatus.message}
+                    </div>
+                  )}
                   <button onClick={() => setShowAddForm(true)} style={{
                     background: 'var(--bg-2)', color: 'var(--text)', border: '1px dashed var(--shadow)',
                     borderRadius: 12, padding: '12px 20px', fontSize: 13, fontWeight: 600,
                     cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, width: '100%', justifyContent: 'center', fontFamily: font,
                   }}>
-                    <Plus size={14} /> Adicionar membro
+                    <Plus size={14} /> Convidar membro
                   </button>
                 )}
 

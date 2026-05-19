@@ -4,7 +4,8 @@ import { useState, useRef } from 'react'
 import { Plus, ChevronLeft, ChevronRight, X, Clock, Paperclip, FileText, CalendarCheck, AlignLeft, Type } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import StatusBadge from '@/components/ui/StatusBadge'
-import { calendarItems, clients } from '@/lib/mock-data'
+import { useCalendar } from '@/context/CalendarContext'
+import { useClients } from '@/context/ClientsContext'
 import type { ContentCalendarItem } from '@/lib/types'
 
 const emptyPost = {
@@ -258,14 +259,15 @@ const inputStyle: React.CSSProperties = {
    PÁGINA PRINCIPAL
 ───────────────────────────────────────────────────── */
 export default function CalendarioPage() {
-  const [year, setYear]               = useState(2025)
-  const [month, setMonth]             = useState(5)
-  const [selectedDay, setSelectedDay] = useState<number | null>(6)
+  const { items: allItems, addItem, updateItem } = useCalendar()
+  const { clients } = useClients()
+  const [year, setYear]               = useState(new Date().getFullYear())
+  const [month, setMonth]             = useState(new Date().getMonth())
+  const [selectedDay, setSelectedDay] = useState<number | null>(null)
   const [filterClient, setFilterClient] = useState('todos')
   const [filterFormat, setFilterFormat] = useState('todos')
   const [showModal, setShowModal]     = useState(false)
   const [newPost, setNewPost]         = useState(emptyPost)
-  const [allItems, setAllItems]       = useState<ContentCalendarItem[]>(calendarItems)
   const [detailPost, setDetailPost]   = useState<ContentCalendarItem | null>(null)
 
   const daysInMonth = getDaysInMonth(year, month)
@@ -286,11 +288,10 @@ export default function CalendarioPage() {
 
   const selectedPosts = selectedDay ? getPostsForDay(selectedDay) : []
 
-  function handleAddPost() {
+  async function handleAddPost() {
     if (!newPost.clientId || !newPost.date) return
     const client = clients.find(c => c.id === newPost.clientId)!
-    const item: ContentCalendarItem = {
-      id: `cal${Date.now()}`,
+    await addItem({
       clientId: newPost.clientId,
       clientName: client.name,
       clientColor: client.color,
@@ -303,14 +304,13 @@ export default function CalendarioPage() {
       description: newPost.description,
       content: newPost.content,
       deliveryDate: newPost.deliveryDate,
-    }
-    setAllItems(prev => [...prev, item])
+    })
     setNewPost(emptyPost)
     setShowModal(false)
   }
 
-  function handleSaveDetail(updated: ContentCalendarItem) {
-    setAllItems(prev => prev.map(p => p.id === updated.id ? updated : p))
+  async function handleSaveDetail(updated: ContentCalendarItem) {
+    await updateItem(updated.id, updated)
     setDetailPost(null)
   }
 

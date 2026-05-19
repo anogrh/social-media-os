@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { Plus, X, Calendar, User, Tag, AlertCircle } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import StatusBadge from '@/components/ui/StatusBadge'
-import { tasks as initialTasks, clients } from '@/lib/mock-data'
+import { useTasks } from '@/context/TasksContext'
+import { useClients } from '@/context/ClientsContext'
 import { formatDate } from '@/lib/utils'
 import type { TaskStatus, Task, TaskPriority } from '@/lib/types'
 
@@ -28,7 +29,8 @@ const emptyForm = {
 }
 
 export default function TarefasPage() {
-  const [taskList, setTaskList] = useState<Task[]>(initialTasks)
+  const { tasks: taskList, addTask, updateTask, isReady } = useTasks()
+  const { clients } = useClients()
   const [showModal, setShowModal] = useState(false)
   const [form, setForm] = useState(emptyForm)
 
@@ -38,11 +40,10 @@ export default function TarefasPage() {
     return taskList.filter(t => t.status === status)
   }
 
-  function handleAdd() {
+  async function handleAdd() {
     if (!form.title.trim()) return
     const client = clients.find(c => c.id === form.clientId)
-    const newTask: Task = {
-      id: `t${Date.now()}`,
+    await addTask({
       title: form.title,
       clientId: form.clientId || undefined,
       clientName: client?.name,
@@ -52,15 +53,24 @@ export default function TarefasPage() {
       dueDate: form.dueDate || new Date().toISOString().split('T')[0],
       assignee: form.assignee || undefined,
       tags: form.tags ? form.tags.split(',').map(t => t.trim()).filter(Boolean) : [],
-      createdAt: new Date().toISOString().split('T')[0],
-    }
-    setTaskList(prev => [newTask, ...prev])
+    })
     setForm(emptyForm)
     setShowModal(false)
   }
 
-  function moveTask(taskId: string, newStatus: TaskStatus) {
-    setTaskList(prev => prev.map(t => t.id === taskId ? { ...t, status: newStatus } : t))
+  async function moveTask(taskId: string, newStatus: TaskStatus) {
+    await updateTask(taskId, { status: newStatus })
+  }
+
+  if (!isReady) {
+    return (
+      <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
+        <Header title="Tarefas" subtitle="Kanban da operação" />
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '50vh' }}>
+          <div style={{ width: 32, height: 32, borderRadius: '50%', border: '3px solid #FC75A0', borderTopColor: 'transparent', animation: 'spin 0.8s linear infinite' }} />
+        </div>
+      </div>
+    )
   }
 
   return (

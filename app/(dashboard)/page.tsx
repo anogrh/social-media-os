@@ -1,5 +1,6 @@
 'use client'
 
+import { useMemo } from 'react'
 import Link from 'next/link'
 import { Users, DollarSign, TrendingDown, CheckSquare, AlertCircle, ArrowRight, Clock, Camera } from 'lucide-react'
 import {
@@ -10,24 +11,12 @@ import MetricCard from '@/components/ui/MetricCard'
 import StatusBadge from '@/components/ui/StatusBadge'
 import AlertItem from '@/components/ui/AlertItem'
 import DailySummary from '@/components/dashboard/DailySummary'
-import { alerts, revenueByMonth, clients, calendarItems, payments, tasks, instagramAccounts } from '@/lib/mock-data'
+import { alerts, instagramAccounts } from '@/lib/mock-data'
+import { useClients } from '@/context/ClientsContext'
+import { usePayments } from '@/context/PaymentsContext'
+import { useTasks } from '@/context/TasksContext'
+import { useCalendar } from '@/context/CalendarContext'
 import { formatCurrency, formatDate } from '@/lib/utils'
-
-// ── derived data ──────────────────────────────────────────────────────────────
-const activeClients = clients.filter(c => c.status === 'ativo' || c.status === 'onboarding')
-const totalPrevisto = clients.filter(c => c.status !== 'encerrado').reduce((a, c) => a + c.monthlyValue, 0)
-const totalRecebido = payments.filter(p => p.status === 'pago').reduce((a, p) => a + p.value, 0)
-const overduePayments = payments.filter(p => p.status === 'atrasado')
-const pendingPayments = payments.filter(p => p.status === 'pendente')
-
-const overdueTasks = tasks.filter(t => t.status !== 'concluido' && t.dueDate < '2025-06-16')
-const todayTasks = tasks.filter(t => t.status !== 'concluido').slice(0, 5)
-const thisWeekPosts = calendarItems.filter(c => c.date >= '2025-06-09' && c.date <= '2025-06-15').slice(0, 5)
-const recentPayments = payments.slice(0, 5)
-
-// top performing client
-const topClient = instagramAccounts.filter(ig => ig.connected).sort((a, b) => b.newFollowers30d - a.newFollowers30d)[0]
-const topClientName = clients.find(c => c.id === topClient?.clientId)?.name
 
 const chartStyle = {
   content: { background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, fontFamily: 'Inter', fontSize: 12 },
@@ -50,6 +39,47 @@ const sectionH = { fontFamily: "'Playfair Display', Georgia, serif", fontSize: 1
 const rowItem = { display: 'flex', alignItems: 'center', gap: 10, paddingBottom: 11, marginBottom: 11, borderBottom: '1px solid var(--border-3)' } as const
 
 export default function DashboardPage() {
+  const { clients } = useClients()
+  const { payments } = usePayments()
+  const { tasks } = useTasks()
+  const { items: calendarItems } = useCalendar()
+
+  const today = new Date().toISOString().split('T')[0]
+  const weekStart = new Date()
+  weekStart.setDate(weekStart.getDate() - weekStart.getDay())
+  const weekEnd = new Date(weekStart)
+  weekEnd.setDate(weekEnd.getDate() + 6)
+  const weekStartStr = weekStart.toISOString().split('T')[0]
+  const weekEndStr = weekEnd.toISOString().split('T')[0]
+
+  const activeClients = clients.filter(c => c.status === 'ativo' || c.status === 'onboarding')
+  const totalPrevisto = clients.filter(c => c.status !== 'encerrado').reduce((a, c) => a + c.monthlyValue, 0)
+  const totalRecebido = payments.filter(p => p.status === 'pago').reduce((a, p) => a + p.value, 0)
+  const overduePayments = payments.filter(p => p.status === 'atrasado')
+  const pendingPayments = payments.filter(p => p.status === 'pendente')
+
+  const overdueTasks = tasks.filter(t => t.status !== 'concluido' && t.dueDate < today)
+  const todayTasks = tasks.filter(t => t.status !== 'concluido').slice(0, 5)
+  const thisWeekPosts = calendarItems.filter(c => c.date >= weekStartStr && c.date <= weekEndStr).slice(0, 5)
+  const recentPayments = payments.slice(0, 5)
+
+  const revenueByMonth = useMemo(() => {
+    const months: Record<string, { month: string; previsto: number; recebido: number; pendente: number }> = {}
+    payments.forEach(p => {
+      const m = p.dueDate.slice(0, 7)
+      const label = new Date(p.dueDate + 'T00:00:00').toLocaleDateString('pt-BR', { month: 'short' })
+      if (!months[m]) months[m] = { month: label.charAt(0).toUpperCase() + label.slice(1, 3), previsto: 0, recebido: 0, pendente: 0 }
+      months[m].previsto += p.value
+      if (p.status === 'pago') months[m].recebido += p.value
+      else months[m].pendente += p.value
+    })
+    return Object.values(months).sort((a, b) => a.month.localeCompare(b.month))
+  }, [payments])
+
+  // top performing client
+  const topClient = instagramAccounts.filter(ig => ig.connected).sort((a, b) => b.newFollowers30d - a.newFollowers30d)[0]
+  const topClientName = clients.find(c => c.id === topClient?.clientId)?.name
+
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Dashboard" subtitle="Visão geral da operação" />
@@ -59,8 +89,8 @@ export default function DashboardPage() {
         {/* ── 1. KPI CARDS ────────────────────────────────────────────── */}
         <div className="rg-kpi" style={{ marginBottom: 24 }}>
           <MetricCard icon={Users}       label="Clientes ativos"   value={String(activeClients.length)} change={20}  changeLabel="vs. mês anterior"     iconBg="#FBD0DA" accent="#FC75A0" />
-          <MetricCard icon={DollarSign}  label="Receita prevista"  value={formatCurrency(totalPrevisto)} change={13}  changeLabel="jun/2025"              iconBg="#d1fae5" accent="#10B981" />
-          <MetricCard icon={DollarSign}  label="Recebido"          value={formatCurrency(totalRecebido)} change={-8}  changeLabel="jun/2025 (parcial)"    iconBg="#dbeafe" accent="#3B82F6" />
+          <MetricCard icon={DollarSign}  label="Receita prevista"  value={formatCurrency(totalPrevisto)} change={13}  changeLabel="mês atual"              iconBg="#d1fae5" accent="#10B981" />
+          <MetricCard icon={DollarSign}  label="Recebido"          value={formatCurrency(totalRecebido)} change={-8}  changeLabel="mês atual (parcial)"    iconBg="#dbeafe" accent="#3B82F6" />
           <MetricCard icon={CheckSquare} label="Tarefas atrasadas" value={String(overdueTasks.length)}   change={-15} changeLabel="vs. semana passada"    iconBg="#fee2e2" accent="#EE3528" />
           <MetricCard icon={TrendingDown} label="Clientes c/ queda" value="2"                            changeLabel="Café Maison, Bloom"                 iconBg="#fef9c3" accent="#F59E0B" />
         </div>
@@ -93,6 +123,10 @@ export default function DashboardPage() {
                 </div>
               )
             })}
+
+            {todayTasks.length === 0 && (
+              <p style={{ fontSize: 13, color: 'var(--text-4)' }}>Nenhuma tarefa pendente.</p>
+            )}
           </div>
 
           {/* AI Daily Summary */}
@@ -172,7 +206,8 @@ export default function DashboardPage() {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
               {instagramAccounts.filter(ig => ig.connected).slice(0, 5).map((ig, i) => {
-                const cl = clients.find(c => c.id === ig.clientId)!
+                const cl = clients.find(c => c.id === ig.clientId)
+                if (!cl) return null
                 const isLast = i === 4
                 return (
                   <div key={ig.id} style={{ display: 'flex', alignItems: 'center', gap: 8, paddingBottom: isLast ? 0 : 10, marginBottom: isLast ? 0 : 10, borderBottom: isLast ? 'none' : '1px solid var(--border-3)' }}>
@@ -293,6 +328,11 @@ export default function DashboardPage() {
                     </tr>
                   )
                 })}
+                {recentPayments.length === 0 && (
+                  <tr>
+                    <td colSpan={4} style={{ padding: '20px 0', fontSize: 13, color: 'var(--text-4)', textAlign: 'center' }}>Nenhum pagamento registrado.</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>

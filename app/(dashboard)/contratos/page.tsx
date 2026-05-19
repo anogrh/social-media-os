@@ -1,10 +1,14 @@
 'use client'
 
-import { Upload, Download, FileText, FileImage, FileCheck, File } from 'lucide-react'
+import { useState } from 'react'
+import { Upload, Download, FileText, FileImage, FileCheck, File, Plus, X } from 'lucide-react'
 import Header from '@/components/layout/Header'
 import StatusBadge from '@/components/ui/StatusBadge'
-import { documents, contracts } from '@/lib/mock-data'
+import { useContracts } from '@/context/ContractsContext'
+import { useClients } from '@/context/ClientsContext'
+import { documents } from '@/lib/mock-data'
 import { formatDate } from '@/lib/utils'
+import type { Contract } from '@/lib/types'
 
 const docTypeIcon: Record<string, React.ElementType> = {
   contrato: FileCheck,
@@ -33,12 +37,45 @@ const docGroups = [
   { key: 'outro', label: 'Outros' },
 ]
 
+const emptyForm = {
+  clientId: '',
+  type: 'social_media',
+  startDate: '',
+  value: '',
+  fileName: '',
+  status: 'pendente_assinatura' as Contract['status'],
+}
+
 export default function ContratosPage() {
+  const { contracts, addContract, isReady } = useContracts()
+  const { clients } = useClients()
+  const [showModal, setShowModal] = useState(false)
+  const [form, setForm] = useState(emptyForm)
+
+  const font = "'Inter', system-ui, sans-serif"
+
+  async function handleAdd() {
+    if (!form.clientId || !form.startDate || !form.value || !form.fileName) return
+    const client = clients.find(c => c.id === form.clientId)
+    if (!client) return
+    await addContract({
+      clientId: form.clientId,
+      clientName: client.name,
+      type: form.type,
+      startDate: form.startDate,
+      value: Number(form.value),
+      fileName: form.fileName,
+      status: form.status,
+    })
+    setForm(emptyForm)
+    setShowModal(false)
+  }
+
   return (
     <div style={{ background: 'var(--bg)', minHeight: '100vh' }}>
       <Header title="Contratos & documentos" subtitle="Todos os arquivos e contratos" />
 
-      <div style={{ padding: '24px 28px', fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <div style={{ padding: '24px 28px', fontFamily: font }}>
         {/* Upload area */}
         <div style={{
           border: '2px dashed var(--border-2)',
@@ -61,8 +98,14 @@ export default function ContratosPage() {
 
         {/* Contracts table */}
         <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', marginBottom: 24 }}>
-          <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-3)', background: 'var(--bg-2)' }}>
+          <div style={{ padding: '16px 20px', borderBottom: '1px solid var(--border-3)', background: 'var(--bg-2)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 15, fontWeight: 600, color: 'var(--text)' }}>Contratos ativos</h3>
+            <button
+              onClick={() => setShowModal(true)}
+              style={{ background: '#FC75A0', color: '#FFFFFF', borderRadius: 999, padding: '7px 16px', border: 'none', fontSize: 12, fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6 }}
+            >
+              <Plus size={13} /> Novo contrato
+            </button>
           </div>
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead style={{ background: 'var(--bg-2)' }}>
@@ -97,6 +140,16 @@ export default function ContratosPage() {
                   </td>
                 </tr>
               ))}
+              {contracts.length === 0 && !isReady && (
+                <tr>
+                  <td colSpan={6} style={{ padding: '28px 16px', textAlign: 'center', fontSize: 13, color: 'var(--text-4)' }}>Carregando...</td>
+                </tr>
+              )}
+              {contracts.length === 0 && isReady && (
+                <tr>
+                  <td colSpan={6} style={{ padding: '28px 16px', textAlign: 'center', fontSize: 13, color: 'var(--text-4)' }}>Nenhum contrato cadastrado.</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -135,6 +188,124 @@ export default function ContratosPage() {
           )
         })}
       </div>
+
+      {/* ── MODAL NOVO CONTRATO ── */}
+      {showModal && (
+        <div style={{
+          position: 'fixed', inset: 0, background: 'var(--overlay)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50,
+          backdropFilter: 'blur(2px)',
+        }} onClick={() => setShowModal(false)}>
+          <div style={{
+            background: 'var(--bg)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 520,
+            boxShadow: '0 24px 64px var(--shadow)', fontFamily: font,
+          }} onClick={e => e.stopPropagation()}>
+
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>
+              <h3 style={{ fontFamily: "'Playfair Display', Georgia, serif", fontSize: 22, fontWeight: 600, color: 'var(--text)' }}>
+                Novo <span style={{ color: '#FC75A0' }}>contrato</span>
+              </h3>
+              <button onClick={() => setShowModal(false)} style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-4)', display: 'flex' }}>
+                <X size={20} />
+              </button>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>Cliente *</label>
+                <select
+                  value={form.clientId}
+                  onChange={e => setForm(f => ({ ...f, clientId: e.target.value }))}
+                  style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
+                >
+                  <option value="">Selecione...</option>
+                  {clients.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
+                </select>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>Tipo</label>
+                  <input
+                    value={form.type}
+                    onChange={e => setForm(f => ({ ...f, type: e.target.value }))}
+                    placeholder="Ex: social_media"
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font, boxSizing: 'border-box' }}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>Início *</label>
+                  <input
+                    type="date"
+                    value={form.startDate}
+                    onChange={e => setForm(f => ({ ...f, startDate: e.target.value }))}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font, boxSizing: 'border-box' }}
+                  />
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>Valor (R$) *</label>
+                  <input
+                    type="number"
+                    value={form.value}
+                    onChange={e => setForm(f => ({ ...f, value: e.target.value }))}
+                    placeholder="0,00"
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font, boxSizing: 'border-box' }}
+                  />
+                </div>
+                <div>
+                  <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>Status</label>
+                  <select
+                    value={form.status}
+                    onChange={e => setForm(f => ({ ...f, status: e.target.value as Contract['status'] }))}
+                    style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font }}
+                  >
+                    <option value="pendente_assinatura">Pendente assinatura</option>
+                    <option value="ativo">Ativo</option>
+                    <option value="expirado">Expirado</option>
+                    <option value="cancelado">Cancelado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--text-2)', textTransform: 'uppercase', letterSpacing: '0.07em', display: 'block', marginBottom: 6 }}>Nome do arquivo *</label>
+                <input
+                  value={form.fileName}
+                  onChange={e => setForm(f => ({ ...f, fileName: e.target.value }))}
+                  placeholder="Ex: contrato-marca-junho-2025.pdf"
+                  style={{ width: '100%', border: '1px solid var(--border-2)', borderRadius: 12, padding: '10px 14px', fontSize: 13, background: 'var(--bg-2)', color: 'var(--text)', outline: 'none', fontFamily: font, boxSizing: 'border-box' }}
+                />
+              </div>
+
+              <div style={{ display: 'flex', gap: 10, marginTop: 8 }}>
+                <button
+                  onClick={() => { setShowModal(false); setForm(emptyForm) }}
+                  style={{ flex: 1, border: '1px solid var(--border-2)', background: 'none', borderRadius: 999, padding: '11px', fontSize: 13, fontWeight: 700, cursor: 'pointer', color: 'var(--text-2)', fontFamily: font }}
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={handleAdd}
+                  disabled={!form.clientId || !form.startDate || !form.value || !form.fileName}
+                  style={{
+                    flex: 2,
+                    background: form.clientId && form.startDate && form.value && form.fileName ? '#FC75A0' : 'var(--border)',
+                    color: form.clientId && form.startDate && form.value && form.fileName ? '#FFFFFF' : 'var(--text-4)',
+                    borderRadius: 999, border: 'none', padding: '11px', fontSize: 13, fontWeight: 700,
+                    cursor: form.clientId && form.startDate && form.value && form.fileName ? 'pointer' : 'not-allowed',
+                    fontFamily: font, transition: 'all 0.15s',
+                  }}
+                >
+                  Criar contrato
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -80,7 +80,7 @@ export default function FinanceiroPage() {
         {/* Top cards */}
         <div className="rg-4" style={{ gap: 14, marginBottom: 24 }}>
           {[
-            { label: 'Receita prevista (jun)', value: formatCurrency(totalPrevisto), color: 'var(--text)', bg: '#F5F4F2' },
+            { label: 'Receita prevista (jun)', value: formatCurrency(totalPrevisto), color: 'var(--text)', bg: 'var(--bg-2)' },
             { label: 'Receita recebida (total)', value: formatCurrency(totalRecebido), color: '#10B981', bg: '#d1fae5' },
             { label: 'Pendente', value: formatCurrency(totalPendente), color: '#F59E0B', bg: '#fef9c3' },
             { label: 'Inadimplente', value: formatCurrency(totalAtrasado), color: '#EE3528', bg: '#fee2e2' },
@@ -104,7 +104,7 @@ export default function FinanceiroPage() {
                 <YAxis tick={{ fontSize: 11, fill: 'var(--text-4)', fontFamily: 'Inter' }} axisLine={false} tickLine={false} tickFormatter={v => `${(v/1000).toFixed(0)}k`} />
                 <Tooltip contentStyle={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 12, fontFamily: 'Inter', fontSize: 12 }} formatter={(v: unknown) => formatCurrency(v as number)} />
                 <Legend wrapperStyle={{ fontSize: 12, fontFamily: 'Inter' }} />
-                <Bar dataKey="previsto" name="Previsto" fill="#F5F4F2" stroke="#FC75A0" strokeWidth={1} radius={[4,4,0,0]} />
+                <Bar dataKey="previsto" name="Previsto" fill="var(--bg-3)" stroke="#FC75A0" strokeWidth={1} radius={[4,4,0,0]} />
                 <Bar dataKey="recebido" name="Recebido" fill="#FC75A0" radius={[4,4,0,0]} />
                 <Bar dataKey="pendente" name="Pendente" fill="#FBD0DA" radius={[4,4,0,0]} />
               </BarChart>
@@ -162,7 +162,7 @@ export default function FinanceiroPage() {
                 <tr key={p.id} style={{ borderTop: '1px solid var(--border-3)' }}>
                   <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px', fontWeight: 600 }}>{p.clientName}</td>
                   <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{p.reference}</td>
-                  <td style={{ fontSize: 13, color: p.status === 'atrasado' ? '#EE3528' : '#292929', padding: '12px 16px' }}>{formatDate(p.dueDate)}</td>
+                  <td style={{ fontSize: 13, color: p.status === 'atrasado' ? '#EE3528' : 'var(--text)', padding: '12px 16px' }}>{formatDate(p.dueDate)}</td>
                   <td style={{ fontSize: 13, color: 'var(--text)', padding: '12px 16px' }}>{p.paidDate ? formatDate(p.paidDate) : '—'}</td>
                   <td style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', padding: '12px 16px' }}>{formatCurrency(p.value)}</td>
                   <td style={{ fontSize: 13, color: 'var(--text-2)', padding: '12px 16px' }}>{p.method || '—'}</td>

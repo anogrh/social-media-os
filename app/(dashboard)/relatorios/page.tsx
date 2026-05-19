@@ -65,7 +65,7 @@ export default function RelatoriosPage() {
                       onClick={() => setReportType(rt.id)}
                       style={{
                         display: 'flex', alignItems: 'center', gap: 10,
-                        background: reportType === rt.id ? 'rgba(252,117,160,0.08)' : '#FFFFFF',
+                        background: reportType === rt.id ? 'rgba(252,117,160,0.08)' : 'var(--bg)',
                         border: `1px solid ${reportType === rt.id ? '#FC75A0' : 'var(--border)'}`,
                         borderRadius: 10, padding: '10px 12px',
                         cursor: 'pointer', textAlign: 'left', width: '100%',
@@ -73,7 +73,7 @@ export default function RelatoriosPage() {
                     >
                       <rt.icon size={16} style={{ color: reportType === rt.id ? '#FC75A0' : 'var(--text-4)', flexShrink: 0 }} />
                       <div>
-                        <p style={{ fontSize: 12, fontWeight: 700, color: reportType === rt.id ? '#FC75A0' : '#292929' }}>{rt.label}</p>
+                        <p style={{ fontSize: 12, fontWeight: 700, color: reportType === rt.id ? '#FC75A0' : 'var(--text)' }}>{rt.label}</p>
                         <p style={{ fontSize: 11, color: 'var(--text-3)', marginTop: 1 }}>{rt.description}</p>
                       </div>
                     </button>

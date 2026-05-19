@@ -14,8 +14,11 @@ export async function POST(request: Request) {
     { auth: { autoRefreshToken: false, persistSession: false } }
   )
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL?.replace('supabase.co', 'vercel.app') || 'http://localhost:3000'
+
   const { data, error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {
     data: { name, role },
+    redirectTo: `${siteUrl}/update-password`,
   })
 
   if (error) {

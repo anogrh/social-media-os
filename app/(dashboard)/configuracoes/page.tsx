@@ -48,7 +48,7 @@ const integrations = [
 const STATUS_PILL: Record<string, { bg: string; color: string; label: string }> = {
   configured:    { bg: '#d1fae5', color: '#065f46', label: 'Configurado' },
   pending:       { bg: '#fef3c7', color: '#92400e', label: 'Pendente' },
-  not_connected: { bg: '#f3f4f6', color: '#6b7280', label: 'Não conectado' },
+  not_connected: { bg: 'var(--bg-3)', color: 'var(--text-3)', label: 'Não conectado' },
 }
 
 function getInitials(name: string) {
@@ -381,7 +381,7 @@ export default function ConfiguracoesPage() {
                           </div>
                           <span style={{
                             fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 999,
-                            background: member.role === 'Admin' ? '#FC75A0' : '#F5F4F2',
+                            background: member.role === 'Admin' ? '#FC75A0' : 'var(--bg-2)',
                             color: member.role === 'Admin' ? '#FFFFFF' : 'var(--text-2)',
                             border: member.role === 'Admin' ? 'none' : '1px solid var(--border)',
                           }}>
@@ -505,7 +505,7 @@ export default function ConfiguracoesPage() {
                             {showKey[intg.id] ? <EyeOff size={13} /> : <Eye size={13} />}
                           </button>
                           <button style={{
-                            background: intg.status === 'not_connected' ? '#FC75A0' : '#F5F4F2',
+                            background: intg.status === 'not_connected' ? '#FC75A0' : 'var(--bg-2)',
                             color: intg.status === 'not_connected' ? '#FFFFFF' : 'var(--text-2)',
                             border: intg.status === 'not_connected' ? 'none' : '1px solid var(--border)',
                             borderRadius: 999, padding: '7px 16px', fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: font,

@@ -321,7 +321,7 @@ export default function EstrategiaPage() {
               style={{
                 background: 'transparent', border: 'none', cursor: 'pointer', padding: '10px 18px',
                 fontFamily: font, fontSize: 13, fontWeight: tab === i ? 700 : 400,
-                color: tab === i ? '#FC75A0' : 'rgba(31,27,26,0.5)',
+                color: tab === i ? '#FC75A0' : 'var(--text-2)',
                 borderBottom: tab === i ? '2px solid #FC75A0' : '2px solid transparent',
                 marginBottom: -1, transition: 'all 0.15s',
               }}>
@@ -366,7 +366,7 @@ export default function EstrategiaPage() {
                 return (
                   <div key={q.id}
                     style={{
-                      background: done ? '#F5F4F2' : '#FFFFFF',
+                      background: done ? 'var(--bg-2)' : 'var(--bg)',
                       border: `1.5px solid ${done ? 'rgba(252,117,160,0.25)' : 'var(--border)'}`,
                       borderRadius: 16, padding: '28px 32px',
                       transition: 'border-color 0.2s, background 0.2s',
@@ -422,8 +422,8 @@ export default function EstrategiaPage() {
                 onClick={handleGenStrategy}
                 disabled={stratLoading || filledCount < 3}
                 style={{
-                  background: filledCount < 3 ? 'var(--border-2)' : stratLoading ? 'rgba(31,27,26,0.7)' : '#292929',
-                  color: filledCount < 3 ? 'rgba(31,27,26,0.4)' : '#FFFFFF',
+                  background: filledCount < 3 ? 'var(--border-2)' : stratLoading ? 'var(--text-3)' : 'var(--text)',
+                  color: filledCount < 3 ? 'var(--text-4)' : 'var(--bg)',
                   border: 'none', borderRadius: 999, padding: '14px 32px',
                   fontSize: 15, fontWeight: 700, cursor: filledCount < 3 || stratLoading ? 'not-allowed' : 'pointer',
                   display: 'flex', alignItems: 'center', gap: 10, fontFamily: font,
@@ -546,7 +546,7 @@ export default function EstrategiaPage() {
                         {strategy.cta.chamada}
                       </div>
                     </div>
-                    <p style={{ fontSize: 13, color: 'rgba(31,27,26,0.65)', lineHeight: 1.7 }}>{strategy.cta.racional}</p>
+                    <p style={{ fontSize: 13, color: 'var(--text-2)', lineHeight: 1.7 }}>{strategy.cta.racional}</p>
                   </StratSection>
 
                 </div>
@@ -630,7 +630,7 @@ export default function EstrategiaPage() {
                 ))}
               </div>
               <button onClick={handleGenPersona} disabled={personaLoading}
-                style={{ background: personaLoading ? 'rgba(31,27,26,0.5)' : '#292929', color: '#FFFFFF', borderRadius: 999, padding: '12px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: personaLoading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font }}>
+                style={{ background: personaLoading ? 'var(--text-3)' : 'var(--text)', color: 'var(--bg)', borderRadius: 999, padding: '12px 24px', border: 'none', fontSize: 13, fontWeight: 700, cursor: personaLoading ? 'wait' : 'pointer', display: 'flex', alignItems: 'center', gap: 8, fontFamily: font }}>
                 {personaLoading
                   ? <><span style={{ width: 14, height: 14, border: '2px solid rgba(255,255,255,0.3)', borderTop: '2px solid #fff', borderRadius: '50%', display: 'inline-block', animation: 'spin 0.7s linear infinite' }} /> Gerando...</>
                   : <><Sparkles size={14} /> Gerar persona <ArrowRight size={14} /></>}
@@ -715,7 +715,7 @@ export default function EstrategiaPage() {
               <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                 {['foto', 'feed', 'reels', 'carrossel', 'stories'].map(f => (
                   <button key={f} onClick={() => setFmts(p => p.includes(f) ? p.filter(x => x !== f) : [...p, f])}
-                    style={{ background: fmts.includes(f) ? '#86efac' : '#F5F4F2', border: `1px solid ${fmts.includes(f) ? '#4ade80' : 'var(--border-2)'}`, borderRadius: 999, padding: '6px 14px', fontSize: 12, fontWeight: fmts.includes(f) ? 700 : 400, color: 'var(--text)', cursor: 'pointer' }}>
+                    style={{ background: fmts.includes(f) ? '#86efac' : 'var(--bg-2)', border: `1px solid ${fmts.includes(f) ? '#4ade80' : 'var(--border-2)'}`, borderRadius: 999, padding: '6px 14px', fontSize: 12, fontWeight: fmts.includes(f) ? 700 : 400, color: 'var(--text)', cursor: 'pointer' }}>
                     {f}
                   </button>
                 ))}
@@ -736,7 +736,7 @@ export default function EstrategiaPage() {
                       ))}
                     </div>
                   </div>
-                  <p style={{ fontSize: 12, color: 'rgba(31,27,26,0.65)', lineHeight: 1.6, fontStyle: 'italic' }}>"{ref.caption}"</p>
+                  <p style={{ fontSize: 12, color: 'var(--text-2)', lineHeight: 1.6, fontStyle: 'italic' }}>"{ref.caption}"</p>
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                     {ref.hashtags.map(h => <span key={h} style={{ fontSize: 11, color: '#FC75A0', fontWeight: 600 }}>{h}</span>)}
                   </div>

@@ -62,7 +62,7 @@ function CardDetailModal({
       onClick={onClose}
     >
       <div
-        style={{ background: 'var(--bg)', borderRadius: 20, width: '100%', maxWidth: 600, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px var(--shadow)', fontFamily: "'Inter', system-ui, sans-serif" }}
+        style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 20, width: '100%', maxWidth: 600, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px var(--shadow)', fontFamily: "'Inter', system-ui, sans-serif" }}
         onClick={e => e.stopPropagation()}
       >
         {/* Header */}
@@ -512,7 +512,7 @@ export default function CalendarioPage() {
       {showModal && (
         <div style={{ position: 'fixed', inset: 0, background: 'var(--overlay)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 50, backdropFilter: 'blur(2px)', padding: 16 }}
           onClick={() => setShowModal(false)}>
-          <div style={{ background: 'var(--bg)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 540, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px var(--shadow)', fontFamily: "'Inter', system-ui, sans-serif" }}
+          <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 540, maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px var(--shadow)', fontFamily: "'Inter', system-ui, sans-serif" }}
             onClick={e => e.stopPropagation()}>
 
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>

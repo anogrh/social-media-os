@@ -29,7 +29,7 @@ function FormatPill({ format }: { format: string }) {
     story:    { background: '#FBD0DA', color: 'var(--text)' },
     feed:     { background: '#F2F4A4', color: 'var(--text)' },
   }
-  const s = map[format] || { background: '#f3f4f6', color: '#374151' }
+  const s = map[format] || { background: 'var(--bg-3)', color: 'var(--text)' }
   return <span style={{ ...s, fontSize: 10, padding: '2px 8px', borderRadius: 999, fontWeight: 600, flexShrink: 0, whiteSpace: 'nowrap' }}>{format}</span>
 }
 

@@ -192,7 +192,7 @@ export default function FinanceiroPage() {
           backdropFilter: 'blur(2px)',
         }} onClick={() => setShowModal(false)}>
           <div style={{
-            background: 'var(--bg)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 520,
+            background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 520,
             boxShadow: '0 24px 64px var(--shadow)', fontFamily: font,
           }} onClick={e => e.stopPropagation()}>
 

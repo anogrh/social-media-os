@@ -31,7 +31,7 @@ function getFormatStyle(format: string) {
     story: { background: '#FBD0DA', color: 'var(--text)' },
     feed: { background: '#F2F4A4', color: 'var(--text)' },
   }
-  return map[format] || { background: '#f3f4f6', color: '#374151' }
+  return map[format] || { background: 'var(--bg-3)', color: 'var(--text)' }
 }
 
 export default function ClientDetailPage() {

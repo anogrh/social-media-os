@@ -95,7 +95,7 @@ export default function PromptsPage() {
 
         {/* Grouped prompts */}
         {Object.entries(grouped).map(([category, categoryPrompts]) => {
-          const catStyle = CATEGORY_STYLES[category] || { background: '#f3f4f6', color: '#374151' }
+          const catStyle = CATEGORY_STYLES[category] || { background: 'var(--bg-3)', color: 'var(--text)' }
 
           return (
             <div key={category} style={{ marginBottom: 28 }}>
@@ -205,7 +205,7 @@ export default function PromptsPage() {
           backdropFilter: 'blur(2px)',
         }} onClick={() => setShowModal(false)}>
           <div style={{
-            background: 'var(--bg)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 540,
+            background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 540,
             maxHeight: '90vh', overflowY: 'auto',
             boxShadow: '0 24px 64px var(--shadow)', fontFamily: font,
           }} onClick={e => e.stopPropagation()}>

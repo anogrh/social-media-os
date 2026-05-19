@@ -96,7 +96,7 @@ export default function BibliotecaPage() {
         {/* Grid */}
         <div className="rg-3" style={{ gap: 16 }}>
           {filtered.map(ref => {
-            const typeStyle = TYPE_STYLES[ref.type] || { background: '#f3f4f6', color: '#374151', label: ref.type }
+            const typeStyle = TYPE_STYLES[ref.type] || { background: 'var(--bg-3)', color: 'var(--text)', label: ref.type }
             return (
               <div
                 key={ref.id}
@@ -175,7 +175,7 @@ export default function BibliotecaPage() {
           backdropFilter: 'blur(2px)',
         }} onClick={() => setShowModal(false)}>
           <div style={{
-            background: 'var(--bg)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 520,
+            background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 20, padding: 32, width: '100%', maxWidth: 520,
             maxHeight: '90vh', overflowY: 'auto',
             boxShadow: '0 24px 64px var(--shadow)', fontFamily: font,
           }} onClick={e => e.stopPropagation()}>

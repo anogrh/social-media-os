@@ -6,7 +6,7 @@ import { useState } from 'react'
 import {
   LayoutDashboard, Users, CalendarDays, CheckSquare,
   DollarSign, FileText, Lightbulb, BarChart, Library, MessageSquare,
-  ChevronLeft, ChevronRight, Camera, Settings, LogOut, X
+  ChevronLeft, ChevronRight, Camera, Settings, LogOut, X, Sparkles
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { supabase } from '@/lib/supabase'
@@ -29,6 +29,12 @@ const navGroups = [
     label: 'Analytics',
     items: [
       { href: '/instagram', label: 'Instagram', icon: Camera },
+    ],
+  },
+  {
+    label: 'Criação com IA',
+    items: [
+      { href: '/criacao', label: 'Central de Criação', icon: Sparkles },
     ],
   },
   {
